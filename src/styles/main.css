@@ -1,7 +1,7 @@
 /*#80ff80 , #00cc99*/
 body {
     height: 100vh;
-    background: red; /* For browsers that do not support gradients */
+    background: #00cc99; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left, #99ff99 , #00cc99); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #99ff99, #00cc99); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #99ff99, #00cc99); /* For Firefox 3.6 to 15 */
@@ -37,7 +37,7 @@ body {
   width: 100%;
 }
 
-#side-nav, #content {
+#sideNav, #content {
     height: 88vh;
     padding: 30px;
     background: #ffffff;
@@ -47,12 +47,36 @@ body {
     overflow-y: scroll;
 }
 
+#sideNav, #sideNavToggle {
+    -webkit-transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    transition: left 0.3s;
+}
+
 #content {
     white-space: pre-line;
 }
 
-#side-nav a {
+#sideNav a {
     display: block;
+}
+
+#sideNav.show {
+    left: 0px;
+}
+
+#sideNavToggle {
+    position: absolute;
+    width: 30px;
+    height: 88vh;
+    left: 0px;
+    background: #99ff99;
+    border-right: solid 1px #00cc99;
+    z-index: 9;
+}
+
+#sideNavToggle.show {
+    left: 260px;
 }
 
 /* Scrollbar */
@@ -73,4 +97,31 @@ body {
     -webkit-box-shadow: 1px 1px 10px 0px rgba(0,0,0,1);
     -moz-box-shadow: 1px 1px 10px 0px rgba(0,0,0,1);
     box-shadow: 1px 1px 10px 0px rgba(0,0,0,1);
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    #sideNav {
+        position: absolute;
+        left: -260px;
+        width: 260px;
+        z-index: 9;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    body {
+        background: black;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+    
 }

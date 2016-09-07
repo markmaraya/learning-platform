@@ -17,7 +17,16 @@
                         $scope.topic = response.data;
                     });
             };
-            
+
+            $scope.sideNav = '';
+            $scope.sideNavToggle = function (sideNav) {
+                if (sideNav == '') {
+                    $scope.sideNav = 'show';
+                } else {
+                    $scope.sideNav = '';
+                }
+            }
+
             $scope.change = function () {
                 eval("console.log('helloworld')");
 
