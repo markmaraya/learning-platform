@@ -17,10 +17,6 @@
                         $scope.topic = response.data;
                     });
             };
-
-            $scope.runCode = function () {
-                $scope.codeOutput = $sce.trustAsHtml($scope.codeInput);
-            };
             
             $scope.change = function () {
                 eval("console.log('helloworld')");
