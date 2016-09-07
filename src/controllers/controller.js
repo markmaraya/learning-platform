@@ -2,8 +2,8 @@
 
 (function () {
     angular
-        .module('AngularTutorialApplication')
-        .controller('AngularTutorialController', ['$scope', '$sce', 'TopicDetailService', function ($scope, $sce, TopicDetailService) {
+        .module('LearningPlatformApplication')
+        .controller('LearningPlatformController', ['$scope', 'TopicDetailService', function ($scope, TopicDetailService) {
             $scope.topicList = ['introduction', 'directives', 'expressions', 'modules', 'controllers', 'scopes', 'data binding',
                 'services', 'dependency injection', 'filters', 'forms', 'routing', 'custom directive'];
 
@@ -11,15 +11,12 @@
                 .then(function (response) {
                     $scope.topic = response.data;
                 });
+
             $scope.choiceFunction = function (topic) {
                 TopicDetailService.getDetails(topic)
                     .then(function (response) {
                         $scope.topic = response.data;
                     });
-            };
-
-            $scope.runCode = function () {
-                $scope.codeOutput = $sce.trustAsHtml($scope.codeInput);
             };
             
             $scope.change = function () {

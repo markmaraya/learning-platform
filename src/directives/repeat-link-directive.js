@@ -2,7 +2,7 @@
 
 (function () {
     angular
-        .module('AngularTutorialApplication')
+        .module('LearningPlatformApplication')
         .directive('repeatLink', function () {
             return {
                 restrict: 'E',

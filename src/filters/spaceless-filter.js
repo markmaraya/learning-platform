@@ -2,7 +2,7 @@
 
 (function () {
     angular
-        .module('AngularTutorialApplication')
+        .module('LearningPlatformApplication')
         .filter('spaceless', function () {
             return function (input) {
                 if (input) {
