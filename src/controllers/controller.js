@@ -19,11 +19,14 @@
             };
 
             $scope.sideNav = '';
+            $scope.sideNavIcon = 'glyphicon-menu-hamburger';
             $scope.sideNavToggle = function (sideNav) {
                 if (sideNav == '') {
                     $scope.sideNav = 'show';
+                    $scope.sideNavIcon = 'glyphicon-remove';
                 } else {
                     $scope.sideNav = '';
+                    $scope.sideNavIcon = 'glyphicon-menu-hamburger';
                 }
             }
 

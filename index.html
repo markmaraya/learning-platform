@@ -41,7 +41,9 @@
                     <div id="sideNav" ng-class="sideNav">
                         <repeat-link list="topicList"></repeat-link>
                     </div>
-                    <div id="sideNavToggle" ng-class="sideNav" ng-click="sideNavToggle(sideNav)">X</div>
+                    <div id="sideNavToggle" ng-class="sideNav" ng-click="sideNavToggle(sideNav)">
+                        <span class="glyphicon {{sideNavIcon}}" aria-hidden="true"></span>
+                    </div>
                 </div>
                 <div class="col-md-5 col-sm-6">
                     <div id="content">{{topic}}</div>
