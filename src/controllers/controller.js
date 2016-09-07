@@ -2,8 +2,8 @@
 
 (function () {
     angular
-        .module('AngularTutorialApplication')
-        .controller('AngularTutorialController', ['$scope', '$sce', 'TopicDetailService', function ($scope, $sce, TopicDetailService) {
+        .module('LearningPlatformApplication')
+        .controller('LearningPlatformController', ['$scope', '$sce', 'TopicDetailService', function ($scope, $sce, TopicDetailService) {
             $scope.topicList = ['introduction', 'directives', 'expressions', 'modules', 'controllers', 'scopes', 'data binding',
                 'services', 'dependency injection', 'filters', 'forms', 'routing', 'custom directive'];
 

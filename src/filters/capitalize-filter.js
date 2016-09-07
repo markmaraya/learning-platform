@@ -2,7 +2,7 @@
 
 (function () {
     angular
-        .module('AngularTutorialApplication')
+        .module('LearningPlatformApplication')
         .filter('capitalize', function () {
             return function (input) {
                 if (input.indexOf(' ') !== -1) {

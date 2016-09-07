@@ -1,5 +1,5 @@
 'use strict';
 
 (function () {
-	angular.module('AngularTutorialApplication', []);
+	angular.module('LearningPlatformApplication', []);
 })();
