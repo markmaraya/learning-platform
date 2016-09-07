@@ -1,0 +1,8 @@
+Modules
+
+Modules define AngularJS applications. You can think of a module as a container for the different
+parts of your app – controllers, services, filters, directives, etc.
+
+A module is created by using the AngularJS function angular.module
+
+var app = angular.module("myApp", []); 

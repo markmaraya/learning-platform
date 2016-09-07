@@ -1,0 +1,51 @@
+Expressions
+
+Angular expressions are JavaScript-like code snippets that are mainly placed in interpolation bindings.
+
+AngularJS expressions can be written inside double braces: {{ expression }}.
+
+AngularJS expressions can also be written inside a directive: ng-bind="expression".
+
+AngularJS will resolve the expression, and return the result exactly where the expression is written.
+
+AngularJS expressions are much like JavaScript expressions: They can contain literals, operators, and variables.
+
+Example:
+
+Numbers
+<div ng-app="" ng-init="quantity=1;cost=5">
+
+<p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+
+</div>
+
+Strings
+<div ng-app="" ng-init="firstName='John';lastName='Doe'">
+
+<p>The name is {{ firstName + " " + lastName }}</p>
+
+</div>
+
+Objects
+<div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
+
+<p>The name is {{ person.lastName }}</p>
+
+</div>
+
+Arrays
+<div ng-app="" ng-init="points=[1,15,19,2,40]">
+
+<p>The third result is {{ points[2] }}</p>
+
+</div>
+
+One-time binding
+
+An expression that starts with :: is considered a one-time expression. One-time expressions will stop recalculating
+once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+
+Reasons for using one-time binding
+The main purpose of one-time binding expression is to provide a way to create a binding that gets deregistered
+and frees up resources once the binding is stabilized. Reducing the number of expressions being watched makes
+the digest loop faster and allows more information to be displayed at the same time.

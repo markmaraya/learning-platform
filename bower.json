@@ -1,0 +1,25 @@
+{
+  "name": "angular-project",
+  "description": "AngularJS Project",
+  "main": "",
+  "license": "MIT",
+  "keywords": [
+    "angularjs",
+    "angular"
+  ],
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.0.0",
+    "ui-bootstrap": "^2.0.0"
+  },
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

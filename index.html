@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="AngularTutorialApplication" ng-controller="AngularTutorialController">
+
+<head>
+    <title>Angular Tutorial</title>
+    <!--build:css styles/styles.css -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
+    <!-- endbuild -->
+
+    <!--build:js js/vendor.js -->
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <!-- endbuild -->
+
+    <!--build:js js/app.js -->
+    <script src="/src/app.js"></script>
+    <script src="/src/directives/repeat-link-directive.js"></script>
+    <script src="/src/filters/capitalize-filter.js"></script>
+    <script src="/src/filters/spaceless-filter.js"></script>
+    <script src="/src/services/service.js"></script>
+    <script src="/src/controllers/controller.js"></script>
+    <!-- endbuild -->
+</head>
+
+<body>
+    <nav class="navbar navbar-default shadow">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <h3>AngularJS</h3>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="side-nav">
+                        <repeat-link list="topicList"></repeat-link>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div id="content">{{topic}}</div>
+                </div>
+                <div class="col-md-4">
+                    <div id="content">
+                        <!--<button ng-click="runCode()">Run</button>
+                        <input type="text" ng-model="codeInput" />
+                        <p ng-bind-html="codeOutput"></p>
+                        {{code}}
+                        <textarea id="src" ng-keyup="change();"></textarea><br/>
+                        <iframe src="pages/iframe.html" id="iframe"></iframe>​{{x}}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <p>Footer content here.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

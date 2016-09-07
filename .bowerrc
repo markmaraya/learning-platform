@@ -1,0 +1,6 @@
+{
+  "directory": "bower_components",
+  "timeout": 60000,
+  "proxy": "http://cache.srv.pointwest.com.ph:3128",
+  "https-proxy": "http://cache.srv.pointwest.com.ph:3128"
+}
