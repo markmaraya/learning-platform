@@ -3,7 +3,7 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .filter('capitalize', function () {
+        .filter('capitalize', [function () {
             return function (input) {
                 if (input.indexOf(' ') !== -1) {
                     var inputPieces, i;
@@ -26,5 +26,5 @@
                     return inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
                 }
             };
-        });
+        }]);
 })();

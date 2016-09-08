@@ -3,7 +3,7 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .directive('repeatLink', function () {
+        .directive('repeatLink', [function () {
             return {
                 restrict: 'E',
                 replace: true,
@@ -12,5 +12,5 @@
                 },
                 template: '<a href="" ng-repeat="topics in list" ng-click="choiceFunction(topics | spaceless)">{{topics | capitalize}}</a>'
             };
-        });
+        }]);
 })();

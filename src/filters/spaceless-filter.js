@@ -3,11 +3,11 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .filter('spaceless', function () {
+        .filter('spaceless', [function () {
             return function (input) {
                 if (input) {
                     return input.replace(/\s+/g, '-');
                 }
             }
-        });
+        }]);
 })();
