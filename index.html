@@ -11,15 +11,18 @@
     <!--build:js js/vendor.js -->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <!--<script src="bower_components/x2js/xml2json.js"></script>-->
+    <script src="bower_components/abdmob/x2js/xml2json.js"></script>
     <!-- endbuild -->
 
     <!--build:js js/app.js -->
     <script src="src/app.js"></script>
+    <script src="src/directives/lesson-link-directive.js"></script>
     <script src="src/directives/repeat-link-directive.js"></script>
     <script src="src/filters/capitalize-filter.js"></script>
     <script src="src/filters/spaceless-filter.js"></script>
-    <script src="src/services/service.js"></script>
+    <script src="src/filters/to-string-filter.js"></script>
+    <script src="src/services/lesson-list-service.js"></script>
+    <script src="src/services/lesson-detail-service.js"></script>
     <script src="src/controllers/controller.js"></script>
     <!-- endbuild -->
 </head>

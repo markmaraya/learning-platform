@@ -3,14 +3,14 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .directive('repeatLink', [function () {
+        .directive('lessons', [function () {
             return {
                 restrict: 'E',
                 replace: true,
                 scope: {
                     list: '='
                 },
-                template: '<a href="" ng-repeat="lesson in list" ng-click="choiceFunction($index)">{{lesson | capitalize}}</a>'
+                template: '<a href="#main" ng-click="getPath(lessons)" ng-repeat="lessons in list"><div class="lesson-div bg-primary"><img alt="Sample Image"><label>{{lessons}}</label></div></a>'
             };
         }]);
 })();

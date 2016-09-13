@@ -3,31 +3,46 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .controller('LearningPlatformController', ['$scope', 'TopicDetailService', function ($scope, TopicDetailService) {
-            $scope.topicList = ['introduction', 'directives', 'expressions', 'modules', 'controllers', 'scopes', 'data binding',
-                'services', 'dependency injection', 'filters', 'forms', 'routing', 'custom directive'];
+        .controller('LearningPlatformController', ['$scope', 'LessonDetailService', 'LessonListService', function ($scope, LessonDetailService, LessonListService) {
+            var x2js = new X2JS();
 
-            TopicDetailService.getDetails('introduction')
+            LessonListService.getDetails()
                 .then(function (response) {
-                    $scope.topic = response.data;
+                    $scope.lessons = x2js.xml_str2json(response.data);
+
+                    var lessonList = [];
+
+                    for (var key in $scope.lessons.lesson.title) {
+                        lessonList.push($scope.lessons.lesson.title[key]);
+                    };
+
+                    $scope.lessonList = lessonList;
                 });
-            $scope.choiceFunction = function (topic) {
-                TopicDetailService.getDetails(topic)
+
+            $scope.getPath = function (path) {
+                $scope.breadcrumbLesson = path;
+
+                LessonDetailService.getDetails(path)
                     .then(function (response) {
-                        $scope.topic = response.data;
+                        $scope.topicList = x2js.xml_str2json(response.data);
+                        $scope.chapter = $scope.topicList.lesson.chapter[0];
+
+                        var titleList = [];
+
+                        for (var key in $scope.topicList.lesson.chapter) {
+                            titleList.push($scope.topicList.lesson.chapter[key].title);
+                        };
+
+                        $scope.titleList = titleList;
+                    })
+                    .catch(function (data) {
+                        $scope.titleList = "";
+                        $scope.chapter = "";
                     });
             };
 
-            $scope.sideNav = '';
-            $scope.sideNavIcon = 'glyphicon-menu-hamburger';
-            $scope.sideNavToggle = function (sideNav) {
-                if (sideNav == '') {
-                    $scope.sideNav = 'show';
-                    $scope.sideNavIcon = 'glyphicon-remove';
-                } else {
-                    $scope.sideNav = '';
-                    $scope.sideNavIcon = 'glyphicon-menu-hamburger';
-                }
+            $scope.choiceFunction = function (id) {
+                $scope.chapter = $scope.topicList.lesson.chapter[id];
             };
 
         }]);

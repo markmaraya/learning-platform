@@ -7,7 +7,6 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
@@ -27,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/markmaraya/angular-exercise/issues"
   },
-  "homepage": "https://github.com/markmaraya/angular-exercise"
+  "homepage": "https://github.com/markmaraya/angular-exercise",
+  "dependencies": {}
 }

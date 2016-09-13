@@ -4,7 +4,7 @@
             Introduction
         </title>
         <content>
-            What is AngularJS?
+            What is Bootstrap?
 
             AngularJS is a structural framework for dynamic web apps.It lets you use HTML as your template language and lets you
             extend HTML's syntax to express your application's components clearly and succinctly. Angular's data binding and dependency
@@ -19,7 +19,7 @@
     </chapter>
     <chapter>
         <title>
-            Directives
+            Grid System
         </title>
         <content>
             At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class)
@@ -39,12 +39,7 @@
             The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
         </content>
         <sample>
-            <![CDATA[<div ng-app="" ng-init="firstName='John'">
-
-            <p>Name: <input type="text" ng-model="firstName"></p>
-            <p>You wrote: {{ firstName }}</p>
-
-            </div>]]>
+            
         </sample>
     </chapter>
 </lesson>

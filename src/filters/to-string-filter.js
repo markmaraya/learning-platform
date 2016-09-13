@@ -3,10 +3,10 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .filter('spaceless', [function () {
+        .filter('toString', [function () {
             return function (input) {
                 if (input) {
-                    return input.toLowerCase().replace(/\s+/g, '-');
+                    return input.toString();
                 }
             }
         }]);

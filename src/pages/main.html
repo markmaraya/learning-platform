@@ -2,25 +2,28 @@
     <div class="container">
         <ol class="breadcrumb bg-info">
             <li><a href="#/">Home</a></li>
-            <li class="active">AngularJS</li>
+            <li class="active">{{breadcrumbLesson}}</li>
         </ol>
     </div>
 </div>
 
-
 <div class="content-main">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <div id="sideNav" ng-class="sideNav">
-                    <repeat-link list="topicList"></repeat-link>
-                </div>
-                <div id="sideNavToggle" ng-class="sideNav" ng-click="sideNavToggle(sideNav)">
-                    <span class="glyphicon {{sideNavIcon}}" aria-hidden="true"></span>
+            <div class="col-md-3 col-sm-3">
+                <div id="sideNav">
+                    <repeat-link list="titleList"></repeat-link>
                 </div>
             </div>
-            <div class="col-md-9 col-sm-6">
-                <div class="section">{{topic}}</div>
+            <div class="col-md-9 col-sm-9">
+                <div class="section">
+                    <h4>{{chapter.title}}</h4>
+                    {{chapter.content}}
+                    <br />
+                    <h4 ng-show="chapter">Sample</h4>
+                    {{chapter.sample | toString}}
+                </div>
+                <div ng-hide="chapter">Invalid link</div>
             </div>
         </div>
     </div>
