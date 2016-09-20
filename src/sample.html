@@ -1,0 +1,73 @@
+<html ng-app="CodeApp">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        #submitCodeButton {
+            margin: 10px 0;
+        }
+        #textAreaHtmlCode, #textAreaScriptCode {
+            height: 300px;
+            width: 100%;
+            resize: none;
+        }
+        #iframeWrapper {
+            height: 300px;
+            width: 100%;
+            border: solid 1px #c3c3c3;
+        }
+        #iframeResult {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="serv.js"></script>
+    <script>
+        function submitTryit() {
+            var text = document.getElementById('textareaHtmlCode').value;
+            var dependencyLink = '../bower_components/angular/angular.min.js';
+            var scriptText = document.getElementById('textareaScriptCode').value;
+            var ifr = document.createElement('iframe');
+
+            ifr.setAttribute('name', 'frame1');
+            ifr.setAttribute('frameborder', '0');
+            ifr.setAttribute('id', 'iframeResult'); 
+            document.getElementById('iframewrapper').innerHTML = '';
+            document.getElementById('iframewrapper').appendChild(ifr);
+
+            var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+
+            ifrw.document.open();
+            ifrw.document.write(text);
+            ifrw.document.write('<script type="text/javascript" src="' + dependencyLink + '"><\/scr'+'ipt>');
+            ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr'+'ipt>');
+            ifrw.document.close();
+
+            ifrw.document.documentElement.setAttribute("ng-app", "myApp");
+        }
+    </script>
+</head>
+
+<body ng-controller="CodeAppController">
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="HTML">
+                    <textarea id="textareaHtmlCode" spellcheck="false">{{htmlCode}}</textarea>
+                </uib-tab>
+                <uib-tab index="1" heading="Script">
+                    <textarea id="textareaScriptCode" spellcheck="false">{{scriptCode}}</textarea>
+                </uib-tab>
+            </uib-tabset>
+
+            <button id="submitCodeButton" class="btn btn-success" onclick="submitTryit()">Submit</button>
+            <div id="iframewrapper"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

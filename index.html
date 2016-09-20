@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="LearningPlatformApplication" ng-controller="LearningPlatformController">
+<html ng-app="LearningPlatformApplication">
 
 <head>
     <title>Angular Tutorial</title>
     <!--build:css styles/styles.css -->
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="src/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="src/app/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="src/app/styles/style.css">
     <!-- endbuild -->
 
     <!--build:js js/vendor.js -->
@@ -16,14 +17,19 @@
 
     <!--build:js js/app.js -->
     <script src="src/app.js"></script>
+    <script src="src/directives/content-directive.js"></script>
     <script src="src/directives/lesson-link-directive.js"></script>
     <script src="src/directives/repeat-link-directive.js"></script>
+
     <script src="src/filters/capitalize-filter.js"></script>
     <script src="src/filters/spaceless-filter.js"></script>
     <script src="src/filters/to-string-filter.js"></script>
-    <script src="src/services/lesson-list-service.js"></script>
-    <script src="src/services/lesson-detail-service.js"></script>
-    <script src="src/controllers/controller.js"></script>
+
+    <script src="src/core/lesson-list-service.js"></script>
+    <script src="src/core/lesson-detail-service.js"></script>
+
+    <script src="src/app/main/main-controller.js"></script>
+    <script src="src/app/lesson/lesson-controller.js"></script>
     <!-- endbuild -->
 </head>
 
@@ -33,9 +39,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#/">
-                    <h3>AngularJS</h3>
+                    <h3>Title</h3>
                 </a>
-                <a href="#/">Home</a>
+                <a href="#/">Home</a><a href="src/sample.html">fff</a>
             </div>
         </div>
     </nav>
@@ -44,7 +50,7 @@
 
     <footer class="footer bg-primary">
         <div class="container">
-            
+
         </div>
     </footer>
 

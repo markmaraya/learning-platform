@@ -39,12 +39,593 @@
             The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
         </content>
         <sample>
-            <![CDATA[<div ng-app="" ng-init="firstName='John'">
+            <![CDATA[
+                <div ng-app="" ng-init="firstName='John'">
 
-            <p>Name: <input type="text" ng-model="firstName"></p>
-            <p>You wrote: {{ firstName }}</p>
+                    <p>Name: <input type="text" ng-model="firstName"></p>
+                    <p>You wrote: {{ firstName }}</p>
 
-            </div>]]>
+                </div>
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Expressions
+        </title>
+        <content>
+            Angular expressions are JavaScript-like code snippets that are mainly placed in interpolation bindings.
+
+            AngularJS expressions can be written inside double braces: {{ expression }}.
+
+            AngularJS expressions can also be written inside a directive: ng-bind="expression".
+
+            AngularJS will resolve the expression, and return the result exactly where the expression is written.
+
+            AngularJS expressions are much like JavaScript expressions: They can contain literals, operators, and variables.
+
+            One-time binding
+
+            An expression that starts with :: is considered a one-time expression. One-time expressions will stop recalculating
+            once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+
+            Reasons for using one-time binding
+            The main purpose of one-time binding expression is to provide a way to create a binding that gets deregistered
+            and frees up resources once the binding is stabilized. Reducing the number of expressions being watched makes
+            the digest loop faster and allows more information to be displayed at the same time.
+        </content>
+        <sample>
+            <![CDATA[
+                Numbers
+                <div ng-app="" ng-init="quantity=1;cost=5">
+
+                    <p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+
+                </div>
+
+                Strings
+                <div ng-app="" ng-init="firstName='John';lastName='Doe'">
+
+                    <p>The name is {{ firstName + " " + lastName }}</p>
+
+                </div>
+
+                Objects
+                <div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
+
+                    <p>The name is {{ person.lastName }}</p>
+
+                </div>
+
+                Arrays
+                <div ng-app="" ng-init="points=[1,15,19,2,40]">
+
+                    <p>The third result is {{ points[2] }}</p>
+
+                </div>
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Modules
+        </title>
+        <content>
+            Modules define AngularJS applications. You can think of a module as a container for the different
+            parts of your app – controllers, services, filters, directives, etc.
+
+            A module is created by using the AngularJS function angular.module
+        </content>
+        <sample>
+            <![CDATA[
+                var app = angular.module("myApp", []);
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Controllers
+        </title>
+        <content>
+            In Angular, a Controller is defined by a JavaScript constructor function that is used to augment the Angular Scope.
+
+            When a Controller is attached to the DOM via the ng-controller directive, Angular will instantiate a new Controller object,
+            using the specified Controller's constructor function. A new child scope will be created and made available as an injectable
+            parameter to the Controller's constructor function as $scope.
+
+            Use controllers to:
+
+            Set up the initial state of the $scope object.
+            Add behavior to the $scope object.
+
+            Do not use controllers to:
+
+            Manipulate DOM — Controllers should contain only business logic. Putting any presentation logic into Controllers significantly
+            affects its testability. Angular has databinding for most cases and directives to encapsulate manual DOM manipulation.
+            Format input — Use angular form controls instead.
+            Filter output — Use angular filters instead.
+            Share code or state across controllers — Use angular services instead.
+            Manage the life-cycle of other components (for example, to create service instances).
+
+            The ng-controller directive defines the application controller.
+        </content>
+        <sample>
+            <![CDATA[
+                <div ng-app="myApp" ng-controller="myCtrl">
+
+                First Name: <input type="text" ng-model="firstName"><br>
+                Last Name: <input type="text" ng-model="lastName"><br>
+                <br>
+                Full Name: {{firstName + " " + lastName}}
+
+                </div>
+
+                <script>
+                var app = angular.module('myApp', []);
+                app.controller('myCtrl', function($scope) {
+                    $scope.firstName = "John";
+                    $scope.lastName = "Doe";
+                });
+                </script>
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Scopes
+        </title>
+        <content>
+            Scope is an object that refers to the application model. It is an execution context for expressions.
+            Scope is the binding part between the HTML (view) and the JavaScript (controller).
+            Scope is available for both the view and the controller.
+
+            When you make a controller in AngularJS, you pass the $scope object as an argument.
+
+            Understanding the Scope
+            If we consider an AngularJS application to consist of:
+
+            View, which is the HTML.
+            Model, which is the data available for the current view.
+            Controller, which is the JavaScript function that makes/changes/removes/controls the data.
+            Then the scope is the Model.
+
+            Root Scope
+            All applications have a $rootScope which is the scope created on the HTML element that contains the ng-app directive.
+
+            The rootScope is available in the entire application.
+        </content>
+        <sample>
+            <![CDATA[
+                <div ng-app="myApp" ng-controller="myCtrl">
+
+                    <h1>{{carname}}</h1>
+
+                </div>
+
+                <script>
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myCtrl', function($scope) {
+                        $scope.carname = "Volvo";
+                    });
+                </script>
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Data Binding
+        </title>
+        <content>
+            Data-binding in Angular apps is the automatic synchronization of data between the model and view components.
+            The way that Angular implements data-binding lets you treat the model as the single-source-of-truth in your application.
+            The view is a projection of the model at all times. When the model changes, the view reflects the change, and vice versa.
+
+            Data Model
+            AngularJS applications usually have a data model. The data model is a collection of data available for the application.
+        </content>
+        <sample>
+            <![CDATA[
+                var app = angular.module('myApp', []);
+                app.controller('myCtrl', function($scope) {
+                    $scope.firstname = "John";
+                    $scope.lastname = "Doe";
+                });
+
+                HTML View
+                The HTML container where the AngularJS application is displayed, is called the view.
+
+                The view has access to the model, and there are several ways of displaying model data in the view.
+
+                You can use the ng-bind directive, which will bind the innerHTML of the element to the specified model property:
+
+                Example:
+                <p ng-bind="firstname"></p>
+
+                You can also use double braces {{ }} to display content from the model:
+
+                <p>First name: {{firstname}}</p>
+
+                Or you can use the ng-model directive on HTML controls to bind the model to the view.
+
+                <input ng-model="firstname">
+
+                The ng-model directive provides a two-way binding between the model and the view.
+
+                Two-way Binding
+                Data binding in AngularJS is the synchronization between the model and the view.
+
+                When data in the model changes, the view reflects the change, and when data in the view changes, the model is updated as well.
+                This happens immediately and automatically, which makes sure that the model and the view is updated at all times.
+
+                Example:
+                <div ng-app="myApp" ng-controller="myCtrl">
+                    Name: <input ng-model="firstname">
+                    <h1>{{firstname}}</h1>
+                </div>
+
+                <script>
+                    var app = angular.module('myApp', []);
+                    app.controller('myCtrl', function($scope) {
+                        $scope.firstname = "John";
+                        $scope.lastname = "Doe";
+                    });
+                </script>
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Services
+        </title>
+        <content>
+            Angular services are substitutable objects that are wired together using dependency injection (DI).
+            You can use services to organize and share code across your app.
+
+            Angular services are:
+
+            Lazily instantiated – Angular only instantiates a service when an application component depends on it.
+            Singletons – Each component dependent on a service gets a reference to the single instance generated by the service factory.
+            Angular offers several useful services (like $http), but for most applications you'll also want to create your own.
+
+            To use an Angular service, you add it as a dependency for the component (controller, service, filter or directive) that depends on the service.
+            Angular's dependency injection subsystem takes care of the rest.
+        </content>
+        <sample>
+            <![CDATA[
+                app.controller('myCtrl', function($scope, MyService) {
+                    $scope.myCustomService = MyService.myFunc();
+                });
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Dependency Injection
+        </title>
+        <content>
+            Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.
+
+            The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.
+
+            Dependency Annotation
+            Angular invokes certain functions (like service factories and controllers) via the injector. You need to annotate these functions so that the injector knows what services to inject into the function. There are three ways of annotating your code with service name information:
+
+            Using the inline array annotation (preferred)
+            Using the $inject property annotation
+            Implicitly from the function parameter names (has caveats)
+        </content>
+        <sample>
+            <![CDATA[
+                Inline Array Annotation
+                This is the preferred way to annotate application components. This is how the examples in the documentation are written.
+
+                someModule.controller('MyController', ['$scope', 'greeter', function($scope, greeter) {
+                // ...
+                }]);
+
+                Here we pass an array whose elements consist of a list of strings (the names of the dependencies) followed by the function itself.
+
+                When using this type of annotation, take care to keep the annotation array in sync with the parameters in the function declaration.
+
+
+                $inject Property Annotation
+                To allow the minifiers to rename the function parameters and still be able to inject the right services, the function needs to be annotated with the $inject property. The $inject property is an array of service names to inject.
+
+                var MyController = function($scope, greeter) {
+                // ...
+                }
+                MyController.$inject = ['$scope', 'greeter'];
+                someModule.controller('MyController', MyController);
+
+                In this scenario the ordering of the values in the $inject array must match the ordering of the parameters in MyController.
+
+                Just like with the array annotation, you'll need to take care to keep the $inject in sync with the parameters in the function declaration.
+
+                Implicit Annotation
+                The simplest way to get hold of the dependencies is to assume that the function parameter names are the names of the dependencies.
+
+                someModule.controller('MyController', function($scope, greeter) {
+                // ...
+                });
+
+                Given a function, the injector can infer the names of the services to inject by examining the function declaration and extracting the parameter names. In the above example, $scope and greeter are two services which need to be injected into the function.
+
+                One advantage of this approach is that there's no array of names to keep in sync with the function parameters. You can also freely reorder dependencies.
+
+                However this method will not work with JavaScript minifiers/obfuscators because of how they rename parameters.
+
+                Tools like ng-annotate let you use implicit dependency annotations in your app and automatically add inline array annotations prior to minifying. If you decide to take this approach, you probably want to use ng-strict-di.
+
+                Because of these caveats, we recommend avoiding this style of annotation.
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Filters
+        </title>
+        <content>
+            Filters format the value of an expression for display to the user. They can be used in view templates, controllers or services.
+            Angular comes with a collection of built-in filters, but it is easy to define your own as well.
+
+            Adding Filters to Expressions
+            Filters can be added to expressions by using the pipe character |, followed by a filter.
+        </content>
+        <sample>
+            <![CDATA[
+                The uppercase filter format strings to upper case:
+
+                <div ng-app="myApp" ng-controller="personCtrl">
+
+                    <p>The name is {{ lastName | uppercase }}</p>
+
+                </div>
+
+                Adding Filters to Directives
+                Filters are added to directives, like ng-repeat, by using the pipe character |, followed by a filter:
+
+                <div ng-app="myApp" ng-controller="namesCtrl">
+
+                    <ul>
+                        <li ng-repeat="x in names | orderBy:'country'">
+                            {{ x.name + ', ' + x.country }}
+                        </li>
+                    </ul>
+
+                </div>
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Forms
+        </title>
+        <content>
+            A Form is a collection of controls for the purpose of grouping related controls together.
+
+            Form and controls provide validation services, so that the user can be notified of invalid input before submitting a form.
+
+            This provides a better user experience than server-side validation alone because the user gets instant feedback on how to correct the error.
+
+            To allow styling of form as well as controls, ngModel adds these CSS classes:
+
+            ng-valid: the model is valid
+            ng-invalid: the model is invalid
+            ng-valid-[key]: for each valid key added by $setValidity
+            ng-invalid-[key]: for each invalid key added by $setValidity
+            ng-pristine: the control hasn't been interacted with yet
+            ng-dirty: the control has been interacted with
+            ng-touched: the control has been blurred
+            ng-untouched: the control hasn't been blurred
+            ng-pending: any $asyncValidators are unfulfilled
+
+            The following example uses the CSS to display validity of each form control. In the example both user.name and user.email are required, but are rendered with red background only after the input is blurred (loses focus). This ensures that the user is not distracted with an error until after interacting with the control, and failing to satisfy its validity.
+        </content>
+        <sample>
+            
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Routing
+        </title>
+        <content>
+            If you want to navigate to different pages in your application, but you also want the application to be a SPA (Single Page Application), with no page reloading, you can use the ngRoute module.
+
+            The ngRoute module routes your application to different pages without reloading the entire application.
+
+            The ngRoute module helps your application to become a Single Page Application.
+        </content>
+        <sample>
+            <![CDATA[
+                <body ng-app="myApp">
+
+                <p><a href="#/">Main</a></p>
+
+                <a href="#red">Red</a>
+                <a href="#green">Green</a>
+                <a href="#blue">Blue</a>
+
+                <div ng-view></div>
+
+                <script>
+                    var app = angular.module("myApp", ["ngRoute"]);
+                    app.config(function($routeProvider) {
+                        $routeProvider
+                        .when("/", {
+                            templateUrl : "main.htm"
+                        })
+                        .when("/red", {
+                            templateUrl : "red.htm"
+                        })
+                        .when("/green", {
+                            templateUrl : "green.htm"
+                        })
+                        .when("/blue", {
+                            templateUrl : "blue.htm"
+                        });
+                    });
+                </script>
+
+                To make your applications ready for routing, you must include the AngularJS Route module:
+
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+                Then you must add the ngRoute as a dependency in the application module::
+
+                var app = angular.module("myApp", ["ngRoute"]);
+
+                Now your application has access to the route module, which provides the $routeProvider.
+
+                Use the $routeProvider to configure different routes in your application:
+
+                app.config(function($routeProvider) {
+                    $routeProvider
+                    .when("/", {
+                        templateUrl : "main.htm"
+                    })
+                    .when("/red", {
+                        templateUrl : "red.htm"
+                    })
+                    .when("/green", {
+                        templateUrl : "green.htm"
+                    })
+                    .when("/blue", {
+                        templateUrl : "blue.htm"
+                    });
+                });
+
+                ngView
+
+                Your application needs a container to put the content provided by the routing.
+
+                This container is the ng-view directive.
+
+                There are three different ways to include the ng-view directive in your application:
+
+                Example:
+                <div ng-view></div>
+                <ng-view></ng-view>
+                <div class="ng-view"></div>
+
+                $routeProvider
+                With the $routeProvider you can define what page to display when a user clicks a link.
+
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                    $routeProvider
+                    .when("/", {
+                        templateUrl : "main.htm"
+                    })
+                    .when("/london", {
+                        templateUrl : "london.htm"
+                    })
+                    .when("/paris", {
+                        templateUrl : "paris.htm"
+                    });
+                });
+
+                Define the $routeProvider using the config method of your application. Work registered in the config method will be performed when the application is loading.
+
+                Controllers
+                With the $routeProvider you can also define a controller for each "view".
+
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                    $routeProvider
+                    .when("/", {
+                        templateUrl : "main.htm"
+                    })
+                    .when("/london", {
+                        templateUrl : "london.htm",
+                        controller : "londonCtrl"
+                    })
+                    .when("/paris", {
+                        templateUrl : "paris.htm",
+                        controller : "parisCtrl"
+                    });
+                });
+                app.controller("londonCtrl", function ($scope) {
+                    $scope.msg = "I love London";
+                });
+                app.controller("parisCtrl", function ($scope) {
+                    $scope.msg = "I love Paris";
+                });
+
+                Template
+
+                In the previous examples we have used the templateUrl property in the $routeProvider.when method.
+
+                You can also use the template property, which allows you to write HTML directly in the property value, and not refer to a page.
+
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                    $routeProvider
+                        .when("/", {
+                            template : "<h1>Main</h1><p>Click on the links to change this content</p>"
+                        })
+                        .when("/banana", {
+                            template : "<h1>Banana</h1><p>Bananas contain around 75% water.</p>"
+                        })
+                        .when("/tomato", {
+                            template : "<h1>Tomato</h1><p>Tomatoes contain around 95% water.</p>"
+                        });
+                });
+
+                The otherwise method
+
+                In the previous examples we have used the when method of the $routeProvider.
+
+                You can also use the otherwise method, which is the default route when none of the others get a match.
+
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                    $routeProvider
+                        .when("/banana", {
+                            template : "<h1>Banana</h1><p>Bananas contain around 75% water.</p>"
+                        })
+                        .when("/tomato", {
+                            template : "<h1>Tomato</h1><p>Tomatoes contain around 95% water.</p>"
+                        })
+                        .otherwise({
+                            template : "<h1>None</h1><p>Nothing has been selected,</p>"
+                        });
+                }); 
+            ]]>
+        </sample>
+    </chapter>
+    <chapter>
+        <title>
+            Custom Directives
+        </title>
+        <content>
+            In addition to all the built-in AngularJS directives, you can create your own directives.
+
+            New directives are created by using the .directive function.
+
+            To invoke the new directive, make an HTML element with the same tag name as the new directive.
+
+            New directives are created by using the .directive function.
+            The restrict option is typically set to:
+            'A' - only matches attribute name
+            'E' - only matches element name
+            'C' - only matches class name
+            'M' - only matches comment
+        </content>
+        <sample>
+            <![CDATA[
+                app.directive('myCustomDirective', function () {
+                    return {
+                        restrict: 'E', // Restriction for Element
+                        replace: true, // If true, Replace the custom element with the template 
+                        scope: {
+                            list: '='
+                        },
+                        template: '<a href="#" ng-repeat="x in list">{{x}}</a>'
+                    };
+                });
+            ]]>
         </sample>
     </chapter>
 </lesson>

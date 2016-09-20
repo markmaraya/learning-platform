@@ -3,6 +3,7 @@ var useref = require('gulp-useref');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var templateCache = require('gulp-angular-templatecache');
+var sass = require('gulp-sass');
 
 gulp.task('default', ['useref', 'template', 'pages']);
 
@@ -23,5 +24,11 @@ gulp.task('pages', function () {
     return gulp.src('src/pages/*')
         .pipe(useref())
         .pipe(gulp.dest('wwwroot/pages'))
+});
+
+gulp.task("sass", function () {
+    gulp.src(["./src/app/styles/style.scss"])
+        .pipe(sass().on("error", sass.logError))
+        .pipe(gulp.dest("./wwwroot/styles"))
 });
 

@@ -16,13 +16,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-sm-9">
-                <div class="section">
-                    <h4>{{chapter.title}}</h4>
-                    {{chapter.content}}
-                    <br />
-                    <h4 ng-show="chapter">Sample</h4>
-                    {{chapter.sample | toString}}
-                </div>
+                <content ng-show="chapter" object="chapter"></content>
                 <div ng-hide="chapter">Invalid link</div>
             </div>
         </div>
