@@ -5,7 +5,7 @@
         .module('LearningPlatformApplication')
         .service('LessonDetailService', ['$http', function ($http) {
             this.getDetails = function (path) {
-                return $http.get('/materials/' + path + '/' + path + '.xml');
+                return $http.get('../materials/' + path + '/' + path + '.xml');
             };
         }]);
 })();

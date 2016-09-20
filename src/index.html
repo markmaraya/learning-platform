@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="LearningPlatformApplication">
+
+<head>
+    <title>Angular Tutorial</title>
+    <!--build:css styles/styles.css -->
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/style.css">
+    <!-- endbuild -->
+
+    <!--build:js js/vendor.js -->
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/abdmob/x2js/xml2json.js"></script>
+    <!-- endbuild -->
+
+    <!--build:js js/app.js -->
+    <script src="app.js"></script>
+    <script src="directives/content-directive.js"></script>
+    <script src="directives/lesson-link-directive.js"></script>
+    <script src="directives/repeat-link-directive.js"></script>
+
+    <script src="filters/capitalize-filter.js"></script>
+    <script src="filters/spaceless-filter.js"></script>
+    <script src="filters/to-string-filter.js"></script>
+
+    <script src="core/lesson-list-service.js"></script>
+    <script src="core/lesson-detail-service.js"></script>
+
+    <script src="app/main/main-controller.js"></script>
+    <script src="app/lesson/lesson-controller.js"></script>
+    <!-- endbuild -->
+
+    <script src="js/templates.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar bg-primary">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">
+                    <h3>Title</h3>
+                </a>
+                <a href="#/">Home</a><a href="src/sample.html">fff</a>
+            </div>
+        </div>
+    </nav>
+
+    <ng-view></ng-view>
+
+    <footer class="footer bg-primary">
+        <div class="container">
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,18 +1,18 @@
 'use strict';
 
 (function () {
-	angular.module('LearningPlatformApplication', ['ngRoute']);
+	angular.module('LearningPlatformApplication', ['ngRoute', 'templates']);
 
 	angular
         .module('LearningPlatformApplication')
 		.config(['$routeProvider', function ($routeProvider) {
 			$routeProvider
 				.when("/", {
-					templateUrl: "/src/app/main/main.html",
+					templateUrl: "main/main.html",
 					controller: "MainController"
 				})
 				.when("/lesson/:lesson", {
-					templateUrl: "/src/app/lesson/lesson.html",
+					templateUrl: "lesson/lesson.html",
 					controller: "LessonController"
 				})
 				.otherwise({
