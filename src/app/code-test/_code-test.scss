@@ -1,0 +1,21 @@
+#submitCodeButton {
+    margin: 10px 0;
+}
+
+#textareaHtmlCode,
+#textareaScriptCode {
+    height: 300px;
+    width: 100%;
+    resize: none;
+}
+
+#iframeWrapper {
+    height: 300px;
+    width: 100%;
+    border: solid 1px #c3c3c3;
+}
+
+#iframeResult {
+    height: 100%;
+    width: 100%;
+}
