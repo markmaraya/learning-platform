@@ -226,11 +226,16 @@
                 $scope.scriptCode = data;
             };
 
+            $scope.updateStyleCode = function (data) {
+                $scope.styleCode = data;
+            };
+
             var dependencyLink = 'bower_components/angular/angular.min.js';
 
             $scope.submitCode = function () {
                 var text = $scope.htmlCode;
                 var scriptText = $scope.scriptCode;
+                var styleText = $scope.styleCode;
 
                 var ifr = document.createElement('iframe');
 
@@ -244,6 +249,7 @@
 
                 ifrw.document.open();
                 ifrw.document.write(text);
+                ifrw.document.write('<style>' + styleText + '<\/style>');
                 ifrw.document.write('<script type="text/javascript" src="' + dependencyLink + '"><\/scr' + 'ipt>');
                 ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
                 ifrw.document.close();
@@ -251,27 +257,4 @@
                 ifrw.document.documentElement.setAttribute("ng-app", "myApp");
             };
         }]);
-
-    // function submitTryit() {
-    //     var text = document.getElementById('textareaHtmlCode').value;
-    //     var dependencyLink = '../bower_components/angular/angular.min.js';
-    //     var scriptText = document.getElementById('textareaScriptCode').value;
-    //     var ifr = document.createElement('iframe');
-
-    //     ifr.setAttribute('name', 'frame1');
-    //     ifr.setAttribute('frameborder', '0');
-    //     ifr.setAttribute('id', 'iframeResult');
-    //     document.getElementById('iframewrapper').innerHTML = '';
-    //     document.getElementById('iframewrapper').appendChild(ifr);
-
-    //     var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-    //     ifrw.document.open();
-    //     ifrw.document.write(text);
-    //     ifrw.document.write('<script type="text/javascript" src="' + dependencyLink + '"><\/scr' + 'ipt>');
-    //     ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
-    //     ifrw.document.close();
-
-    //     ifrw.document.documentElement.setAttribute("ng-app", "myApp");
-    // }
 })();

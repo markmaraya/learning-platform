@@ -33,8 +33,9 @@ a:first-child .lesson-div {
 #submitCodeButton {
   margin: 10px 0; }
 
-#textareaHtmlCode,
-#textareaScriptCode {
+#htmlCode,
+#scriptCode,
+#styleCode {
   height: 300px;
   width: 100%;
   resize: none; }
