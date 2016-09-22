@@ -1,5 +1,5 @@
 <div class="container-fluid bg-info">
-    <div class="container">
+    <div class="container-fluid">
         <ol class="breadcrumb bg-info">
             <li><a href="#/">Home</a></li>
             <li class="active">{{breadcrumbLesson}}</li>
@@ -8,16 +8,32 @@
 </div>
 
 <div class="content-main">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 col-sm-3">
+            <div class="col-md-2 col-sm-2">
                 <div id="sideNav">
                     <repeat-link list="titleList"></repeat-link>
                 </div>
             </div>
-            <div class="col-md-9 col-sm-9">
+            <div class="col-md-5 col-sm-5">
                 <content ng-show="chapter" object="chapter"></content>
                 <div ng-hide="chapter">Invalid link</div>
+            </div>
+            <div class="col-md-5 col-sm-5">
+                <uib-tabset active="active">
+                    <uib-tab index="0" heading="HTML">
+                        <textarea id="htmlCode" ng-model="htmlCode" ng-change="updateHtmlCode(htmlCode)" spellcheck="false"></textarea>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Script">
+                        <textarea id="scriptCode" ng-model="scriptCode" ng-change="updateScriptCode(scriptCode)" spellcheck="false"></textarea>
+                    </uib-tab>
+                    <uib-tab index="2" heading="Style">
+                        <textarea id="styleCode" ng-model="styleCode" ng-change="updateStyleCode(styleCode)" spellcheck="false"></textarea>
+                    </uib-tab>
+                </uib-tabset>
+
+                <button id="submitCodeButton" class="btn btn-success" ng-click="submitCode()">Submit</button>{{x}}
+                <div id="iframeWrapper"></div>
             </div>
         </div>
     </div>

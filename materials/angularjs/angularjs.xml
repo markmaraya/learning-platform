@@ -1,3 +1,20 @@
+<!--<code>
+            <htmlcode>
+                <![CDATA[
+
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+                    
+                 ]]>
+            </stylecode>
+        </code>-->
 <lesson>
     <chapter>
         <title>
@@ -13,9 +30,29 @@
 
             Angular is what HTML would have been, had it been designed for applications.
         </content>
-        <sample>
-        
-        </sample>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-controller="myController">
+                        <h1 ng-bind="x"></h1>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    angular.module("myApp", []);
+                    angular.module("myApp")
+                        .controller("myController", ["$scope", function ($scope) {
+                            $scope.x = "This is a String";
+                        }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
     </chapter>
     <chapter>
         <title>
