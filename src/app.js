@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-	angular.module('LearningPlatformApplication', ['ngRoute', 'templates', 'ui.bootstrap']);
+	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap']);
 
 	angular
         .module('LearningPlatformApplication')
@@ -14,10 +14,6 @@
 				.when('/lesson/:lesson', {
 					templateUrl: 'lesson/lesson.html',
 					controller: 'LessonController'
-				})
-				.when('/code-test', {
-					templateUrl: 'code-test/code-test.html',
-					controller: 'CodeTestController'
 				})
 				.otherwise({
 					template: '<h1>404</h1>'

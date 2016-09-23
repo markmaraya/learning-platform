@@ -4,17 +4,34 @@
   #sideNav a {
     display: block; }
 
+.breadcrumb {
+  background: #d9edf7;
+  margin: 0; }
+
 .section {
   padding: 30px;
   background: #ffffff;
   white-space: pre-line; }
 
-.breadcrumb {
-  background: #d9edf7;
-  margin: 0; }
+.code-editor {
+  height: 300px;
+  width: 100%;
+  resize: none; }
 
-#contentSample {
-  white-space: pre-wrap; }
+#chapterContent {
+  text-align: justify; }
+
+#submitCodeButton {
+  margin: 10px 0; }
+
+#iframeWrapper {
+  height: 300px;
+  width: 100%;
+  border: solid 1px #c3c3c3; }
+
+#iframeResult {
+  height: 100%;
+  width: 100%; }
 
 a:first-child .lesson-div {
   margin-top: 100px; }
@@ -29,25 +46,6 @@ a:first-child .lesson-div {
   .lesson-div label {
     font-size: 24px;
     cursor: pointer; }
-
-#submitCodeButton {
-  margin: 10px 0; }
-
-#htmlCode,
-#scriptCode,
-#styleCode {
-  height: 300px;
-  width: 100%;
-  resize: none; }
-
-#iframeWrapper {
-  height: 300px;
-  width: 100%;
-  border: solid 1px #c3c3c3; }
-
-#iframeResult {
-  height: 100%;
-  width: 100%; }
 
 .navbar,
 .footer {
@@ -82,3 +80,5 @@ a:first-child .lesson-div {
   background-color: #00cc99;
   border-radius: 30px;
   outline: none; }
+
+/*# sourceMappingURL=demo.app.css.map */

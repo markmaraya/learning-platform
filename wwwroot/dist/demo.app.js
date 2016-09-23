@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-	angular.module('LearningPlatformApplication', ['ngRoute', 'templates', 'ui.bootstrap']);
+	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap']);
 
 	angular
         .module('LearningPlatformApplication')
@@ -14,10 +14,6 @@
 				.when('/lesson/:lesson', {
 					templateUrl: 'lesson/lesson.html',
 					controller: 'LessonController'
-				})
-				.when('/code-test', {
-					templateUrl: 'code-test/code-test.html',
-					controller: 'CodeTestController'
 				})
 				.otherwise({
 					template: '<h1>404</h1>'
@@ -36,7 +32,7 @@
                 scope: {
                     object: '='
                 },
-                template: '<div class="section"><h4>{{object.title}}</h4><p>{{object.content}}</p><br /><h4 ng-show="object.sample">Sample</h4><p id="contentSample">{{object.sample | toString}}</p></div>'
+                template: '<div class="section"><h4>{{object.title}}</h4><p id="chapterContent">{{object.content | toString}}</p></div>'
             };
         }]);
 })();
@@ -69,6 +65,28 @@
                     list: '='
                 },
                 template: '<a href="" ng-repeat="lesson in list" ng-click="choiceFunction($index)">{{lesson | capitalize}}</a>'
+            };
+        }]);
+})();
+'use strict';
+
+(function () {
+    angular
+        .module('LearningPlatformApplication')
+        .service('LessonDetailService', ['$http', function ($http) {
+            this.getDetails = function (path) {
+                return $http.get('../materials/' + path + '/' + path + '.xml');
+            };
+        }]);
+})();
+'use strict';
+
+(function () {
+    angular
+        .module('LearningPlatformApplication')
+        .service('LessonListService', ['$http', function ($http) {
+            this.getDetails = function () {
+                return $http.get('../materials/lessons.xml');
             };
         }]);
 })();
@@ -133,20 +151,79 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
-        .service('LessonListService', ['$http', function ($http) {
-            this.getDetails = function () {
-                return $http.get('../materials/lessons.xml');
-            };
-        }]);
-})();
-'use strict';
+        .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', function ($scope, $routeParams, LessonDetailService) {
+            var x2js = new X2JS();
 
-(function () {
-    angular
-        .module('LearningPlatformApplication')
-        .service('LessonDetailService', ['$http', function ($http) {
-            this.getDetails = function (path) {
-                return $http.get('../materials/' + path + '/' + path + '.xml');
+            var path = $routeParams.lesson;
+            var dependencyLink = 'bower_components/angular/angular.min.js';
+
+            $scope.htmlCode = {};
+
+            $scope.breadcrumbLesson = path;
+
+            LessonDetailService.getDetails(path)
+                .then(function (response) {
+                    $scope.topicList = x2js.xml_str2json(response.data);
+                    $scope.chapter = $scope.topicList.lesson.chapter[0];
+
+                    var titleList = [];
+
+                    for (var key in $scope.topicList.lesson.chapter) {
+                        titleList.push($scope.topicList.lesson.chapter[key].title);
+                    };
+
+                    $scope.titleList = titleList;
+
+                    $scope.htmlCode.text = $scope.chapter.code.htmlcode.toString().trim().replace(/\s\s+/g, '\n\n').replace(/\/t/g, '\t');
+                    $scope.scriptCode = $scope.chapter.code.scriptcode.toString().trim().replace(/\s\s+/g, '\n\n').replace(/\/t/g, '\t');
+
+                    $scope.submitCode = function () {
+                        var text = $scope.htmlCode.text;
+                        var scriptText = $scope.scriptCode;
+                        var styleText = $scope.styleCode;
+
+                        var ifr = document.createElement('iframe');
+
+                        ifr.setAttribute('name', 'frame1');
+                        ifr.setAttribute('frameborder', '0');
+                        ifr.setAttribute('id', 'iframeResult');
+                        document.getElementById('iframeWrapper').innerHTML = '';
+                        document.getElementById('iframeWrapper').appendChild(ifr);
+
+                        var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+
+                        ifrw.document.open();
+                        ifrw.document.write(text);
+                        ifrw.document.write('<style>' + styleText + '<\/style>');
+                        ifrw.document.write('<script type="text/javascript" src="' + dependencyLink + '"><\/scr' + 'ipt>');
+                        ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
+                        ifrw.document.close();
+
+                        // ifrw.document.documentElement.setAttribute("ng-app", "myApp");
+                    };
+                })
+                .catch(function (data) {
+                    $scope.titleList = "";
+                    $scope.chapter = "";
+                });
+
+            $scope.choiceFunction = function (id) {
+                $scope.chapter = $scope.topicList.lesson.chapter[id];
+                $scope.htmlCode.text = $scope.chapter.code.htmlcode.toString().trim().replace(/\s\s+/g, '\n\n').replace(/\/t/g, '\t');
+                $scope.scriptCode = $scope.chapter.code.scriptcode.toString().trim().replace(/\s\s+/g, '\n\n').replace(/\/t/g, '\t');
+                document.getElementById('iframeWrapper').innerHTML = '';
+            };
+
+            $scope.updateHtmlCode = function (data) {
+                $scope.htmlCode.text = data;
+            };
+
+            $scope.updateScriptCode = function (data) {
+                $scope.scriptCode = data;
+            };
+
+            $scope.updateStyleCode = function (data) {
+                $scope.styleCode = data;
             };
         }]);
 })();
@@ -173,131 +250,4 @@
 
         }]);
 })();
-'use strict';
-
-(function () {
-    angular
-        .module('LearningPlatformApplication')
-        .controller('LessonController', ['$scope', '$filter', '$routeParams', 'LessonDetailService', function ($scope, $filter, $routeParams, LessonDetailService) {
-            var x2js = new X2JS();
-
-            var path = $routeParams.lesson;
-            var dependencyLink = 'bower_components/angular/angular.min.js';
-
-            $scope.breadcrumbLesson = path;
-
-            LessonDetailService.getDetails(path)
-                .then(function (response) {
-                    $scope.topicList = x2js.xml_str2json(response.data);
-                    $scope.chapter = $scope.topicList.lesson.chapter[0];
-
-                    $scope.htmlCode = $scope.chapter.code.htmlcode.toString();
-                    $scope.scriptCode = $scope.chapter.code.scriptcode.toString();
-
-                    $scope.submitCode = function () {
-                        var text = $scope.htmlCode;
-                        var scriptText = $scope.scriptCode;
-                        var styleText = $scope.styleCode;
-
-                        var ifr = document.createElement('iframe');
-
-                        ifr.setAttribute('name', 'frame1');
-                        ifr.setAttribute('frameborder', '0');
-                        ifr.setAttribute('id', 'iframeResult');
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                        document.getElementById('iframeWrapper').appendChild(ifr);
-
-                        var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-                        ifrw.document.open();
-                        ifrw.document.write(text);
-                        ifrw.document.write('<style>' + styleText + '<\/style>');
-                        ifrw.document.write('<script type="text/javascript" src="' + dependencyLink + '"><\/scr' + 'ipt>');
-                        ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
-                        ifrw.document.close();
-
-                        ifrw.document.documentElement.setAttribute("ng-app", "myApp");
-                    };
-
-                    var titleList = [];
-
-                    for (var key in $scope.topicList.lesson.chapter) {
-                        titleList.push($scope.topicList.lesson.chapter[key].title);
-                    };
-
-                    $scope.titleList = titleList;
-                })
-                .catch(function (data) {
-                    $scope.titleList = "";
-                    $scope.chapter = "";
-                });
-
-            $scope.choiceFunction = function (id) {
-                $scope.chapter = $scope.topicList.lesson.chapter[id];
-            };
-            
-            // $scope.htmlCode = '<div ng-controller="myController">\n\t<h1 ng-bind="x"></h1>\n</div>';
-            // $scope.scriptCode = 'angular.module("myApp", []);\nangular.module("myApp")\n\t.controller("myController", ["$scope", function ($scope) {\n\t\t$scope.x = "This is a String";\n\t}]);';
-
-            $scope.updateHtmlCode = function (data) {
-                $scope.htmlCode = data;
-            };
-
-            $scope.updateScriptCode = function (data) {
-                $scope.scriptCode = data;
-            };
-
-            $scope.updateStyleCode = function (data) {
-                $scope.styleCode = data;
-            };
-        }]);
-})();
-'use strict';
-
-(function () {
-    angular
-        .module('LearningPlatformApplication')
-        .controller('CodeTestController', ['$scope', function ($scope) {
-            $scope.htmlCode = '<div ng-controller="myController">\n\t<h1 ng-bind="x"></h1>\n</div>';
-            $scope.scriptCode = 'angular.module("myApp", []);\nangular.module("myApp")\n\t.controller("myController", ["$scope", function ($scope) {\n\t\t$scope.x = "This is a String";\n\t}]);';
-
-            $scope.updateHtmlCode = function (data) {
-                $scope.htmlCode = data;
-            };
-
-            $scope.updateScriptCode = function (data) {
-                $scope.scriptCode = data;
-            };
-
-            $scope.updateStyleCode = function (data) {
-                $scope.styleCode = data;
-            };
-
-            var dependencyLink = 'bower_components/angular/angular.min.js';
-
-            $scope.submitCode = function () {
-                var text = $scope.htmlCode;
-                var scriptText = $scope.scriptCode;
-                var styleText = $scope.styleCode;
-
-                var ifr = document.createElement('iframe');
-
-                ifr.setAttribute('name', 'frame1');
-                ifr.setAttribute('frameborder', '0');
-                ifr.setAttribute('id', 'iframeResult');
-                document.getElementById('iframeWrapper').innerHTML = '';
-                document.getElementById('iframeWrapper').appendChild(ifr);
-
-                var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-                ifrw.document.open();
-                ifrw.document.write(text);
-                ifrw.document.write('<style>' + styleText + '<\/style>');
-                ifrw.document.write('<script type="text/javascript" src="' + dependencyLink + '"><\/scr' + 'ipt>');
-                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
-                ifrw.document.close();
-
-                ifrw.document.documentElement.setAttribute("ng-app", "myApp");
-            };
-        }]);
-})();
+//# sourceMappingURL=demo.app.js.map

@@ -23,18 +23,24 @@
         <content>
             What is AngularJS?
 
-            AngularJS is a structural framework for dynamic web apps.It lets you use HTML as your template language and lets you
-            extend HTML's syntax to express your application's components clearly and succinctly. Angular's data binding and dependency
-            injection eliminate much of the code you would otherwise have to write. And it all happens within the browser, making it
-            an ideal partner with any server technology.
+            AngularJS is a structural framework for dynamic web apps.It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly. Angular's data binding and dependency injection eliminate much of the code you would otherwise have to write. And it all happens within the browser, making it an ideal partner with any server technology.
 
             Angular is what HTML would have been, had it been designed for applications.
+
+            Try running the sample code on our Code Editor.
+
+            Code Explanation:
+
+            The controller creates two properties (variables) in the scope (firstName and lastName).
+
+            The ng-bind directive binds the innerHTML of the h1 element to the application variable firstName and lastName.
         </content>
         <code>
             <htmlcode>
                 <![CDATA[
-                    <div ng-controller="myController">
-                        <h1 ng-bind="x"></h1>
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <h1 ng-bind="firstName"></h1>
+                    /t <h1 ng-bind="lastName"></h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -42,9 +48,10 @@
                 <![CDATA[
                     angular.module("myApp", []);
                     angular.module("myApp")
-                        .controller("myController", ["$scope", function ($scope) {
-                            $scope.x = "This is a String";
-                        }]);
+                    /t .controller("myController", ["$scope", function ($scope) {
+                    /t/t $scope.firstName = "John";
+                    /t/t $scope.lastName = "Doe";
+                    /t }]);
                  ]]>
             </scriptcode>
             <stylecode>
@@ -59,9 +66,7 @@
             Directives
         </title>
         <content>
-            At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class)
-            that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element (e.g. via event listeners),
-            or even to transform the DOM element and its children.
+            At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform the DOM element and its children.
 
             Angular comes with a set of these directives built-in, like ngBind, ngModel, and ngClass.
 
@@ -74,17 +79,36 @@
             The ng-init directive initializes application data.
 
             The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
-        </content>
-        <sample>
+
+            Example:
             <![CDATA[
+
                 <div ng-app="" ng-init="firstName='John'">
 
                     <p>Name: <input type="text" ng-model="firstName"></p>
                     <p>You wrote: {{ firstName }}</p>
 
                 </div>
+                
             ]]>
-        </sample>
+        </content>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    sss
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
     </chapter>
     <chapter>
         <title>

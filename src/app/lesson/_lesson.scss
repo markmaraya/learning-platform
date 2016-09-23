@@ -7,17 +7,38 @@
     }
 }
 
+.breadcrumb {
+    background: #d9edf7;
+    margin: 0;
+}
+
 .section {
     padding: 30px;
     background: #ffffff;
     white-space: pre-line;
 }
 
-.breadcrumb {
-    background: #d9edf7;
-    margin: 0;
+.code-editor {
+    height: 300px;
+    width: 100%;
+    resize: none;
 }
 
-#contentSample {
-    white-space: pre-wrap;
+#chapterContent {
+    text-align: justify;
+}
+
+#submitCodeButton {
+    margin: 10px 0;
+}
+
+#iframeWrapper {
+    height: 300px;
+    width: 100%;
+    border: solid 1px #c3c3c3;
+}
+
+#iframeResult {
+    height: 100%;
+    width: 100%;
 }

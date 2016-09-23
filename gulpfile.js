@@ -1,45 +1,123 @@
 var gulp = require('gulp');
-var useref = require('gulp-useref');
-var gulpIf = require('gulp-if');
+var concat = require('gulp-concat');
+var connect = require('gulp-connect');
 var cssnano = require('gulp-cssnano');
-var templateCache = require('gulp-angular-templatecache');
+var inject = require('gulp-inject');
+var jshint = require("gulp-jshint");
+var open = require('gulp-open');
+var rename = require("gulp-rename");
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var templateCache = require('gulp-angular-templatecache');
 
-gulp.task("styles", function () {
-    gulp.src(["./src/app/styles/styles.scss"])
+//==============================================================================
+// Tasks
+//==============================================================================
+gulp.task("default", ["debug"]);
+gulp.task("debug", ["demo", "watch", "serve"]);
+
+gulp.task("connect", function () {
+    var app = connect.server({
+        root: ["./wwwroot/"],
+        port: 8888,
+        livereload: true
+    });
+});
+
+gulp.task("serve", ["connect"], function () {
+    var options = {
+        uri: "http://localhost:8888",
+        app: "chrome"
+    };
+    gulp.src(__filename)
+        .pipe(open(options));
+});
+
+gulp.task("watch", function () {
+    gulp.watch(["./src/**/*.scss"], ["compile:sass"]);
+    gulp.watch(["./src/**/*.html"], ["compile:html"]);
+    gulp.watch(["./src/**/*.js"], ["compile:js"]);
+});
+
+//==============================================================================
+// Compile Tasks
+//==============================================================================
+gulp.task("compile", ["compile:sass", "compile:html", "compile:js"]);
+
+gulp.task("compile:sass", function () {
+    return gulp.src([
+        "./src/app/styles/styles.scss"
+    ])
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
         .pipe(sass().on("error", sass.logError))
-        .pipe(gulp.dest("./wwwroot/styles"))
+        .pipe(rename("demo.app.css"))
+        .pipe(sourcemaps.write("./"))
+        .pipe(gulp.dest("./wwwroot/dist"))
+        .pipe(connect.reload());
 });
 
-gulp.task('scripts', function () {
-    return gulp.src('src/**/*.js')
-        .pipe(gulp.dest('wwwroot/js'))
+gulp.task("compile:html", function () {
+    return gulp.src([
+        "./src/app/**/*.html"
+    ])
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
+        .pipe(templateCache("demo.app.templates.js", {
+            module: "demo.app.templates",
+            standalone: true
+        }))
+        .pipe(sourcemaps.write("./"))
+        .pipe(gulp.dest("./wwwroot/dist"))
+        .pipe(connect.reload());
 });
 
-gulp.task('useref', function () {
-    return gulp.src('src/index.html')
-        .pipe(useref())
-        .pipe(gulp.dest('wwwroot'))
+gulp.task("compile:js", function () {
+    return gulp.src([
+        "./src/**/*.js"
+    ])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
+        .pipe(concat("demo.app.js"))
+        .pipe(sourcemaps.write("./"))
+        .pipe(gulp.dest("./wwwroot/dist"))
+        .pipe(connect.reload());
 });
 
-gulp.task('template', function () {
-    return gulp.src('src/app/**/*.html')
-        .pipe(templateCache('templates.js', { module: 'templates', standalone: true }))
-        .pipe(gulp.dest('wwwroot/js'));
+gulp.task("copy:icons", function () {
+    return gulp.src([
+        "./bower_components/bootstrap-sass/assets/fonts/**"
+    ])
+        .pipe(gulp.dest("./wwwroot/dist/fonts"));
 });
 
-// gulp.task('pages', function () {
-//     return gulp.src('src/app/**/*.html')
-//         .pipe(useref())
-//         .pipe(gulp.dest('wwwroot/pages'))
-// });
-
-gulp.task('watch', ['styles', 'scripts'], function () {
-    // Watch .scss files
-    gulp.watch('src/**/*.scss', ['styles']);
-
-    // Watch .js files
-    gulp.watch('src/**/*.js', ['scripts']);
+//==============================================================================
+// Demo Tasks
+//==============================================================================
+gulp.task("demo", ["compile"], function () {
+    return gulp.src("./src/index.html")
+        .pipe(inject(
+            gulp.src([
+                "./bower_components/bootstrap/dist/css/bootstrap.min.css",
+                "./bower_components/angular/angular.min.js",
+                "./bower_components/angular-route/angular-route.min.js",
+                "./bower_components/abdmob/x2js/xml2json.js",
+                "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+            ], { read: false }), {
+                name: 'vendor'
+            }))
+        .pipe(inject(
+            gulp.src([
+                "./dist/demo.app.css",
+                "./dist/demo.app.js",
+                "./dist/demo.app.templates.js"
+            ], { read: false }), {
+                name: 'dist'
+            }))
+        .pipe(gulp.dest('./wwwroot/'));
 });
-
-gulp.task('default', ['styles', 'useref', 'template']);

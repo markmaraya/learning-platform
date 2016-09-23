@@ -3,38 +3,26 @@
 
 <head>
     <title>Angular Tutorial</title>
-    <!--build:css styles/style.css -->
-    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- endbuild -->
 
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <!-- vendor:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- endinject -->
 
-    <!--build:js js/vendor.js -->
+    <!-- dist:css -->
+    <link rel="stylesheet" href="/dist/demo.app.css">
+    <!-- endinject -->
+
+    <!-- vendor:js -->
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
     <script src="../bower_components/abdmob/x2js/xml2json.js"></script>
     <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <!-- endbuild -->
+    <!-- endinject -->
 
-    <!--build:js js/app.js -->
-    <script src="app.js"></script>
-    <script src="directives/content-directive.js"></script>
-    <script src="directives/lesson-link-directive.js"></script>
-    <script src="directives/repeat-link-directive.js"></script>
-
-    <script src="filters/capitalize-filter.js"></script>
-    <script src="filters/spaceless-filter.js"></script>
-    <script src="filters/to-string-filter.js"></script>
-
-    <script src="core/lesson-list-service.js"></script>
-    <script src="core/lesson-detail-service.js"></script>
-
-    <script src="app/main/main-controller.js"></script>
-    <script src="app/lesson/lesson-controller.js"></script>
-    <script src="app/code-test/code-test-controller.js"></script>
-    <!-- endbuild -->
-
-    <script src="js/templates.js"></script>
+    <!-- dist:js -->
+    <script src="/dist/demo.app.templates.js"></script>
+    <script src="/dist/demo.app.js"></script>
+    <!-- endinject -->
 </head>
 
 <body>
@@ -48,9 +36,6 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#/">Home</a>
-                    </li>
-                    <li>
-                        <a href="#/code-test">Code Test</a>
                     </li>
                 </ul>
             </div>
