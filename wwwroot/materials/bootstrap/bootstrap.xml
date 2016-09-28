@@ -6,9 +6,23 @@
         <content>
             What is Bootstrap?
         </content>
-        <sample>
-        
-        </sample>
+        <code>
+            <htmlcode>
+                <![CDATA[
+
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+                    
+                 ]]>
+            </stylecode>
+        </code>
     </chapter>
     <chapter>
         <title>
@@ -17,8 +31,22 @@
         <content>
             
         </content>
-        <sample>
-            
-        </sample>
+        <code>
+            <htmlcode>
+                <![CDATA[
+
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+                    
+                 ]]>
+            </stylecode>
+        </code>
     </chapter>
 </lesson>

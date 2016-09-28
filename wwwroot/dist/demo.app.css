@@ -19,9 +19,12 @@
   resize: none; }
 
 #chapterContent {
-  text-align: justify; }
+  height: 80vh;
+  text-align: justify;
+  padding-right: 10px;
+  overflow-y: scroll; }
 
-#submitCodeButton {
+.code-buttons {
   margin: 10px 0; }
 
 #iframeWrapper {

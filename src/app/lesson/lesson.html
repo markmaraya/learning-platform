@@ -12,7 +12,14 @@
         <div class="row">
             <div class="col-md-2 col-sm-2">
                 <div id="sideNav">
-                    <repeat-link list="titleList"></repeat-link>
+                    <h4>Beginner</h4>
+                    <repeat-link list="titleListBeginner"></repeat-link>
+                    <hr>
+                    <h4>Intermediate</h4>
+                    <repeat-link list="titleListIntermediate"></repeat-link>
+                    <hr>
+                    <h4>Advance</h4>
+                    <repeat-link list="titleListAdvance"></repeat-link>
                 </div>
             </div>
             <div class="col-md-5 col-sm-5">
@@ -25,14 +32,16 @@
                         <textarea class="code-editor" ng-model="htmlCode.text" ng-change="updateHtmlCode(htmlCode.text)" spellcheck="false"></textarea>
                     </uib-tab>
                     <uib-tab index="1" heading="Script">
-                        <textarea class="code-editor" ng-model="scriptCode" ng-change="updateScriptCode(scriptCode)" spellcheck="false"></textarea>
+                        <textarea class="code-editor" ng-model="scriptCode.text" ng-change="updateScriptCode(scriptCode.text)" spellcheck="false"></textarea>
                     </uib-tab>
                     <uib-tab index="2" heading="Style">
-                        <textarea class="code-editor" ng-model="styleCode" ng-change="updateStyleCode(styleCode)" spellcheck="false"></textarea>
+                        <textarea class="code-editor" ng-model="styleCode.text" ng-change="updateStyleCode(styleCode.text)" spellcheck="false"></textarea>
                     </uib-tab>
                 </uib-tabset>
 
-                <button id="submitCodeButton" class="btn btn-success" ng-click="submitCode()">Submit</button>{{x}}
+                <button class="btn btn-success code-buttons" ng-click="submitCode()">Try It</button>
+                <button class="btn btn-warning code-buttons" ng-click="">Reset</button>
+                <button class="btn btn-info code-buttons" ng-click="">Example</button>
                 <div id="iframeWrapper"></div>
             </div>
         </div>

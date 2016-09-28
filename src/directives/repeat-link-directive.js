@@ -10,7 +10,7 @@
                 scope: {
                     list: '='
                 },
-                template: '<a href="" ng-repeat="lesson in list" ng-click="choiceFunction($index)">{{lesson | capitalize}}</a>'
+                template: '<a href="" ng-repeat="lesson in list" ng-click="choiceFunction(lesson)">{{lesson | capitalize}}</a>'
             };
         }]);
 })();
