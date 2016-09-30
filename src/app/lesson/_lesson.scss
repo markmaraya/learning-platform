@@ -1,3 +1,12 @@
+.content-main {
+    .row {
+        height: 88.6vh !important;
+        .col {
+            height: inherit;
+        }
+    }
+}
+
 #sideNav {
     padding: 30px;
     background: #ffffff;
@@ -18,17 +27,18 @@
     white-space: pre-line;
 }
 
-.code-editor {
-    height: 300px;
-    width: 100%;
-    resize: none;
-}
-
 #chapterContent {
-    height: 80vh;
+    height: 74vh;
     text-align: justify;
     padding-right: 10px;
     overflow-y: scroll;
+}
+
+.code-editor {
+    height: 260px;
+    width: 100%;
+    resize: none;
+    white-space: nowrap;
 }
 
 .code-buttons {

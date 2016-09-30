@@ -151,6 +151,29 @@
 (function () {
     angular
         .module('LearningPlatformApplication')
+        .controller('MainController', ['$scope', 'LessonListService', function ($scope, LessonListService) {
+            var x2js = new X2JS();
+
+            LessonListService.getDetails()
+                .then(function (response) {
+                    $scope.lessons = x2js.xml_str2json(response.data);
+
+                    var lessonList = [];
+
+                    for (var key in $scope.lessons.lesson.title) {
+                        lessonList.push($scope.lessons.lesson.title[key]);
+                    };
+
+                    $scope.lessonList = lessonList;
+                });
+
+        }]);
+})();
+'use strict';
+
+(function () {
+    angular
+        .module('LearningPlatformApplication')
         .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', function ($scope, $routeParams, LessonDetailService) {
             var x2js = new X2JS();
 
@@ -195,6 +218,10 @@
                     $scope.scriptCode.text = parseCode($scope.chapter.code.scriptcode);
                     $scope.styleCode.text = parseCode($scope.chapter.code.stylecode);
 
+                    $scope.htmlCodeCopy = angular.copy($scope.htmlCode.text);
+                    $scope.scriptCodeCopy = angular.copy($scope.scriptCode.text);
+                    $scope.styleCodeCopy = angular.copy($scope.styleCode.text);
+
                     $scope.submitCode = function () {
                         var text = $scope.htmlCode.text;
                         var scriptText = $scope.scriptCode.text;
@@ -221,6 +248,21 @@
                         ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
                         ifrw.document.close();
                     };
+
+                    $scope.resetCode = function () {
+                        $scope.htmlCode.text = $scope.htmlCodeCopy
+                        $scope.scriptCode.text = $scope.scriptCodeCopy
+                        $scope.styleCode.text = $scope.styleCodeCopy
+                        document.getElementById('iframeWrapper').innerHTML = '';
+                    };
+
+                    $scope.showExample = function () {
+                        $scope.htmlCode.text = parseCode($scope.chapter.example.htmlcode);
+                        $scope.scriptCode.text = parseCode($scope.chapter.example.scriptcode);
+                        $scope.styleCode.text = parseCode($scope.chapter.example.stylecode);
+
+                        $scope.submitCode();
+                    };
                 })
                 .catch(function (data) {
                     $scope.titleList = "";
@@ -233,9 +275,15 @@
                 for (var i = 0; i < chapters.length; i++) {
                     if (chapters[i].title == lesson) {
                         $scope.chapter = chapters[i];
+
                         $scope.htmlCode.text = parseCode($scope.chapter.code.htmlcode);
                         $scope.scriptCode.text = parseCode($scope.chapter.code.scriptcode);
                         $scope.styleCode.text = parseCode($scope.chapter.code.stylecode);
+
+                        $scope.htmlCodeCopy = angular.copy($scope.htmlCode.text);
+                        $scope.scriptCodeCopy = angular.copy($scope.scriptCode.text);
+                        $scope.styleCodeCopy = angular.copy($scope.styleCode.text);
+
                         document.getElementById('iframeWrapper').innerHTML = '';
                     }
                 };
@@ -256,29 +304,6 @@
             function parseCode(code) {
                 return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/t/g, '\t');
             };
-        }]);
-})();
-'use strict';
-
-(function () {
-    angular
-        .module('LearningPlatformApplication')
-        .controller('MainController', ['$scope', 'LessonListService', function ($scope, LessonListService) {
-            var x2js = new X2JS();
-
-            LessonListService.getDetails()
-                .then(function (response) {
-                    $scope.lessons = x2js.xml_str2json(response.data);
-
-                    var lessonList = [];
-
-                    for (var key in $scope.lessons.lesson.title) {
-                        lessonList.push($scope.lessons.lesson.title[key]);
-                    };
-
-                    $scope.lessonList = lessonList;
-                });
-
         }]);
 })();
 //# sourceMappingURL=demo.app.js.map

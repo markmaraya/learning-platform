@@ -1,3 +1,8 @@
+.content-main .row {
+  height: 88.6vh !important; }
+  .content-main .row .col {
+    height: inherit; }
+
 #sideNav {
   padding: 30px;
   background: #ffffff; }
@@ -13,16 +18,17 @@
   background: #ffffff;
   white-space: pre-line; }
 
-.code-editor {
-  height: 300px;
-  width: 100%;
-  resize: none; }
-
 #chapterContent {
-  height: 80vh;
+  height: 74vh;
   text-align: justify;
   padding-right: 10px;
   overflow-y: scroll; }
+
+.code-editor {
+  height: 260px;
+  width: 100%;
+  resize: none;
+  white-space: nowrap; }
 
 .code-buttons {
   margin: 10px 0; }
@@ -77,7 +83,8 @@ a:first-child .lesson-div {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 0.4em; }
+  height: 0.6em;
+  width: 0.6em; }
 
 ::-webkit-scrollbar-thumb {
   background-color: #00cc99;

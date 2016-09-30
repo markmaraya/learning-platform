@@ -10,7 +10,7 @@
 <div class="content-main">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 col-sm-2">
+            <div class="col-md-2 col-sm-2 col">
                 <div id="sideNav">
                     <h4>Beginner</h4>
                     <repeat-link list="titleListBeginner"></repeat-link>
@@ -22,11 +22,11 @@
                     <repeat-link list="titleListAdvance"></repeat-link>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-5">
+            <div class="col-md-5 col-sm-5 col">
                 <content ng-show="chapter" object="chapter"></content>
                 <div ng-hide="chapter">Invalid link</div>
             </div>
-            <div class="col-md-5 col-sm-5">
+            <div class="col-md-5 col-sm-5 col">
                 <uib-tabset active="active">
                     <uib-tab index="0" heading="HTML">
                         <textarea class="code-editor" ng-model="htmlCode.text" ng-change="updateHtmlCode(htmlCode.text)" spellcheck="false"></textarea>
@@ -40,8 +40,8 @@
                 </uib-tabset>
 
                 <button class="btn btn-success code-buttons" ng-click="submitCode()">Try It</button>
-                <button class="btn btn-warning code-buttons" ng-click="">Reset</button>
-                <button class="btn btn-info code-buttons" ng-click="">Example</button>
+                <button class="btn btn-warning code-buttons" ng-click="resetCode()">Reset</button>
+                <button class="btn btn-info code-buttons" ng-click="showExample()">Example</button>
                 <div id="iframeWrapper"></div>
             </div>
         </div>

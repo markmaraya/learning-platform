@@ -32,11 +32,11 @@
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
 
-                    app.controller("myController", ["$scope", function ($scope) {
-                    /t $scope.firstName = "John";
-                    /t $scope.lastName = "Doe";
+                    app.controller('myController', ['$scope', function ($scope) {
+                    /t $scope.firstName = 'John';
+                    /t $scope.lastName = 'Doe';
                     }]);
                  ]]>
             </scriptcode>
@@ -46,6 +46,31 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <h1 ng-bind="firstName"></h1>
+                    /t <h1 ng-bind="lastName"></h1>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myController', ['$scope', function ($scope) {
+                    /t $scope.firstName = 'John';
+                    /t $scope.lastName = 'Doe';
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -128,6 +153,36 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="">
+                    /t Exercise 1
+                    /t<div ng-init="firstName = 'John'">
+                    /t/t <p>Name: <input type="text" ng-model="firstName"></p>
+                    /t/t <p>You wrote: {{ firstName }}</p>
+                    /t</div>
+                    
+                    /t Exercise 2
+                    /t <div ng-init="names=['Peter','Sebastian','Erika','Patrick','Samantha']">
+                    /t/t <ul>
+                    /t/t/t <li ng-repeat="x in names">{{x}}</li>
+                    /t/t </ul>
+                    /t </div>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -196,22 +251,22 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="">
-                    /t Numbers
+                    /t <h4>Numbers</h4>
                     /t <div ng-init="">
                     /t/t <p></p>
                     /t </div>
 
-                    /t Strings
+                    /t <h4>Strings</h4>
                     /t <div ng-init="">
                     /t/t <p></p>
                     /t </div>
 
-                    /t Objects
+                    /t <h4>Objects</h4>
                     /t <div ng-init="">
                     /t/t <p></p>
                     /t </div>
 
-                    /t Arrays
+                    /t <h4>Arrays</h4>
                     /t <div ng-init="">
                     /t/t <p></p>
                     /t </div>
@@ -229,6 +284,43 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="">
+                    /t <h4>Numbers</h4>
+                    /t <div ng-init="quantity=1;cost=5"> 
+                    /t/t <p>Total: <span ng-bind="quantity * cost"></span></p>
+                    /t </div> 
+
+                    /t <h4>Strings</h4>
+                    /t <div ng-init="firstName='John';lastName='Doe'">
+                    /t/t <p>The name is {{ firstName + " " + lastName }}</p>
+                    /t </div>
+
+                    /t <h4>Objects</h4>
+                    /t <div ng-init="person={firstName:'John',lastName:'Doe'}">
+                    /t/t <p>The name is {{ person.firstName + " " + person.lastName }}</p>
+                    /t </div>
+                      
+                    /t <h4>Arrays</h4>
+                    /t <div ng-init="points=[1,15,19,2,40]">
+                    /t/t <p>The third result is {{ points[2] }}</p>
+                    /t </div>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -249,7 +341,7 @@
 
             Exercise:
 
-            Try to write the correct module so our app will be able to run.
+            Try to create the module of our app in the Code Editor to make it work.
         </content>
         <code>
             <htmlcode>
@@ -263,9 +355,9 @@
                 <![CDATA[
                     // Write your module here!
 
-                    app.controller("myController", ["$scope", function ($scope) {
-                    /t $scope.firstName = "John";
-                    /t $scope.lastName = "Doe";
+                    app.controller('myController', ['$scope', function ($scope) {
+                    /t $scope.firstName = 'John';
+                    /t $scope.lastName = 'Doe';
                     }]);
                  ]]>
             </scriptcode>
@@ -275,6 +367,30 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <h1>{{firstName}} {{lastName}}</h1>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myController', ['$scope', function ($scope) {
+                    /t $scope.firstName = 'John';
+                    /t $scope.lastName = 'Doe';
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -330,7 +446,7 @@
         <code>
             <htmlcode>
                 <![CDATA[
-                    <div ng-app="myApp" ng-controller="myController">
+                    <div ng-app="myApp" ng-controller="">
                     /t <h1>{{scopeOne}}</h1>
                     /t <h1>{{scopeTwo}}</h1>
                     /t <h1>{{scopeThree}}</h1>
@@ -350,6 +466,33 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <h1>scopeOne: {{scopeOne}}</h1>
+                    /t <h1>scopeTwo: {{scopeTwo}}</h1>
+                    /t <h1>scopeThree: {{scopeThree.name + " " + scopeThree.age}}</h1>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+                    
+                    app.controller('myController', ['$scope', function($scope) {
+                    /t $scope.scopeOne = 'John Doe';
+                    /t $scope.scopeTwo = 42;
+                    /t $scope.scopeThree = {'name':'John','age':42};
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -408,9 +551,9 @@
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
 
-                    app.controller("myController", ["$scope", function ($scope) {
+                    app.controller('myController', ['$scope', function ($scope) {
                     // Write your scopes here!
                     }]);
                  ]]>
@@ -421,6 +564,33 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <h3>{{carOne}}</h3>
+                    /t <h3>{{carTwo}}</h3>
+                    /t <h3>{{carThree}}</h3>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myController', ['$scope', function ($scope) {
+                    /t $scope.carOne = 'Volvo';
+                    /t $scope.carTwo = 'Audi';
+                    /t $scope.carThree = 'Mercedes';
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -514,6 +684,31 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myCtrl">
+                    /t Name: <input ng-model="firstname">
+                    /t <h1>{{firstname}}</h1>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myCtrl', function($scope) {
+                    /t $scope.firstname = 'John';
+                    /t $scope.lastname = 'Doe';
+                    });
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -557,20 +752,20 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /t Service Example
+                    /t <h4>Service Example</h4>
                     /t <input ng-model="myInput" ng-change="toUpperCaseFunction(myInput)">
-                    /t <h1>{{myOutput}}</h1>
+                    /t <h2>{{myOutput}}</h2>
 
-                    /t Exercise 1
+                    /t <h4>Exercise 1</h4>
                     /t <!-- Write here! -->
-                    /t Exercise 2
+                    /t <h4>Exercise 2</h4>
                     /t <!-- Write here! -->
                     </div>
                 ]]>
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
 
                     app.service('MyService', function() {
                     /t this.myFunction = function (data) {
@@ -578,13 +773,13 @@
                     /t }
                     });
 
-                    app.service('AnotherService', ["$http", function($http) {
+                    app.service('AnotherService', ['$http', function($http) {
                     /t this.getDetails = function () {
-                    /t/t return $http.get("http://www.w3schools.com/website/customers_mysql.php");
+                    /t/t return $http.get('http://www.w3schools.com/website/customers_mysql.php');
                     /t }
                     }]);
 
-                    app.controller("myController", ["$scope", "MyService", function($scope, MyService) {
+                    app.controller('myController', ['$scope', 'MyService', function($scope, MyService) {
                     /t $scope.toUpperCaseFunction = function(data) {
                     /t/t $scope.myOutput = MyService.myFunction(data);
                     /t };
@@ -597,6 +792,65 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <h4>Service Example</h4>
+                    /t <div>Uppercase: <input ng-model="myInput" ng-change="toUpperCaseFunction(myInput)"></div><br />
+                    /t <h2>{{myOutput}}</h2>
+
+                    /t <h4>Exercise 1</h4>
+                    /t <div>Lowercase: <input ng-model="lowercaseInput" ng-change="toLowerCaseFunction(lowercaseInput)"></div>
+                    /t <h2>{{lowercaseOutput}}</h2>
+
+                    /t <h4>Exercise 2</h4>
+                    /t <h3 ng-repeat="details in list">{{details.Name}}</h3>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.service('MyService', function() {
+                    /t this.myFunction = function (data) {
+                    /t/t return data.toUpperCase();
+                    /t }
+                    });
+
+                    app.service('ToLowerCaseService', function() {
+                    /t this.myFunction = function (data) {
+                    /t/t return data.toLowerCase();
+                    /t }
+                    });
+
+                    app.service('AnotherService', ['$http', function($http) {
+                    /t this.getDetails = function () {
+                    /t/t return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /t }
+                    }]);
+
+                    app.controller('myController', ['$scope', 'MyService', 'ToLowerCaseService', 'AnotherService', function($scope, MyService, ToLowerCaseService, AnotherService) {
+                    /t $scope.toUpperCaseFunction = function(data) {
+                    /t/t $scope.myOutput = MyService.myFunction(data);
+                    /t };
+                    /t $scope.toLowerCaseFunction = function(data) {
+                    /t/t $scope.lowercaseOutput = ToLowerCaseService.myFunction(data);
+                    /t };
+                    /t AnotherService.getDetails()
+                    /t/t .then(function (response) {
+                    /t/t/t $scope.list = response.data;
+                    /t/t });
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -672,18 +926,18 @@
                     /t Input first Number: <input ng-model="a"><br />
                     /t Input second Number: <input ng-model="b"><br />
                     /t <button ng-click="compute(a, b)">Compute</button><br />
-                    /t <h1>Sum is: {{sum}}</h1><br />
-                    /t <h1>Difference is: {{difference}}</h1><br />
-                    /t <h1>Product is: {{product}}</h1><br />
-                    /t <h1>Quotient is: {{quotient}}</h1>
+                    /t <h3>Sum is: {{sum}}</h3>
+                    /t <h3>Difference is: {{difference}}</h3>
+                    /t <h3>Product is: {{product}}</h3>
+                    /t <h3>Quotient is: {{quotient}}</h3>
                     </div>
                 ]]>
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
 
-                    app.controller("myController", [function() {
+                    app.controller('myController', [function() {
                     /t $scope.compute = function(a, b) {
                     /t/t $scope.sum = ComputeService.getSum(a, b);
                     /t/t $scope.difference = ComputeService.getDifference(a, b);
@@ -692,7 +946,7 @@
                     /t };
                     }]);
 
-                    app.service("ComputeService", [function() {
+                    app.service('ComputeService', [function() {
                     /t this.getSum = function (a,b) {
                     /t/t return parseFloat(a) + parseFloat(b);
                     /t };
@@ -714,6 +968,55 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t Input first Number: <input ng-model="a"><br />
+                    /t Input second Number: <input ng-model="b"><br />
+                    /t <button ng-click="compute(a, b)">Compute</button><br />
+                    /t <h3>Sum is: {{sum}}</h3>
+                    /t <h3>Difference is: {{difference}}</h3>
+                    /t <h3>Product is: {{product}}</h3>
+                    /t <h3>Quotient is: {{quotient}}</h3>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myController', ['$scope', 'ComputeService', function($scope, ComputeService) {
+                    /t $scope.compute = function(a, b) {
+                    /t/t $scope.sum = ComputeService.getSum(a, b);
+                    /t/t $scope.difference = ComputeService.getDifference(a, b);
+                    /t/t $scope.product = ComputeService.getProduct(a, b);
+                    /t/t $scope.quotient = ComputeService.getQuotient(a, b);
+                    /t };
+                    }]);
+
+                    app.service('ComputeService', [function() {
+                    /t this.getSum = function (a,b) {
+                    /t/t return parseFloat(a) + parseFloat(b);
+                    /t };
+                    /t this.getDifference = function (a,b) {
+                    /t/t return a - b;
+                    /t };
+                    /t this.getProduct = function (a,b) {
+                    /t/t return a * b;
+                    /t };
+                    /t this.getQuotient = function (a,b) {
+                    /t/t return a / b;
+                    /t };
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -763,10 +1066,12 @@
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
                     /t <!-- Expression filters -->
+                    /t <h3>Exercise 1</h3>
                     /t <p>Uppercase: {{ name }}</p>
                     /t <p>Lowercase: {{ name }}</p>
 
                     /t <!-- Directive filters -->
+                    /t <h3>Exercise 2</h3>
                     /t <input type="text" ng-model="test">
                     /t <h2 ng-repeat="x in details">{{x.Name}}</h2>
                     </div>
@@ -774,18 +1079,18 @@
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
 
-                    app.controller("myController", ["$scope", "AnotherService", function ($scope, AnotherService) {
-                    /t $scope.name = "John Doe";
+                    app.controller('myController', ['$scope', 'AnotherService', function ($scope, AnotherService) {
+                    /t $scope.name = 'John Doe';
                     /t AnotherService.getDetails().then(function (response) {
                     /t/t $scope.details = response.data;
                     /t });
                     }]);
 
-                    app.service('AnotherService', ["$http", function($http) {
+                    app.service('AnotherService', ['$http', function($http) {
                     /t this.getDetails = function () {
-                    /t/t return $http.get("http://www.w3schools.com/website/customers_mysql.php");
+                    /t/t return $http.get('http://www.w3schools.com/website/customers_mysql.php');
                     /t }
                     }]);
                  ]]>
@@ -796,6 +1101,46 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <!-- Expression filters -->
+                    /t <h3>Exercise 1</h3>
+                    /t <p>Uppercase: {{ name | uppercase}}</p>
+                    /t <p>Lowercase: {{ name | lowercase}}</p>
+
+                    /t <!-- Directive filters -->
+                    /t <h3>Exercise 2</h3>
+                    /t <input type="text" ng-model="test">
+                    /t <h2 ng-repeat="x in details | filter : test">{{x.Name}}</h2>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myController', ['$scope', 'AnotherService', function ($scope, AnotherService) {
+                    /t $scope.name = 'John Doe';
+                    /t AnotherService.getDetails().then(function (response) {
+                    /t/t $scope.details = response.data;
+                    /t });
+                    }]);
+
+                    app.service('AnotherService', ['$http', function($http) {
+                    /t this.getDetails = function () {
+                    /t/t return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /t }
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -880,6 +1225,54 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="formExample" ng-controller="ExampleController">
+                    /t <form novalidate class="simple-form">
+                    /t/t Name: <input type="text" ng-model="user.name" /><br />
+                    /t/t Gender: <input type="radio" ng-model="user.gender" value="male" />male
+                    /t/t/t <input type="radio" ng-model="user.gender" value="female" />female<br />
+                    /t/t <input type="button" ng-click="reset()" value="Reset" />
+                    /t/t <input type="button" ng-click="delete()" value="Delete" />
+                    /t/t <input type="button" ng-click="insert()" value="Insert" />
+                    /t/t <input type="submit" ng-click="update(user)" value="Save" />
+                    /t </form>
+                        
+                    /t <pre>user = {{user | json}}</pre>
+                    /t <pre>master = {{master | json}}</pre>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    angular.module('formExample', [])
+                    /t .controller('ExampleController', ['$scope', function($scope) {
+                    /t/t $scope.master = {};
+                    /t/t $scope.update = function(user) {
+                    /t/t/t $scope.master = angular.copy(user);
+                    /t/t };
+                    /t/t $scope.reset = function() {
+                    /t/t/t $scope.user = angular.copy($scope.master);
+                    /t/t };
+                    /t/t $scope.delete = function() {
+                    /t/t/t $scope.user = {};
+                    /t/t/t $scope.master = {};
+                    /t/t };
+                    /t/t $scope.insert = function() {
+                    /t/t/t $scope.user.name = 'Mark';
+                    /t/t/t $scope.user.gender = 'male';
+                    /t/t };
+                    /t/t $scope.reset();
+                    /t }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -1054,7 +1447,7 @@
 
             Exercise:
 
-            Create your own Routing with at least three routes. You can just use Template instead of TemplateUrl. Also use the Otherwise method.
+            Create your own Routing with at least three routes. You can just use Template instead of TemplateUrl. Also use the Otherwise method. Don't forget to add ngRoute to your module.
         </content>
         <code>
             <htmlcode>
@@ -1071,7 +1464,7 @@
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
                  ]]>
             </scriptcode>
             <stylecode>
@@ -1080,6 +1473,45 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp">
+                    /t <p><a href="#/">Main</a></p> 
+                    /t <a href="#route1">Route 1</a>
+                    /t <a href="#route2">Route 2</a>
+                    /t <a href="#route3">Route 3</a>
+                        
+                    /t <div ng-view></div>
+                    </div> 
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', ['ngRoute']);
+
+                    app.config(function($routeProvider) {
+                    /t $routeProvider
+                    /t/t .when('/', {
+                    /t/t/t template : '<h1>Main</h1><p>Select a route</p>'
+                    /t/t }).when('/route1', {
+                    /t/t/t template : '<h1>Route 1</h1><p>You are in route 1</p>'
+                    /t/t }).when('/route2', {
+                    /t/t/t template : '<h1>Route 2</h1><p>Now in route 2</p>'
+                    /t/t }).when('/route3', {
+                    /t/t/t template : '<h1>Route 3</h1><p>Currently in route 3</p>'
+                    /t/t }).otherwise({
+                    /t/t/t template : '<h1>None</h1><p>Nothing has been selected</p>'
+                    /t/t });
+                    });
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
     <chapter>
         <level>
@@ -1133,9 +1565,9 @@
             </htmlcode>
             <scriptcode>
                 <![CDATA[
-                    var app = angular.module("myApp", []);
+                    var app = angular.module('myApp', []);
 
-                    app.controller("myController", ["$scope", function($scope) {
+                    app.controller('myController', ['$scope', function($scope) {
                     /t $scope.data = [
                     /t/t {name:'John', age:25, gender:'boy'},
                     /t/t {name:'Jessie', age:30, gender:'girl'},
@@ -1157,5 +1589,50 @@
                  ]]>
             </stylecode>
         </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /t <my-directive list="data"></my-directive>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+
+                    app.controller('myController', ['$scope', function($scope) {
+                    /t $scope.data = [
+                    /t/t {name:'John', age:25, gender:'boy'},
+                    /t/t {name:'Jessie', age:30, gender:'girl'},
+                    /t/t {name:'Johanna', age:28, gender:'girl'},
+                    /t/t {name:'Joy', age:15, gender:'girl'},
+                    /t/t {name:'Mary', age:28, gender:'girl'},
+                    /t/t {name:'Peter', age:95, gender:'boy'},
+                    /t/t {name:'Sebastian', age:50, gender:'boy'},
+                    /t/t {name:'Erika', age:27, gender:'girl'},
+                    /t/t {name:'Patrick', age:40, gender:'boy'},
+                    /t/t {name:'Samantha', age:60, gender:'girl'}
+                    /t ];
+                    }]);
+
+                    app.directive('myDirective', [function () {
+                    /t return {
+                    /t/t restrict: 'E',
+                    /t/t replace: true,
+                    /t/t scope: {
+                    /t/t/t list: '='
+                    /t/t },
+                    /t/t template: '<div ng-repeat="x in list"><a href="#" ng-click="showDetails = !showDetails">{{x.name}}</a> <span ng-show="showDetails">Age: {{x.age}} Gender: {{x.gender}}</span></div>'
+                    /t };
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
     </chapter>
 </lesson>
