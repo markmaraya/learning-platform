@@ -30,7 +30,7 @@
                 scope.styleCode.text = CDataParse(scope.chapter.code.stylecode);
             };
 
-            this.CopyCodeValue = function (scope, CDataParse) {
+            this.CopyCodeValue = function (scope) {
                 scope.htmlCodeCopy = angular.copy(scope.htmlCode.text);
                 scope.scriptCodeCopy = angular.copy(scope.scriptCode.text);
                 scope.styleCodeCopy = angular.copy(scope.styleCode.text);
