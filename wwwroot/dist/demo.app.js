@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+	'use strict';
+
 	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap']);
 
 	angular
@@ -20,9 +20,9 @@
 				});
 		}]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .service('LessonDetailService', ['$http', function ($http) {
@@ -31,9 +31,9 @@
             };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .service('LessonListService', ['$http', function ($http) {
@@ -42,9 +42,66 @@
             };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .service('X2jsService', [function () {
+            var x2js = new X2JS();
+
+            this.xml_str2json = function (str) {
+                return x2js.xml_str2json(str);
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .directive('chapterContent', ['$compile', function ($compile) {
+            return {
+                restrict: 'E',
+                replace: true,
+                scope: {
+                    content: '='
+                },
+                link: function (scope, element) {
+                    scope.$watch('content', function (newValue) {
+                        if (newValue !== undefined) {
+                            var template = $compile('<div id="chapterContent">' + scope.content + '</div>')(scope);
+                            element.empty().append(template);
+                        }
+                    });
+                }
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .directive('contentCode', [function () {
+            return {
+                restrict: 'E',
+                replace: true,
+                link: function (scope, element) {
+                    var contentCode = element.html();
+                    element.html(contentCode.trim()
+                        .replace(/\s\s+/g, '\n')
+                        .replace(/\/tb/g, '   ')
+                        .replace(/\/n/g,'')
+                        .replace(/\/lt/g, '<span><</span>')
+                        .replace(/\/gt/g, '<span>></span>'));
+                }
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .directive('content', [function () {
@@ -54,13 +111,13 @@
                 scope: {
                     object: '='
                 },
-                template: '<div class="section"><h4>{{object.title}}</h4><p id="chapterContent">{{object.content | toString}}</p></div>'
+                template: '<div class="section"><h4>{{object.title}}</h4><chapter-content content="object.content"></chapter-content></div>'
             };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .directive('lessons', [function () {
@@ -70,13 +127,13 @@
                 scope: {
                     list: '='
                 },
-                template: '<a href="#lesson/{{lessons | spaceless}}" ng-repeat="lessons in list"><div class="lesson-div bg-primary"><img alt="Sample Image"><label>{{lessons}}</label></div></a>'
+                template: '<a href="#lesson/{{lessons.title | spaceless}}" ng-repeat="lessons in list"><div class="lesson-div bg-primary"><i class="mdi mdi-{{lessons.icon}} mdi-48px"></i><h1>{{lessons.title}}</h1></div></a>'
             };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .directive('repeatLink', [function () {
@@ -90,9 +147,9 @@
             };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .filter('capitalize', [function () {
@@ -120,9 +177,9 @@
             };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .filter('spaceless', [function () {
@@ -130,53 +187,15 @@
                 if (input) {
                     return input.toLowerCase().replace(/\s+/g, '-');
                 }
-            }
+            };
         }]);
 })();
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
-        .filter('toString', [function () {
-            return function (input) {
-                if (input) {
-                    return input.toString();
-                }
-            }
-        }]);
-})();
-'use strict';
-
-(function () {
-    angular
-        .module('LearningPlatformApplication')
-        .controller('MainController', ['$scope', 'LessonListService', function ($scope, LessonListService) {
-            var x2js = new X2JS();
-
-            LessonListService.getDetails()
-                .then(function (response) {
-                    $scope.lessons = x2js.xml_str2json(response.data);
-
-                    var lessonList = [];
-
-                    for (var key in $scope.lessons.lesson.title) {
-                        lessonList.push($scope.lessons.lesson.title[key]);
-                    };
-
-                    $scope.lessonList = lessonList;
-                });
-
-        }]);
-})();
-'use strict';
-
-(function () {
-    angular
-        .module('LearningPlatformApplication')
-        .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', function ($scope, $routeParams, LessonDetailService) {
-            var x2js = new X2JS();
-
+        .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', 'X2jsService', function ($scope, $routeParams, LessonDetailService, X2jsService) {
             var path = $routeParams.lesson;
             var dependencyLink = [
                 'bower_components/angular/angular.min.js',
@@ -191,7 +210,8 @@
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
-                    $scope.topicList = x2js.xml_str2json(response.data);
+                    // todo: REFACTOR #2
+                    $scope.topicList = X2jsService.xml_str2json(response.data);
                     $scope.chapter = $scope.topicList.lesson.chapter[0];
 
                     var titleListBeginner = [];
@@ -208,7 +228,7 @@
                         if ($scope.topicList.lesson.chapter[key].level == 'Advance') {
                             titleListAdvance.push($scope.topicList.lesson.chapter[key].title);
                         }
-                    };
+                    }
 
                     $scope.titleListBeginner = titleListBeginner;
                     $scope.titleListIntermediate = titleListIntermediate;
@@ -221,53 +241,53 @@
                     $scope.htmlCodeCopy = angular.copy($scope.htmlCode.text);
                     $scope.scriptCodeCopy = angular.copy($scope.scriptCode.text);
                     $scope.styleCodeCopy = angular.copy($scope.styleCode.text);
-
-                    $scope.submitCode = function () {
-                        var text = $scope.htmlCode.text;
-                        var scriptText = $scope.scriptCode.text;
-                        var styleText = $scope.styleCode.text;
-
-                        var ifr = document.createElement('iframe');
-
-                        ifr.setAttribute('name', 'frame1');
-                        ifr.setAttribute('frameborder', '0');
-                        ifr.setAttribute('id', 'iframeResult');
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                        document.getElementById('iframeWrapper').appendChild(ifr);
-
-                        var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-                        ifrw.document.open();
-                        ifrw.document.write(text);
-                        ifrw.document.write('<style>' + styleText + '<\/style>');
-
-                        angular.forEach(dependencyLink, function (value) {
-                            ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/scr' + 'ipt>');
-                        });
-
-                        ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
-                        ifrw.document.close();
-                    };
-
-                    $scope.resetCode = function () {
-                        $scope.htmlCode.text = $scope.htmlCodeCopy
-                        $scope.scriptCode.text = $scope.scriptCodeCopy
-                        $scope.styleCode.text = $scope.styleCodeCopy
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                    };
-
-                    $scope.showExample = function () {
-                        $scope.htmlCode.text = parseCode($scope.chapter.example.htmlcode);
-                        $scope.scriptCode.text = parseCode($scope.chapter.example.scriptcode);
-                        $scope.styleCode.text = parseCode($scope.chapter.example.stylecode);
-
-                        $scope.submitCode();
-                    };
                 })
-                .catch(function (data) {
+                .catch(function () {
                     $scope.titleList = "";
                     $scope.chapter = "";
                 });
+
+            $scope.submitCode = function () {
+                var text = $scope.htmlCode.text;
+                var scriptText = $scope.scriptCode.text;
+                var styleText = $scope.styleCode.text;
+
+                var ifr = document.createElement('iframe');
+
+                ifr.setAttribute('name', 'frame1');
+                ifr.setAttribute('frameborder', '0');
+                ifr.setAttribute('id', 'iframeResult');
+                document.getElementById('iframeWrapper').innerHTML = '';
+                document.getElementById('iframeWrapper').appendChild(ifr);
+
+                var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+
+                ifrw.document.open();
+                ifrw.document.write(text);
+                ifrw.document.write('<style>' + styleText + '<\/style>');
+
+                angular.forEach(dependencyLink, function (value) {
+                    ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/scr' + 'ipt>');
+                });
+
+                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
+                ifrw.document.close();
+            };
+
+            $scope.resetCode = function () {
+                $scope.htmlCode.text = $scope.htmlCodeCopy;
+                $scope.scriptCode.text = $scope.scriptCodeCopy;
+                $scope.styleCode.text = $scope.styleCodeCopy;
+                document.getElementById('iframeWrapper').innerHTML = '';
+            };
+
+            $scope.showExample = function () {
+                $scope.htmlCode.text = parseCode($scope.chapter.example.htmlcode);
+                $scope.scriptCode.text = parseCode($scope.chapter.example.scriptcode);
+                $scope.styleCode.text = parseCode($scope.chapter.example.stylecode);
+
+                $scope.submitCode();
+            };
 
             $scope.choiceFunction = function (lesson) {
                 var chapters = $scope.topicList.lesson.chapter;
@@ -286,7 +306,7 @@
 
                         document.getElementById('iframeWrapper').innerHTML = '';
                     }
-                };
+                }
             };
 
             $scope.updateHtmlCode = function (data) {
@@ -302,8 +322,56 @@
             };
 
             function parseCode(code) {
-                return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/t/g, '\t');
-            };
+                return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
+            }
+        }]);
+})();
+// (function () {
+    
+//     LessonDetailService.getDetails(path)
+//         .then(function (response) {
+//              var lesson = x2js.xml_str2json(response.data).lesson;
+
+//             $scope.titleListBeginner = [];
+//             $scope.titleListIntermediate = [];
+//             $scope.titleListAdvance = [];
+
+//             for(var chapter in lesson) {
+//                 switch(chapter.level) {
+//                     case 'Beginner':
+//                         $scope.titleListBeginner.push(chapter.title);
+//                         break;
+                    
+
+//                         //...
+//                 }
+//             }
+//         });
+
+
+
+
+
+
+
+
+// })();
+(function () {
+    'use strict';
+    
+    angular
+        .module('LearningPlatformApplication')
+        .controller('MainController', ['$scope', 'LessonListService', 'X2jsService', function ($scope, LessonListService, X2jsService) {
+            $scope.lessonList = [];
+            
+            LessonListService.getDetails()
+                .then(function (response) {
+                    $scope.lessons = X2jsService.xml_str2json(response.data).lesson.topic;
+                    
+                    for (var key in $scope.lessons) {
+                        $scope.lessonList.push($scope.lessons[key]);
+                    }
+                });
         }]);
 })();
 //# sourceMappingURL=demo.app.js.map

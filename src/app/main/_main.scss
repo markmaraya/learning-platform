@@ -1,3 +1,7 @@
+a:hover {
+    text-decoration: none;
+}
+
 a:first-child {
     .lesson-div {
         margin-top: 100px;
@@ -5,17 +9,11 @@ a:first-child {
 }
 
 .lesson-div {
-    height: 100px;
     margin: 20px 0;
-
-    img {
-        height: 80px;
-        width: 80px;
-        margin: 10px;
-    }
-
-    label {
-        font-size: 24px;
-        cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    
+    h1 {
+        margin-top: 0px;
     }
 }

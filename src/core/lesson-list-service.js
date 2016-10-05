@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .service('LessonListService', ['$http', function ($http) {

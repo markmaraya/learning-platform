@@ -1,5 +1,14 @@
 <lesson>
-    <title>AngularJS</title>
-    <title>Bootstrap</title>
-    <title>Javascript</title>
+    <topic>
+        <title>AngularJS</title>
+        <icon>angular</icon>
+    </topic>
+    <topic>
+        <title>Bootstrap</title>
+        <icon>close</icon>
+    </topic>
+    <topic>
+        <title>Javascript</title>
+        <icon>language-javascript</icon>
+    </topic>
 </lesson>

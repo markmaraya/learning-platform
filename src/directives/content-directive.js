@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .directive('content', [function () {
@@ -10,7 +10,7 @@
                 scope: {
                     object: '='
                 },
-                template: '<div class="section"><h4>{{object.title}}</h4><p id="chapterContent">{{object.content | toString}}</p></div>'
+                template: '<div class="section"><h4>{{object.title}}</h4><chapter-content content="object.content"></chapter-content></div>'
             };
         }]);
 })();

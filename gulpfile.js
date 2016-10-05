@@ -104,10 +104,11 @@ gulp.task("demo", ["compile"], function () {
         .pipe(inject(
             gulp.src([
                 "./bower_components/bootstrap/dist/css/bootstrap.min.css",
+                "./bower_components/mdi/css/materialdesignicons.min.css",
                 "./bower_components/angular/angular.min.js",
                 "./bower_components/angular-route/angular-route.min.js",
                 "./bower_components/abdmob/x2js/xml2json.js",
-                "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+                "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
             ], { read: false }), {
                 name: 'vendor'
             }))

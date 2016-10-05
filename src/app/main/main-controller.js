@@ -1,23 +1,18 @@
-'use strict';
-
 (function () {
+    'use strict';
+    
     angular
         .module('LearningPlatformApplication')
-        .controller('MainController', ['$scope', 'LessonListService', function ($scope, LessonListService) {
-            var x2js = new X2JS();
-
+        .controller('MainController', ['$scope', 'LessonListService', 'X2jsService', function ($scope, LessonListService, X2jsService) {
+            $scope.lessonList = [];
+            
             LessonListService.getDetails()
                 .then(function (response) {
-                    $scope.lessons = x2js.xml_str2json(response.data);
-
-                    var lessonList = [];
-
-                    for (var key in $scope.lessons.lesson.title) {
-                        lessonList.push($scope.lessons.lesson.title[key]);
-                    };
-
-                    $scope.lessonList = lessonList;
+                    $scope.lessons = X2jsService.xml_str2json(response.data).lesson.topic;
+                    
+                    for (var key in $scope.lessons) {
+                        $scope.lessonList.push($scope.lessons[key]);
+                    }
                 });
-
         }]);
 })();

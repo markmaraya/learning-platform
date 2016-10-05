@@ -1,11 +1,9 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
-        .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', function ($scope, $routeParams, LessonDetailService) {
-            var x2js = new X2JS();
-
+        .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', 'X2jsService', function ($scope, $routeParams, LessonDetailService, X2jsService) {
             var path = $routeParams.lesson;
             var dependencyLink = [
                 'bower_components/angular/angular.min.js',
@@ -20,7 +18,8 @@
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
-                    $scope.topicList = x2js.xml_str2json(response.data);
+                    // todo: REFACTOR #2
+                    $scope.topicList = X2jsService.xml_str2json(response.data);
                     $scope.chapter = $scope.topicList.lesson.chapter[0];
 
                     var titleListBeginner = [];
@@ -37,7 +36,7 @@
                         if ($scope.topicList.lesson.chapter[key].level == 'Advance') {
                             titleListAdvance.push($scope.topicList.lesson.chapter[key].title);
                         }
-                    };
+                    }
 
                     $scope.titleListBeginner = titleListBeginner;
                     $scope.titleListIntermediate = titleListIntermediate;
@@ -50,53 +49,53 @@
                     $scope.htmlCodeCopy = angular.copy($scope.htmlCode.text);
                     $scope.scriptCodeCopy = angular.copy($scope.scriptCode.text);
                     $scope.styleCodeCopy = angular.copy($scope.styleCode.text);
-
-                    $scope.submitCode = function () {
-                        var text = $scope.htmlCode.text;
-                        var scriptText = $scope.scriptCode.text;
-                        var styleText = $scope.styleCode.text;
-
-                        var ifr = document.createElement('iframe');
-
-                        ifr.setAttribute('name', 'frame1');
-                        ifr.setAttribute('frameborder', '0');
-                        ifr.setAttribute('id', 'iframeResult');
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                        document.getElementById('iframeWrapper').appendChild(ifr);
-
-                        var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-                        ifrw.document.open();
-                        ifrw.document.write(text);
-                        ifrw.document.write('<style>' + styleText + '<\/style>');
-
-                        angular.forEach(dependencyLink, function (value) {
-                            ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/scr' + 'ipt>');
-                        });
-
-                        ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
-                        ifrw.document.close();
-                    };
-
-                    $scope.resetCode = function () {
-                        $scope.htmlCode.text = $scope.htmlCodeCopy
-                        $scope.scriptCode.text = $scope.scriptCodeCopy
-                        $scope.styleCode.text = $scope.styleCodeCopy
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                    };
-
-                    $scope.showExample = function () {
-                        $scope.htmlCode.text = parseCode($scope.chapter.example.htmlcode);
-                        $scope.scriptCode.text = parseCode($scope.chapter.example.scriptcode);
-                        $scope.styleCode.text = parseCode($scope.chapter.example.stylecode);
-
-                        $scope.submitCode();
-                    };
                 })
-                .catch(function (data) {
+                .catch(function () {
                     $scope.titleList = "";
                     $scope.chapter = "";
                 });
+
+            $scope.submitCode = function () {
+                var text = $scope.htmlCode.text;
+                var scriptText = $scope.scriptCode.text;
+                var styleText = $scope.styleCode.text;
+
+                var ifr = document.createElement('iframe');
+
+                ifr.setAttribute('name', 'frame1');
+                ifr.setAttribute('frameborder', '0');
+                ifr.setAttribute('id', 'iframeResult');
+                document.getElementById('iframeWrapper').innerHTML = '';
+                document.getElementById('iframeWrapper').appendChild(ifr);
+
+                var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+
+                ifrw.document.open();
+                ifrw.document.write(text);
+                ifrw.document.write('<style>' + styleText + '<\/style>');
+
+                angular.forEach(dependencyLink, function (value) {
+                    ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/scr' + 'ipt>');
+                });
+
+                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
+                ifrw.document.close();
+            };
+
+            $scope.resetCode = function () {
+                $scope.htmlCode.text = $scope.htmlCodeCopy;
+                $scope.scriptCode.text = $scope.scriptCodeCopy;
+                $scope.styleCode.text = $scope.styleCodeCopy;
+                document.getElementById('iframeWrapper').innerHTML = '';
+            };
+
+            $scope.showExample = function () {
+                $scope.htmlCode.text = parseCode($scope.chapter.example.htmlcode);
+                $scope.scriptCode.text = parseCode($scope.chapter.example.scriptcode);
+                $scope.styleCode.text = parseCode($scope.chapter.example.stylecode);
+
+                $scope.submitCode();
+            };
 
             $scope.choiceFunction = function (lesson) {
                 var chapters = $scope.topicList.lesson.chapter;
@@ -115,7 +114,7 @@
 
                         document.getElementById('iframeWrapper').innerHTML = '';
                     }
-                };
+                }
             };
 
             $scope.updateHtmlCode = function (data) {
@@ -131,7 +130,7 @@
             };
 
             function parseCode(code) {
-                return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/t/g, '\t');
-            };
+                return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
+            }
         }]);
 })();

@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .filter('spaceless', [function () {
@@ -8,6 +8,6 @@
                 if (input) {
                     return input.toLowerCase().replace(/\s+/g, '-');
                 }
-            }
+            };
         }]);
 })();

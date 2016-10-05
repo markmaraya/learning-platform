@@ -34,9 +34,22 @@
     overflow-y: scroll;
 }
 
+.content-code-label {
+    margin-bottom: 0;
+    padding: 5px 10px 0 10px;
+    width: 100%;
+    font-size: 18px;
+}
+
+.content-code {
+    border: solid 10px #337ab7;
+    border-radius: 0;
+}
+
 .code-editor {
     height: 260px;
     width: 100%;
+    font-family: "Lucida Console", Monaco, monospace;
     resize: none;
     white-space: nowrap;
 }

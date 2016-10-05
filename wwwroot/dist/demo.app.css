@@ -24,9 +24,20 @@
   padding-right: 10px;
   overflow-y: scroll; }
 
+.content-code-label {
+  margin-bottom: 0;
+  padding: 5px 10px 0 10px;
+  width: 100%;
+  font-size: 18px; }
+
+.content-code {
+  border: solid 10px #337ab7;
+  border-radius: 0; }
+
 .code-editor {
   height: 260px;
   width: 100%;
+  font-family: "Lucida Console", Monaco, monospace;
   resize: none;
   white-space: nowrap; }
 
@@ -42,19 +53,18 @@
   height: 100%;
   width: 100%; }
 
+a:hover {
+  text-decoration: none; }
+
 a:first-child .lesson-div {
   margin-top: 100px; }
 
 .lesson-div {
-  height: 100px;
-  margin: 20px 0; }
-  .lesson-div img {
-    height: 80px;
-    width: 80px;
-    margin: 10px; }
-  .lesson-div label {
-    font-size: 24px;
-    cursor: pointer; }
+  margin: 20px 0;
+  padding: 10px 20px;
+  text-align: center; }
+  .lesson-div h1 {
+    margin-top: 0px; }
 
 .navbar,
 .footer {
