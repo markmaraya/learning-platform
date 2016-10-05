@@ -3,15 +3,25 @@
     
     angular
         .module('LearningPlatformApplication')
-        .controller('MainController', ['$scope', 'LessonListService', 'X2jsService', function ($scope, LessonListService, X2jsService) {
-            $scope.topicList = [];
+        .config(['$routeProvider', function ($routeProvider) {
+			$routeProvider
+				.when('/', {
+					templateUrl: 'main/main.html',
+					controller: 'MainController',
+                    controllerAs: 'mainCont'
+				});
+        }])
+        .controller('MainController', ['LessonListService', 'X2jsService', function (LessonListService, X2jsService) {
+            var vm = this;
+            
+            vm.topicList = [];
             
             LessonListService.getDetails()
                 .then(function (response) {
-                    $scope.lessons = X2jsService.xml_str2json(response.data).lesson.topic;
+                    var lessons = X2jsService.xml_str2json(response.data).lesson.topic;
                     
-                    for (var key in $scope.lessons) {
-                        $scope.topicList.push($scope.lessons[key]);
+                    for (var key in lessons) {
+                        vm.topicList.push(lessons[key]);
                     }
                 });
         }]);
