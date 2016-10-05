@@ -37,7 +37,7 @@
 
                     UtilityService.GroupTitleByLevel(vm, chapterList);
                     UtilityService.AddCodeValue(vm, CDataParse);
-                    UtilityService.CopyCodeValue(vm, CDataParse);
+                    UtilityService.CopyCodeValue(vm);
                 })
                 .catch(function () {
                     vm.chapter = '';
@@ -70,7 +70,7 @@
                         vm.chapter = chapters[i];
 
                         UtilityService.AddCodeValue(vm, CDataParse);
-                        UtilityService.CopyCodeValue(vm, CDataParse);
+                        UtilityService.CopyCodeValue(vm);
 
                         document.getElementById('iframeWrapper').innerHTML = '';
                     }
