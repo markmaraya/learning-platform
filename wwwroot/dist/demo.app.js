@@ -197,6 +197,7 @@
         .module('LearningPlatformApplication')
         .controller('LessonController', ['$scope', '$routeParams', 'LessonDetailService', 'X2jsService', function ($scope, $routeParams, LessonDetailService, X2jsService) {
             var path = $routeParams.lesson;
+            var chapterList = {};
             var dependencyLink = [
                 'bower_components/angular/angular.min.js',
                 'bower_components/angular-route/angular-route.min.js'
@@ -210,29 +211,26 @@
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
-                    // todo: REFACTOR #2
-                    $scope.topicList = X2jsService.xml_str2json(response.data);
-                    $scope.chapter = $scope.topicList.lesson.chapter[0];
+                    chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
+                    $scope.chapter = chapterList[0];
 
-                    var titleListBeginner = [];
-                    var titleListIntermediate = [];
-                    var titleListAdvance = [];
+                    $scope.titleListBeginner = [];
+                    $scope.titleListIntermediate = [];
+                    $scope.titleListAdvance = [];
 
-                    for (var key in $scope.topicList.lesson.chapter) {
-                        if ($scope.topicList.lesson.chapter[key].level == 'Beginner') {
-                            titleListBeginner.push($scope.topicList.lesson.chapter[key].title);
-                        }
-                        if ($scope.topicList.lesson.chapter[key].level == 'Intermediate') {
-                            titleListIntermediate.push($scope.topicList.lesson.chapter[key].title);
-                        }
-                        if ($scope.topicList.lesson.chapter[key].level == 'Advance') {
-                            titleListAdvance.push($scope.topicList.lesson.chapter[key].title);
+                    for (var key in chapterList) {
+                        switch (chapterList[key].level) {
+                            case 'Beginner':
+                                $scope.titleListBeginner.push(chapterList[key].title);
+                                break;
+                            case 'Intermediate':
+                                $scope.titleListIntermediate.push(chapterList[key].title);
+                                break;
+                            case 'Advance':
+                                $scope.titleListAdvance.push(chapterList[key].title);
+                                break;
                         }
                     }
-
-                    $scope.titleListBeginner = titleListBeginner;
-                    $scope.titleListIntermediate = titleListIntermediate;
-                    $scope.titleListAdvance = titleListAdvance;
 
                     $scope.htmlCode.text = parseCode($scope.chapter.code.htmlcode);
                     $scope.scriptCode.text = parseCode($scope.chapter.code.scriptcode);
@@ -243,8 +241,7 @@
                     $scope.styleCodeCopy = angular.copy($scope.styleCode.text);
                 })
                 .catch(function () {
-                    $scope.titleList = "";
-                    $scope.chapter = "";
+                    $scope.chapter = '';
                 });
 
             $scope.submitCode = function () {
@@ -290,7 +287,7 @@
             };
 
             $scope.choiceFunction = function (lesson) {
-                var chapters = $scope.topicList.lesson.chapter;
+                var chapters = chapterList;
 
                 for (var i = 0; i < chapters.length; i++) {
                     if (chapters[i].title == lesson) {
@@ -326,50 +323,20 @@
             }
         }]);
 })();
-// (function () {
-    
-//     LessonDetailService.getDetails(path)
-//         .then(function (response) {
-//              var lesson = x2js.xml_str2json(response.data).lesson;
-
-//             $scope.titleListBeginner = [];
-//             $scope.titleListIntermediate = [];
-//             $scope.titleListAdvance = [];
-
-//             for(var chapter in lesson) {
-//                 switch(chapter.level) {
-//                     case 'Beginner':
-//                         $scope.titleListBeginner.push(chapter.title);
-//                         break;
-                    
-
-//                         //...
-//                 }
-//             }
-//         });
-
-
-
-
-
-
-
-
-// })();
 (function () {
     'use strict';
     
     angular
         .module('LearningPlatformApplication')
         .controller('MainController', ['$scope', 'LessonListService', 'X2jsService', function ($scope, LessonListService, X2jsService) {
-            $scope.lessonList = [];
+            $scope.topicList = [];
             
             LessonListService.getDetails()
                 .then(function (response) {
                     $scope.lessons = X2jsService.xml_str2json(response.data).lesson.topic;
                     
                     for (var key in $scope.lessons) {
-                        $scope.lessonList.push($scope.lessons[key]);
+                        $scope.topicList.push($scope.lessons[key]);
                     }
                 });
         }]);
