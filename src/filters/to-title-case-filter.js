@@ -3,7 +3,7 @@
 
     angular
         .module('LearningPlatformApplication')
-        .filter('capitalize', [function () {
+        .filter('toTitleCase', [function () {
             return function (input) {
                 if (input.indexOf(' ') !== -1) {
                     var inputPieces, i;

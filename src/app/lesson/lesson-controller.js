@@ -8,14 +8,13 @@
                 .when('/lesson/:lesson/:level', {
                     templateUrl: 'lesson/lesson.html',
                     controller: 'LessonController',
-                    controllerAs: 'lessonCont'
+                    controllerAs: 'lesson'
                 });
         }])
         .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', function ($routeParams, LessonDetailService, X2jsService, UtilityService) {
             var vm = this;
             var path = $routeParams.lesson;
             var level = $routeParams.level;
-            var CDataParse = UtilityService.CDataToStringTrimReplace;
             var chapterList = {};
             var dependencyLink = [
                 'bower_components/angular/angular.min.js',
@@ -35,7 +34,7 @@
                     chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
 
                     UtilityService.GetTitleByLevel(vm, chapterList, level);
-                    UtilityService.AddCodeValue(vm, CDataParse);
+                    UtilityService.AddCodeValue(vm);
                     UtilityService.CopyCodeValue(vm);
                 })
                 .catch(function () {
@@ -55,9 +54,9 @@
             };
 
             vm.showExample = function () {
-                vm.htmlCode.text = CDataParse(vm.chapter.example.htmlcode);
-                vm.scriptCode.text = CDataParse(vm.chapter.example.scriptcode);
-                vm.styleCode.text = CDataParse(vm.chapter.example.stylecode);
+                vm.htmlCode.text = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
+                vm.scriptCode.text = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
+                vm.styleCode.text = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
 
                 vm.submitCode();
             };

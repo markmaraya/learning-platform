@@ -40,7 +40,7 @@
     angular
         .module('LearningPlatformApplication')
         .service('UtilityService', [function () {
-            this.CDataToStringTrimReplace = function (code) {
+            this.TrimCDataForView = function (code) {
                 return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
             };
 
@@ -55,10 +55,10 @@
                 }
             };
 
-            this.AddCodeValue = function (scope, CDataParse) {
-                scope.htmlCode.text = CDataParse(scope.chapter.code.htmlcode);
-                scope.scriptCode.text = CDataParse(scope.chapter.code.scriptcode);
-                scope.styleCode.text = CDataParse(scope.chapter.code.stylecode);
+            this.AddCodeValue = function (scope) {
+                scope.htmlCode.text = this.TrimCDataForView(scope.chapter.code.htmlcode);
+                scope.scriptCode.text = this.TrimCDataForView(scope.chapter.code.scriptcode);
+                scope.styleCode.text = this.TrimCDataForView(scope.chapter.code.stylecode);
             };
 
             this.CopyCodeValue = function (scope) {
@@ -72,7 +72,7 @@
                     if (chapters[i].title == lesson) {
                         scope.chapter = chapters[i];
 
-                        this.AddCodeValue(scope, this.CDataToStringTrimReplace);
+                        this.AddCodeValue(scope);
                         this.CopyCodeValue(scope);
 
                         document.getElementById('iframeWrapper').innerHTML = '';
@@ -170,14 +170,11 @@
 
     angular
         .module('LearningPlatformApplication')
-        .directive('content', [function () {
-            return {
-                restrict: 'E',
-                replace: true,
-                scope: {
-                    object: '='
-                },
-                template: '<div class="section"><h4>{{object.title}}</h4><chapter-content content="object.content"></chapter-content></div>'
+        .filter('spaceToDash', [function () {
+            return function (input) {
+                if (input) {
+                    return input.toLowerCase().replace(/\s+/g, '-');
+                }
             };
         }]);
 })();
@@ -186,39 +183,7 @@
 
     angular
         .module('LearningPlatformApplication')
-        .directive('lessons', [function () {
-            return {
-                restrict: 'E',
-                replace: true,
-                scope: {
-                    list: '='
-                },
-                template: '<a href="#lesson/{{lessons.title | spaceless}}" ng-repeat="lessons in list"><div class="lesson-div bg-primary"><i class="mdi mdi-{{lessons.icon}} mdi-48px"></i><h1>{{lessons.title}}</h1></div></a>'
-            };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .directive('repeatLink', [function () {
-            return {
-                restrict: 'E',
-                replace: true,
-                scope: {
-                    list: '='
-                },
-                template: '<a href="" ng-repeat="lesson in list" ng-click="lessonCont.choiceFunction(lesson)">{{lesson | capitalize}}</a>'
-            };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .filter('capitalize', [function () {
+        .filter('toTitleCase', [function () {
             return function (input) {
                 if (input.indexOf(' ') !== -1) {
                     var inputPieces, i;
@@ -248,12 +213,18 @@
 
     angular
         .module('LearningPlatformApplication')
-        .filter('spaceless', [function () {
-            return function (input) {
-                if (input) {
-                    return input.toLowerCase().replace(/\s+/g, '-');
-                }
-            };
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/lesson/:lesson', {
+                    templateUrl: 'level/level.html',
+                    controller: 'LevelController',
+                    controllerAs: 'level'
+                });
+        }])
+        .controller('LevelController', ['$routeParams', function ($routeParams) {
+            var vm = this;
+
+            vm.lesson = $routeParams.lesson;
         }]);
 })();
 (function () {
@@ -266,14 +237,13 @@
                 .when('/lesson/:lesson/:level', {
                     templateUrl: 'lesson/lesson.html',
                     controller: 'LessonController',
-                    controllerAs: 'lessonCont'
+                    controllerAs: 'lesson'
                 });
         }])
         .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', function ($routeParams, LessonDetailService, X2jsService, UtilityService) {
             var vm = this;
             var path = $routeParams.lesson;
             var level = $routeParams.level;
-            var CDataParse = UtilityService.CDataToStringTrimReplace;
             var chapterList = {};
             var dependencyLink = [
                 'bower_components/angular/angular.min.js',
@@ -293,7 +263,7 @@
                     chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
 
                     UtilityService.GetTitleByLevel(vm, chapterList, level);
-                    UtilityService.AddCodeValue(vm, CDataParse);
+                    UtilityService.AddCodeValue(vm);
                     UtilityService.CopyCodeValue(vm);
                 })
                 .catch(function () {
@@ -313,9 +283,9 @@
             };
 
             vm.showExample = function () {
-                vm.htmlCode.text = CDataParse(vm.chapter.example.htmlcode);
-                vm.scriptCode.text = CDataParse(vm.chapter.example.scriptcode);
-                vm.styleCode.text = CDataParse(vm.chapter.example.stylecode);
+                vm.htmlCode.text = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
+                vm.scriptCode.text = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
+                vm.styleCode.text = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
 
                 vm.submitCode();
             };
@@ -349,7 +319,7 @@
 				.when('/', {
 					templateUrl: 'main/main.html',
 					controller: 'MainController',
-                    controllerAs: 'mainCont'
+                    controllerAs: 'main'
 				});
         }])
         .controller('MainController', ['LessonListService', 'X2jsService', function (LessonListService, X2jsService) {
@@ -365,25 +335,6 @@
                         vm.topicList.push(lessons[key]);
                     }
                 });
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider
-                .when('/lesson/:lesson', {
-                    templateUrl: 'level/level.html',
-                    controller: 'LevelController',
-                    controllerAs: 'levelCont'
-                });
-        }])
-        .controller('LevelController', ['$routeParams', function ($routeParams) {
-            var vm = this;
-
-            vm.lesson = $routeParams.lesson;
         }]);
 })();
 //# sourceMappingURL=demo.app.js.map

@@ -3,7 +3,7 @@
 
     angular
         .module('LearningPlatformApplication')
-        .filter('spaceless', [function () {
+        .filter('spaceToDash', [function () {
             return function (input) {
                 if (input) {
                     return input.toLowerCase().replace(/\s+/g, '-');

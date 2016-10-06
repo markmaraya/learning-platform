@@ -8,7 +8,7 @@
                 .when('/lesson/:lesson', {
                     templateUrl: 'level/level.html',
                     controller: 'LevelController',
-                    controllerAs: 'levelCont'
+                    controllerAs: 'level'
                 });
         }])
         .controller('LevelController', ['$routeParams', function ($routeParams) {

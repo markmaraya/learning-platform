@@ -4,7 +4,7 @@
     angular
         .module('LearningPlatformApplication')
         .service('UtilityService', [function () {
-            this.CDataToStringTrimReplace = function (code) {
+            this.TrimCDataForView = function (code) {
                 return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
             };
 
@@ -19,10 +19,10 @@
                 }
             };
 
-            this.AddCodeValue = function (scope, CDataParse) {
-                scope.htmlCode.text = CDataParse(scope.chapter.code.htmlcode);
-                scope.scriptCode.text = CDataParse(scope.chapter.code.scriptcode);
-                scope.styleCode.text = CDataParse(scope.chapter.code.stylecode);
+            this.AddCodeValue = function (scope) {
+                scope.htmlCode.text = this.TrimCDataForView(scope.chapter.code.htmlcode);
+                scope.scriptCode.text = this.TrimCDataForView(scope.chapter.code.scriptcode);
+                scope.styleCode.text = this.TrimCDataForView(scope.chapter.code.stylecode);
             };
 
             this.CopyCodeValue = function (scope) {
@@ -36,7 +36,7 @@
                     if (chapters[i].title == lesson) {
                         scope.chapter = chapters[i];
 
-                        this.AddCodeValue(scope, this.CDataToStringTrimReplace);
+                        this.AddCodeValue(scope);
                         this.CopyCodeValue(scope);
 
                         document.getElementById('iframeWrapper').innerHTML = '';

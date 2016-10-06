@@ -8,7 +8,7 @@
 				.when('/', {
 					templateUrl: 'main/main.html',
 					controller: 'MainController',
-                    controllerAs: 'mainCont'
+                    controllerAs: 'main'
 				});
         }])
         .controller('MainController', ['LessonListService', 'X2jsService', function (LessonListService, X2jsService) {
