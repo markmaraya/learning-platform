@@ -50,7 +50,7 @@
                 vm.htmlCode.text = vm.htmlCodeCopy;
                 vm.scriptCode.text = vm.scriptCodeCopy;
                 vm.styleCode.text = vm.styleCodeCopy;
-                
+
                 document.getElementById('iframeWrapper').innerHTML = '';
             };
 
@@ -65,20 +65,7 @@
             vm.choiceFunction = function (lesson) {
                 var chapters = chapterList;
 
-<<<<<<< HEAD
                 UtilityService.GetChapter(vm, lesson, chapters);
-=======
-                for (var i = 0; i < chapters.length; i++) {
-                    if (chapters[i].title == lesson) {
-                        vm.chapter = chapters[i];
-
-                        UtilityService.AddCodeValue(vm, CDataParse);
-                        UtilityService.CopyCodeValue(vm);
-
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                    }
-                }
->>>>>>> a9e919d419fa2e6373b72f35168e20f7b8580254
             };
 
             vm.updateHtmlCode = function (data) {

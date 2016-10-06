@@ -308,7 +308,7 @@
                 vm.htmlCode.text = vm.htmlCodeCopy;
                 vm.scriptCode.text = vm.scriptCodeCopy;
                 vm.styleCode.text = vm.styleCodeCopy;
-                
+
                 document.getElementById('iframeWrapper').innerHTML = '';
             };
 
@@ -323,20 +323,7 @@
             vm.choiceFunction = function (lesson) {
                 var chapters = chapterList;
 
-<<<<<<< HEAD
                 UtilityService.GetChapter(vm, lesson, chapters);
-=======
-                for (var i = 0; i < chapters.length; i++) {
-                    if (chapters[i].title == lesson) {
-                        vm.chapter = chapters[i];
-
-                        UtilityService.AddCodeValue(vm, CDataParse);
-                        UtilityService.CopyCodeValue(vm);
-
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                    }
-                }
->>>>>>> a9e919d419fa2e6373b72f35168e20f7b8580254
             };
 
             vm.updateHtmlCode = function (data) {
@@ -350,25 +337,6 @@
             vm.updateStyleCode = function (data) {
                 vm.styleCode.text = data;
             };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider
-                .when('/lesson/:lesson', {
-                    templateUrl: 'level/level.html',
-                    controller: 'LevelController',
-                    controllerAs: 'levelCont'
-                });
-        }])
-        .controller('LevelController', ['$routeParams', function ($routeParams) {
-            var vm = this;
-
-            vm.lesson = $routeParams.lesson;
         }]);
 })();
 (function () {
@@ -397,6 +365,25 @@
                         vm.topicList.push(lessons[key]);
                     }
                 });
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/lesson/:lesson', {
+                    templateUrl: 'level/level.html',
+                    controller: 'LevelController',
+                    controllerAs: 'levelCont'
+                });
+        }])
+        .controller('LevelController', ['$routeParams', function ($routeParams) {
+            var vm = this;
+
+            vm.lesson = $routeParams.lesson;
         }]);
 })();
 //# sourceMappingURL=demo.app.js.map
