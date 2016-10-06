@@ -1,4 +1,5 @@
 @import '../lesson/lesson';
+@import '../level/level';
 @import '../main/main';
 
 .navbar,
@@ -20,12 +21,20 @@
 }
 
 .content {
-    height: 93.5vh;
+    height: -webkit-calc(100vh - 86px);
+    height: -moz-calc(100vh - 86px);
+    height: calc(100vh - 86px);
 }
 
 .content-main {
     .row {
-        height: 89vh;
+        height: -webkit-calc(100vh - 86px);
+        height: -moz-calc(100vh - 86px);
+        height: calc(100vh - 86px);
+
+        .col {
+            height: inherit;
+        }
     }
 }
 

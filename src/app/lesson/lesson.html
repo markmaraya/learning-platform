@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <ol class="breadcrumb bg-info">
             <li><a href="#/">Home</a></li>
-            <li class="active">{{lessonCont.breadcrumbLesson}}</li>
+            <li><a href="#/">Modules</a></li>
+            <li><a href="#/lesson/{{lessonCont.breadcrumbLesson}}">Level</a></li>
+            <li class="active">{{lessonCont.breadcrumbLesson | capitalize}} - {{lessonCont.breadcrumbLevel | capitalize}}</li>
         </ol>
     </div>
 </div>
@@ -12,14 +14,8 @@
         <div class="row">
             <div class="col-md-2 col-sm-2 col">
                 <div id="sideNav">
-                    <h4>Beginner</h4>
-                    <repeat-link list="lessonCont.titleListBeginner"></repeat-link>
-                    <hr>
-                    <h4>Intermediate</h4>
-                    <repeat-link list="lessonCont.titleListIntermediate"></repeat-link>
-                    <hr>
-                    <h4>Advance</h4>
-                    <repeat-link list="lessonCont.titleListAdvance"></repeat-link>
+                    <h4>{{lessonCont.breadcrumbLevel | capitalize}}</h4>
+                    <repeat-link list="lessonCont.titleList"></repeat-link>
                 </div>
             </div>
             <div class="col-md-5 col-sm-5 col">

@@ -5,7 +5,7 @@
         .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
-                .when('/lesson/:lesson', {
+                .when('/lesson/:lesson/:level', {
                     templateUrl: 'lesson/lesson.html',
                     controller: 'LessonController',
                     controllerAs: 'lessonCont'
@@ -14,6 +14,7 @@
         .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', function ($routeParams, LessonDetailService, X2jsService, UtilityService) {
             var vm = this;
             var path = $routeParams.lesson;
+            var level = $routeParams.level;
             var CDataParse = UtilityService.CDataToStringTrimReplace;
             var chapterList = {};
             var dependencyLink = [
@@ -24,18 +25,16 @@
             vm.htmlCode = {};
             vm.scriptCode = {};
             vm.styleCode = {};
-            vm.titleListBeginner = [];
-            vm.titleListIntermediate = [];
-            vm.titleListAdvance = [];
+            vm.titleList = [];
 
             vm.breadcrumbLesson = path;
+            vm.breadcrumbLevel = level;
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
                     chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
-                    vm.chapter = chapterList[0];
 
-                    UtilityService.GroupTitleByLevel(vm, chapterList);
+                    UtilityService.GetTitleByLevel(vm, chapterList, level);
                     UtilityService.AddCodeValue(vm, CDataParse);
                     UtilityService.CopyCodeValue(vm);
                 })
@@ -51,6 +50,7 @@
                 vm.htmlCode.text = vm.htmlCodeCopy;
                 vm.scriptCode.text = vm.scriptCodeCopy;
                 vm.styleCode.text = vm.styleCodeCopy;
+                
                 document.getElementById('iframeWrapper').innerHTML = '';
             };
 
@@ -65,16 +65,7 @@
             vm.choiceFunction = function (lesson) {
                 var chapters = chapterList;
 
-                for (var i = 0; i < chapters.length; i++) {
-                    if (chapters[i].title == lesson) {
-                        vm.chapter = chapters[i];
-
-                        UtilityService.AddCodeValue(vm, CDataParse);
-                        UtilityService.CopyCodeValue(vm);
-
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                    }
-                }
+                UtilityService.GetChapter(vm, lesson, chapters);
             };
 
             vm.updateHtmlCode = function (data) {

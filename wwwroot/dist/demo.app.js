@@ -44,18 +44,13 @@
                 return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
             };
 
-            this.GroupTitleByLevel = function (scope, chapterList) {
+            this.GetTitleByLevel = function (scope, chapterList, level) {
                 for (var key in chapterList) {
-                    switch (chapterList[key].level) {
-                        case 'Beginner':
-                            scope.titleListBeginner.push(chapterList[key].title);
-                            break;
-                        case 'Intermediate':
-                            scope.titleListIntermediate.push(chapterList[key].title);
-                            break;
-                        case 'Advance':
-                            scope.titleListAdvance.push(chapterList[key].title);
-                            break;
+                    if (chapterList[key].level.toLowerCase() === level) {
+                        scope.titleList.push(chapterList[key].title);
+                    }
+                    if (chapterList[key].title === scope.titleList[0]) {
+                        scope.chapter = chapterList[key];
                     }
                 }
             };
@@ -66,10 +61,23 @@
                 scope.styleCode.text = CDataParse(scope.chapter.code.stylecode);
             };
 
-            this.CopyCodeValue = function (scope, CDataParse) {
+            this.CopyCodeValue = function (scope) {
                 scope.htmlCodeCopy = angular.copy(scope.htmlCode.text);
                 scope.scriptCodeCopy = angular.copy(scope.scriptCode.text);
                 scope.styleCodeCopy = angular.copy(scope.styleCode.text);
+            };
+
+            this.GetChapter = function (scope, lesson, chapters) {
+                for (var i = 0; i < chapters.length; i++) {
+                    if (chapters[i].title == lesson) {
+                        scope.chapter = chapters[i];
+
+                        this.AddCodeValue(scope, this.CDataToStringTrimReplace);
+                        this.CopyCodeValue(scope);
+
+                        document.getElementById('iframeWrapper').innerHTML = '';
+                    }
+                }
             };
 
             this.WriteCodeToIframe = function (scope, dependencyLink) {
@@ -255,7 +263,7 @@
         .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
-                .when('/lesson/:lesson', {
+                .when('/lesson/:lesson/:level', {
                     templateUrl: 'lesson/lesson.html',
                     controller: 'LessonController',
                     controllerAs: 'lessonCont'
@@ -264,6 +272,7 @@
         .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', function ($routeParams, LessonDetailService, X2jsService, UtilityService) {
             var vm = this;
             var path = $routeParams.lesson;
+            var level = $routeParams.level;
             var CDataParse = UtilityService.CDataToStringTrimReplace;
             var chapterList = {};
             var dependencyLink = [
@@ -274,20 +283,18 @@
             vm.htmlCode = {};
             vm.scriptCode = {};
             vm.styleCode = {};
-            vm.titleListBeginner = [];
-            vm.titleListIntermediate = [];
-            vm.titleListAdvance = [];
+            vm.titleList = [];
 
             vm.breadcrumbLesson = path;
+            vm.breadcrumbLevel = level;
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
                     chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
-                    vm.chapter = chapterList[0];
 
-                    UtilityService.GroupTitleByLevel(vm, chapterList);
+                    UtilityService.GetTitleByLevel(vm, chapterList, level);
                     UtilityService.AddCodeValue(vm, CDataParse);
-                    UtilityService.CopyCodeValue(vm, CDataParse);
+                    UtilityService.CopyCodeValue(vm);
                 })
                 .catch(function () {
                     vm.chapter = '';
@@ -301,6 +308,7 @@
                 vm.htmlCode.text = vm.htmlCodeCopy;
                 vm.scriptCode.text = vm.scriptCodeCopy;
                 vm.styleCode.text = vm.styleCodeCopy;
+                
                 document.getElementById('iframeWrapper').innerHTML = '';
             };
 
@@ -315,16 +323,7 @@
             vm.choiceFunction = function (lesson) {
                 var chapters = chapterList;
 
-                for (var i = 0; i < chapters.length; i++) {
-                    if (chapters[i].title == lesson) {
-                        vm.chapter = chapters[i];
-
-                        UtilityService.AddCodeValue(vm, CDataParse);
-                        UtilityService.CopyCodeValue(vm, CDataParse);
-
-                        document.getElementById('iframeWrapper').innerHTML = '';
-                    }
-                }
+                UtilityService.GetChapter(vm, lesson, chapters);
             };
 
             vm.updateHtmlCode = function (data) {
@@ -338,6 +337,25 @@
             vm.updateStyleCode = function (data) {
                 vm.styleCode.text = data;
             };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/lesson/:lesson', {
+                    templateUrl: 'level/level.html',
+                    controller: 'LevelController',
+                    controllerAs: 'levelCont'
+                });
+        }])
+        .controller('LevelController', ['$routeParams', function ($routeParams) {
+            var vm = this;
+
+            vm.lesson = $routeParams.lesson;
         }]);
 })();
 (function () {

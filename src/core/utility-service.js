@@ -8,18 +8,13 @@
                 return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
             };
 
-            this.GroupTitleByLevel = function (scope, chapterList) {
+            this.GetTitleByLevel = function (scope, chapterList, level) {
                 for (var key in chapterList) {
-                    switch (chapterList[key].level) {
-                        case 'Beginner':
-                            scope.titleListBeginner.push(chapterList[key].title);
-                            break;
-                        case 'Intermediate':
-                            scope.titleListIntermediate.push(chapterList[key].title);
-                            break;
-                        case 'Advance':
-                            scope.titleListAdvance.push(chapterList[key].title);
-                            break;
+                    if (chapterList[key].level.toLowerCase() === level) {
+                        scope.titleList.push(chapterList[key].title);
+                    }
+                    if (chapterList[key].title === scope.titleList[0]) {
+                        scope.chapter = chapterList[key];
                     }
                 }
             };
@@ -34,6 +29,19 @@
                 scope.htmlCodeCopy = angular.copy(scope.htmlCode.text);
                 scope.scriptCodeCopy = angular.copy(scope.scriptCode.text);
                 scope.styleCodeCopy = angular.copy(scope.styleCode.text);
+            };
+
+            this.GetChapter = function (scope, lesson, chapters) {
+                for (var i = 0; i < chapters.length; i++) {
+                    if (chapters[i].title == lesson) {
+                        scope.chapter = chapters[i];
+
+                        this.AddCodeValue(scope, this.CDataToStringTrimReplace);
+                        this.CopyCodeValue(scope);
+
+                        document.getElementById('iframeWrapper').innerHTML = '';
+                    }
+                }
             };
 
             this.WriteCodeToIframe = function (scope, dependencyLink) {
