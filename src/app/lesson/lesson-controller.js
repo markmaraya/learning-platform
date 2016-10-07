@@ -21,13 +21,12 @@
                 'bower_components/angular-route/angular-route.min.js'
             ];
 
-            vm.htmlCode = {};
-            vm.scriptCode = {};
-            vm.styleCode = {};
+            vm.code = {};
+            vm.breadcrumb = {};
             vm.titleList = [];
 
-            vm.breadcrumbLesson = path;
-            vm.breadcrumbLevel = level;
+            vm.breadcrumb.lesson = path;
+            vm.breadcrumb.level = level;
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
@@ -46,17 +45,17 @@
             };
 
             vm.resetCode = function () {
-                vm.htmlCode.text = vm.htmlCodeCopy;
-                vm.scriptCode.text = vm.scriptCodeCopy;
-                vm.styleCode.text = vm.styleCodeCopy;
+                vm.code.html = vm.htmlCodeCopy;
+                vm.code.script = vm.scriptCodeCopy;
+                vm.code.style = vm.styleCodeCopy;
 
                 document.getElementById('iframeWrapper').innerHTML = '';
             };
 
             vm.showExample = function () {
-                vm.htmlCode.text = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
-                vm.scriptCode.text = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
-                vm.styleCode.text = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
+                vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
+                vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
+                vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
 
                 vm.submitCode();
             };
@@ -68,15 +67,15 @@
             };
 
             vm.updateHtmlCode = function (data) {
-                vm.htmlCode.text = data;
+                vm.code.html = data;
             };
 
             vm.updateScriptCode = function (data) {
-                vm.scriptCode.text = data;
+                vm.code.script = data;
             };
 
             vm.updateStyleCode = function (data) {
-                vm.styleCode.text = data;
+                vm.code.style = data;
             };
         }]);
 })();

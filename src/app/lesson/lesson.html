@@ -3,8 +3,8 @@
         <ol class="breadcrumb bg-info">
             <li><a href="#/">Home</a></li>
             <li><a href="#/">Modules</a></li>
-            <li><a href="#/lesson/{{lesson.breadcrumbLesson}}">{{lesson.breadcrumbLesson | toTitleCase}}</a></li>
-            <li class="active">{{lesson.breadcrumbLevel | toTitleCase}}</li>
+            <li><a href="#/lesson/{{lesson.breadcrumb.lesson}}">{{lesson.breadcrumb.lesson | toTitleCase}}</a></li>
+            <li class="active">{{lesson.breadcrumb.level | toTitleCase}}</li>
         </ol>
     </div>
 </div>
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-2 col-sm-2 col">
                 <div id="sideNav">
-                    <h4>{{lesson.breadcrumbLevel | toTitleCase}}</h4>
+                    <h4>{{lesson.breadcrumb.level | toTitleCase}}</h4>
                     <a href="" ng-repeat="title in lesson.titleList" ng-click="lesson.choiceFunction(title)">{{title | toTitleCase}}</a>
                 </div>
             </div>
@@ -28,13 +28,13 @@
             <div class="col-md-5 col-sm-5 col">
                 <uib-tabset active="active">
                     <uib-tab index="0" heading="HTML">
-                        <textarea class="code-editor" ng-model="lesson.htmlCode.text" ng-change="lesson.updateHtmlCode(lesson.htmlCode.text)" spellcheck="false"></textarea>
+                        <textarea class="code-editor" ng-model="lesson.code.html" ng-change="lesson.updateHtmlCode(lesson.code.html)" spellcheck="false"></textarea>
                     </uib-tab>
                     <uib-tab index="1" heading="Script">
-                        <textarea class="code-editor" ng-model="lesson.scriptCode.text" ng-change="lesson.updateScriptCode(lesson.scriptCode.text)" spellcheck="false"></textarea>
+                        <textarea class="code-editor" ng-model="lesson.code.script" ng-change="lesson.updateScriptCode(lesson.code.script)" spellcheck="false"></textarea>
                     </uib-tab>
                     <uib-tab index="2" heading="Style">
-                        <textarea class="code-editor" ng-model="lesson.styleCode.text" ng-change="lesson.updateStyleCode(lesson.styleCode.text)" spellcheck="false"></textarea>
+                        <textarea class="code-editor" ng-model="lesson.code.style" ng-change="lesson.updateStyleCode(lesson.code.style)" spellcheck="false"></textarea>
                     </uib-tab>
                 </uib-tabset>
 

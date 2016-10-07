@@ -56,15 +56,15 @@
             };
 
             this.AddCodeValue = function (scope) {
-                scope.htmlCode.text = this.TrimCDataForView(scope.chapter.code.htmlcode);
-                scope.scriptCode.text = this.TrimCDataForView(scope.chapter.code.scriptcode);
-                scope.styleCode.text = this.TrimCDataForView(scope.chapter.code.stylecode);
+                scope.code.html = this.TrimCDataForView(scope.chapter.code.htmlcode);
+                scope.code.script = this.TrimCDataForView(scope.chapter.code.scriptcode);
+                scope.code.style = this.TrimCDataForView(scope.chapter.code.stylecode);
             };
 
             this.CopyCodeValue = function (scope) {
-                scope.htmlCodeCopy = angular.copy(scope.htmlCode.text);
-                scope.scriptCodeCopy = angular.copy(scope.scriptCode.text);
-                scope.styleCodeCopy = angular.copy(scope.styleCode.text);
+                scope.htmlCodeCopy = angular.copy(scope.code.html);
+                scope.scriptCodeCopy = angular.copy(scope.code.script);
+                scope.styleCodeCopy = angular.copy(scope.code.style);
             };
 
             this.GetChapter = function (scope, lesson, chapters) {
@@ -81,9 +81,9 @@
             };
 
             this.WriteCodeToIframe = function (scope, dependencyLink) {
-                var text = scope.htmlCode.text;
-                var scriptText = scope.scriptCode.text;
-                var styleText = scope.styleCode.text;
+                var text = scope.code.html;
+                var scriptText = scope.code.script;
+                var styleText = scope.code.style;
 
                 var ifr = document.createElement('iframe');
 
@@ -215,25 +215,6 @@
         .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
-                .when('/lesson/:lesson', {
-                    templateUrl: 'level/level.html',
-                    controller: 'LevelController',
-                    controllerAs: 'level'
-                });
-        }])
-        .controller('LevelController', ['$routeParams', function ($routeParams) {
-            var vm = this;
-
-            vm.lesson = $routeParams.lesson;
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider
                 .when('/lesson/:lesson/:level', {
                     templateUrl: 'lesson/lesson.html',
                     controller: 'LessonController',
@@ -250,13 +231,12 @@
                 'bower_components/angular-route/angular-route.min.js'
             ];
 
-            vm.htmlCode = {};
-            vm.scriptCode = {};
-            vm.styleCode = {};
+            vm.code = {};
+            vm.breadcrumb = {};
             vm.titleList = [];
 
-            vm.breadcrumbLesson = path;
-            vm.breadcrumbLevel = level;
+            vm.breadcrumb.lesson = path;
+            vm.breadcrumb.level = level;
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
@@ -275,17 +255,17 @@
             };
 
             vm.resetCode = function () {
-                vm.htmlCode.text = vm.htmlCodeCopy;
-                vm.scriptCode.text = vm.scriptCodeCopy;
-                vm.styleCode.text = vm.styleCodeCopy;
+                vm.code.html = vm.htmlCodeCopy;
+                vm.code.script = vm.scriptCodeCopy;
+                vm.code.style = vm.styleCodeCopy;
 
                 document.getElementById('iframeWrapper').innerHTML = '';
             };
 
             vm.showExample = function () {
-                vm.htmlCode.text = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
-                vm.scriptCode.text = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
-                vm.styleCode.text = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
+                vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
+                vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
+                vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
 
                 vm.submitCode();
             };
@@ -297,16 +277,35 @@
             };
 
             vm.updateHtmlCode = function (data) {
-                vm.htmlCode.text = data;
+                vm.code.html = data;
             };
 
             vm.updateScriptCode = function (data) {
-                vm.scriptCode.text = data;
+                vm.code.script = data;
             };
 
             vm.updateStyleCode = function (data) {
-                vm.styleCode.text = data;
+                vm.code.style = data;
             };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/lesson/:lesson', {
+                    templateUrl: 'level/level.html',
+                    controller: 'LevelController',
+                    controllerAs: 'level'
+                });
+        }])
+        .controller('LevelController', ['$routeParams', function ($routeParams) {
+            var vm = this;
+
+            vm.lesson = $routeParams.lesson;
         }]);
 })();
 (function () {
@@ -317,12 +316,12 @@
         .config(['$routeProvider', function ($routeProvider) {
 			$routeProvider
 				.when('/', {
-					templateUrl: 'main/main.html',
-					controller: 'MainController',
-                    controllerAs: 'main'
+					templateUrl: 'module/module.html',
+					controller: 'ModuleController',
+                    controllerAs: 'module'
 				});
         }])
-        .controller('MainController', ['LessonListService', 'X2jsService', function (LessonListService, X2jsService) {
+        .controller('ModuleController', ['LessonListService', 'X2jsService', function (LessonListService, X2jsService) {
             var vm = this;
             
             vm.topicList = [];

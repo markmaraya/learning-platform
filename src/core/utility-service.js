@@ -20,15 +20,15 @@
             };
 
             this.AddCodeValue = function (scope) {
-                scope.htmlCode.text = this.TrimCDataForView(scope.chapter.code.htmlcode);
-                scope.scriptCode.text = this.TrimCDataForView(scope.chapter.code.scriptcode);
-                scope.styleCode.text = this.TrimCDataForView(scope.chapter.code.stylecode);
+                scope.code.html = this.TrimCDataForView(scope.chapter.code.htmlcode);
+                scope.code.script = this.TrimCDataForView(scope.chapter.code.scriptcode);
+                scope.code.style = this.TrimCDataForView(scope.chapter.code.stylecode);
             };
 
             this.CopyCodeValue = function (scope) {
-                scope.htmlCodeCopy = angular.copy(scope.htmlCode.text);
-                scope.scriptCodeCopy = angular.copy(scope.scriptCode.text);
-                scope.styleCodeCopy = angular.copy(scope.styleCode.text);
+                scope.htmlCodeCopy = angular.copy(scope.code.html);
+                scope.scriptCodeCopy = angular.copy(scope.code.script);
+                scope.styleCodeCopy = angular.copy(scope.code.style);
             };
 
             this.GetChapter = function (scope, lesson, chapters) {
@@ -45,9 +45,9 @@
             };
 
             this.WriteCodeToIframe = function (scope, dependencyLink) {
-                var text = scope.htmlCode.text;
-                var scriptText = scope.scriptCode.text;
-                var styleText = scope.styleCode.text;
+                var text = scope.code.html;
+                var scriptText = scope.code.script;
+                var styleText = scope.code.style;
 
                 var ifr = document.createElement('iframe');
 

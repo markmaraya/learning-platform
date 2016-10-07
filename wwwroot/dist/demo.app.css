@@ -1,5 +1,5 @@
 #sideNav {
-  padding: 30px;
+  padding: 20px 30px;
   background: #ffffff; }
   #sideNav a {
     display: block; }
@@ -9,12 +9,12 @@
   margin: 0; }
 
 .section {
-  padding: 30px;
+  padding: 0 30px;
   background: #ffffff;
   white-space: pre-line; }
 
 #chapterContent {
-  height: 74vh;
+  height: 76vh;
   text-align: justify;
   padding-right: 10px;
   overflow-y: scroll; }
