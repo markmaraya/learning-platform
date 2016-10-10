@@ -4,6 +4,7 @@
     "predef": [
         "angular",
         "document",
-        "X2JS"
+        "X2JS",
+        "Prism"
     ]
 }

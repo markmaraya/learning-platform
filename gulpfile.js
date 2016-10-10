@@ -105,10 +105,14 @@ gulp.task("demo", ["compile"], function () {
             gulp.src([
                 "./bower_components/bootstrap/dist/css/bootstrap.min.css",
                 "./bower_components/mdi/css/materialdesignicons.min.css",
+                "./bower_components/prism/themes/prism.css",
                 "./bower_components/angular/angular.min.js",
                 "./bower_components/angular-route/angular-route.min.js",
                 "./bower_components/abdmob/x2js/xml2json.js",
-                "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
+                "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+                "./bower_components/prism/prism.js",
+                "./bower_components/ace-builds/src-min-noconflict/ace.js",
+                "./bower_components/angular-ui-ace/ui-ace.js"
             ], { read: false }), {
                 name: 'vendor'
             }))

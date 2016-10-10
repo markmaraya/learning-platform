@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap']);
+	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap', 'ngPrism', 'ui.ace']);
 
 	angular
         .module('LearningPlatformApplication')

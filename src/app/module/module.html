@@ -10,11 +10,14 @@
 <div class="content">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-12">
                 <a href="#lesson/{{lesson.title | spaceToDash}}" ng-repeat="lesson in module.topicList">
                     <div class="lesson-div bg-primary">
-                        <i class="mdi mdi-{{lesson.icon}} mdi-48px"></i>
-                        <h1>{{lesson.title}}</h1>
+                        <i class="mdi mdi-{{lesson.icon}} icon-background"></i>
+                        <i class="mdi mdi-{{lesson.icon}} lesson-icon"></i>
+                        <span>
+                            <h4>{{lesson.title}}</h4>
+                        </span>
                     </div>
                 </a>
             </div>

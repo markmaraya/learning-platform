@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap']);
+	angular.module('LearningPlatformApplication', ['ngRoute', 'demo.app.templates', 'ui.bootstrap', 'ngPrism', 'ui.ace']);
 
 	angular
         .module('LearningPlatformApplication')
@@ -151,8 +151,7 @@
         .module('LearningPlatformApplication')
         .directive('contentCode', [function () {
             return {
-                restrict: 'E',
-                replace: true,
+                restrict: 'A',
                 link: function (scope, element) {
                     var contentCode = element.html();
                     element.html(contentCode.trim()
@@ -165,6 +164,18 @@
             };
         }]);
 })();
+angular.module('ngPrism', []).
+    directive('prism', [function() {
+        return {
+            restrict: 'A',
+            link: function ($scope, element) {
+                element.ready(function() {
+                    Prism.highlightElement(element[0]);
+                });
+            }
+        };
+    }]
+);
 (function () {
     'use strict';
 

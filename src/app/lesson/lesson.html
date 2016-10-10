@@ -28,13 +28,13 @@
             <div class="col-md-5 col-sm-5 col">
                 <uib-tabset active="active">
                     <uib-tab index="0" heading="HTML">
-                        <textarea class="code-editor" ng-model="lesson.code.html" ng-change="lesson.updateHtmlCode(lesson.code.html)" spellcheck="false"></textarea>
+                        <section class="code-editor" ng-model="lesson.code.html" ng-change="lesson.updateHtmlCode(lesson.code.html)" spellcheck="false" ui-ace="{useWrapMode : true,showGutter: true,theme:'chrome',mode: 'html'}"></section>
                     </uib-tab>
                     <uib-tab index="1" heading="Script">
-                        <textarea class="code-editor" ng-model="lesson.code.script" ng-change="lesson.updateScriptCode(lesson.code.script)" spellcheck="false"></textarea>
+                        <section class="code-editor" ng-model="lesson.code.script" ng-change="lesson.updateScriptCode(lesson.code.script)" spellcheck="false" ui-ace="{useWrapMode : true,showGutter: true,theme:'chrome',mode: 'javascript'}"></section>
                     </uib-tab>
                     <uib-tab index="2" heading="Style">
-                        <textarea class="code-editor" ng-model="lesson.code.style" ng-change="lesson.updateStyleCode(lesson.code.style)" spellcheck="false"></textarea>
+                        <section class="code-editor" ng-model="lesson.code.style" ng-change="lesson.updateStyleCode(lesson.code.style)" spellcheck="false" ui-ace="{useWrapMode : true,showGutter: true,theme:'chrome',mode: 'css'}"></section>
                     </uib-tab>
                 </uib-tabset>
 

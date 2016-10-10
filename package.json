@@ -1,11 +1,11 @@
 {
-  "name": "angular-project",
+  "name": "learning-platform",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "markmaraya",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -15,25 +15,23 @@
     "gulp-cssnano": "^2.1.2",
     "gulp-inject": "^4.1.0",
     "gulp-jshint": "^2.0.1",
+    "gulp-open": "^2.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "jshint": "^2.9.3"
   },
-  "description": "Angular Exercise",
+  "description": "Learning Platform",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markmaraya/angular-exercise.git"
+    "url": "git+https://github.com/markmaraya/learning-platform.git"
   },
   "keywords": [
     "angularjs",
     "angular"
   ],
   "bugs": {
-    "url": "https://github.com/markmaraya/angular-exercise/issues"
+    "url": "https://github.com/markmaraya/learning-platform/issues"
   },
-  "homepage": "https://github.com/markmaraya/angular-exercise",
-  "dependencies": {
-    "gulp-open": "^2.0.0"
-  }
+  "homepage": "https://github.com/markmaraya/learning-platform"
 }

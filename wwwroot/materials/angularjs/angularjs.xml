@@ -93,34 +93,28 @@
             The &lt;strong>ng-model&lt;/strong> directive binds the value of HTML controls (input, select, textarea) to application data.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="" ng-init="firstName='John'">
-                    /n
-                    /tb /ltp>Name: /ltinput type="text" ng-model="firstName">/lt/p>
-                    /tb /ltp>You wrote: {{ firstName }}/lt/p>
-                    /n    
-                    /lt/div>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="" ng-init="firstName='John'">
+                /n
+                /tb /ltp>Name: /ltinput type="text" ng-model="firstName">/lt/p>
+                /tb /ltp>You wrote: {{ firstName }}/lt/p>
+                /n    
+                /lt/div>
+            &lt;/pre>
             &lt;strong>Repeating HTML Elements&lt;/strong>
 
             The &lt;strong>ng-repeat&lt;/strong> directive repeats an HTML element.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="" ng-init="names=['Jani','Hege','Kai']">
-                    /tb /ltul>
-                    /tb/tb /ltli ng-repeat="x in names">
-                    /tb/tb/tb {{ x }}
-                    /tb/tb /lt/li>
-                    /tb /lt/ul>
-                    /lt/div>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="" ng-init="names=['Jani','Hege','Kai']">
+                /tb /ltul>
+                /tb/tb /ltli ng-repeat="x in names">
+                /tb/tb/tb {{ x }}
+                /tb/tb /lt/li>
+                /tb /lt/ul>
+                /lt/div>
+            &lt;/pre>
             You can create your own custom directive using the angular &lt;strong>directive()&lt;/strong> function.
 
             &lt;strong>Exercise:&lt;/strong>
@@ -134,10 +128,10 @@
                 <![CDATA[
                     <div ng-app="">
                     /tb Exercise 1
-                    /tb<div>
+                    /tb <div>
                     /tb/tb <p>Name: <input type="text"></p>
                     /tb/tb <p>You wrote: {{ firstName }}</p>
-                    /tb</div>
+                    /tb </div>
                     
                     /tb Exercise 2
                     /tb <div ng-init="">
@@ -164,10 +158,10 @@
                 <![CDATA[
                     <div ng-app="">
                     /tb Exercise 1
-                    /tb<div ng-init="firstName = 'John'">
+                    /tb <div ng-init="firstName = 'John'">
                     /tb/tb <p>Name: <input type="text" ng-model="firstName"></p>
                     /tb/tb <p>You wrote: {{ firstName }}</p>
-                    /tb</div>
+                    /tb </div>
                     
                     /tb Exercise 2
                     /tb <div ng-init="names=['Peter','Sebastian','Erika','Patrick','Samantha']">
@@ -209,42 +203,39 @@
             AngularJS expressions are much like JavaScript expressions: They can contain literals, operators, and variables.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="">
-                        /n
-                        Numbers
-                        /ltdiv ng-init="quantity=1;cost=5">
-                        /n
-                        /tb /ltp>Total in dollar: /ltspan ng-bind="quantity * cost">/lt/span>/lt/p>
-                        /n
-                        /lt/div>
-                        /n
-                        Strings
-                        /ltdiv ng-init="firstName='John';lastName='Doe'">
-                        /n
-                        /tb /ltp>The name is {{ firstName + " " + lastName }}/lt/p>
-                        /n
-                        /lt/div>
-                        /n
-                        Objects
-                        /ltdiv ng-init="person={firstName:'John',lastName:'Doe'}">
-                        /n
-                        /tb /ltp>The name is {{ person.lastName }}/lt/p>
-                        /n
-                        /lt/div>
-                        /n
-                        Arrays
-                        /ltdiv ng-init="points=[1,15,19,2,40]">
-                        /n
-                        /tb /ltp>The third result is {{ points[2] }}/lt/p>
-                        /n
-                        /lt/div>
-                        /n
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="">
+                    /n
+                    Numbers
+                    /ltdiv ng-init="quantity=1;cost=5">
+                    /n
+                    /tb /ltp>Total in dollar: /ltspan ng-bind="quantity * cost">/lt/span>/lt/p>
+                    /n
                     /lt/div>
-                &lt;/pre>
-            &lt;/content-code>
-
+                    /n
+                    Strings
+                    /ltdiv ng-init="firstName='John';lastName='Doe'">
+                    /n
+                    /tb /ltp>The name is {{ firstName + " " + lastName }}/lt/p>
+                    /n
+                    /lt/div>
+                    /n
+                    Objects
+                    /ltdiv ng-init="person={firstName:'John',lastName:'Doe'}">
+                    /n
+                    /tb /ltp>The name is {{ person.lastName }}/lt/p>
+                    /n
+                    /lt/div>
+                    /n
+                    Arrays
+                    /ltdiv ng-init="points=[1,15,19,2,40]">
+                    /n
+                    /tb /ltp>The third result is {{ points[2] }}/lt/p>
+                    /n
+                    /lt/div>
+                    /n
+                /lt/div>
+            &lt;/pre>
             &lt;strong>One-time binding&lt;/strong>
 
             An expression that starts with :: is considered a one-time expression. One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
@@ -346,12 +337,9 @@
             A module is created by using the AngularJS function angular.module()
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module("myApp", []);
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module("myApp", []);
+            &lt;/pre>
             &lt;strong>Exercise:&lt;/strong>
 
             Try to create the module of our app in the Code Editor to make it work.
@@ -434,27 +422,24 @@
             The &lt;strong>ng-controller&lt;/strong> directive defines the application controller.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="myApp" ng-controller="myController">
-                    /n
-                    /tb First Name: /ltinput type="text" ng-model="firstName">/ltbr>
-                    /tb Last Name: /ltinput type="text" ng-model="lastName">/ltbr>
-                    /tb /ltbr>
-                    /tb Full Name: {{firstName + " " + lastName}}
-                    /n
-                    /lt/div>
-                    /n
-                    /ltscript>
-                    /tb var app = angular.module('myApp', []);
-                    /tb app.controller('myController', function($scope) {
-                    /tb/tb $scope.firstName = "John";
-                    /tb/tb $scope.lastName = "Doe";
-                    /tb });
-                    /lt/script>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="myApp" ng-controller="myController">
+                /n
+                /tb First Name: /ltinput type="text" ng-model="firstName">/ltbr>
+                /tb Last Name: /ltinput type="text" ng-model="lastName">/ltbr>
+                /tb /ltbr>
+                /tb Full Name: {{firstName + " " + lastName}}
+                /n
+                /lt/div>
+                /n
+                /ltscript>
+                /tb var app = angular.module('myApp', []);
+                /tb app.controller('myController', function($scope) {
+                /tb/tb $scope.firstName = "John";
+                /tb/tb $scope.lastName = "Doe";
+                /tb });
+                /lt/script>
+            &lt;/pre>
             &lt;strong>Exercise:&lt;/strong>
 
             Create your own controller and supply a value for each scope so that the expressions in the View will output a value.
@@ -534,24 +519,21 @@
             Then the scope is the Model.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="myApp" ng-controller="myCtrl">
-                    /n
-                    /tb /lth1>{{carname}}/lt/h1>
-                    /n
-                    /lt/div>
-                    /n
-                    /ltscript>
-                    /tb var app = angular.module('myApp', []);
-                    /n
-                    /tb app.controller('myCtrl', function($scope) {
-                    /tb/tb $scope.carname = "Volvo";
-                    /tb });
-                    /lt/script>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="myApp" ng-controller="myCtrl">
+                /n
+                /tb /lth1>{{carname}}/lt/h1>
+                /n
+                /lt/div>
+                /n
+                /ltscript>
+                /tb var app = angular.module('myApp', []);
+                /n
+                /tb app.controller('myCtrl', function($scope) {
+                /tb/tb $scope.carname = "Volvo";
+                /tb });
+                /lt/script>
+            &lt;/pre>
             &lt;strong>Root Scope&lt;/strong>
 
             All applications have a $rootScope which is the scope created on the HTML element that contains the ng-app directive.
@@ -630,16 +612,13 @@
             AngularJS applications usually have a data model. The data model is a collection of data available for the application.
         
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module('myApp', []);
-                    app.controller('myCtrl', function($scope) {
-                    /tb $scope.firstname = "John";
-                    /tb $scope.lastname = "Doe";
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module('myApp', []);
+                app.controller('myCtrl', function($scope) {
+                /tb $scope.firstname = "John";
+                /tb $scope.lastname = "Doe";
+                });
+            &lt;/pre>
             &lt;strong>HTML View&lt;/strong>
 
             The HTML container where the AngularJS application is displayed, is called the view.
@@ -649,28 +628,19 @@
             You can use the ng-bind directive, which will bind the innerHTML of the element to the specified model property:
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltp ng-bind="firstname">/lt/p>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltp ng-bind="firstname">/lt/p>
+            &lt;/pre>
             You can also use double braces {{ }} to display content from the model:
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltp>First name: {{firstname}}/lt/p>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltp>First name: {{firstname}}/lt/p>
+            &lt;/pre>
             Or you can use the ng-model directive on HTML controls to bind the model to the view.
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltinput ng-model="firstname">
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltinput ng-model="firstname">
+            &lt;/pre>
             The ng-model directive provides a two-way binding between the model and the view.
 
             &lt;strong>Two-way Binding&lt;/strong>
@@ -681,23 +651,20 @@
             This happens immediately and automatically, which makes sure that the model and the view is updated at all times.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="myApp" ng-controller="myCtrl">
-                    /tb Name: /ltinput ng-model="firstname">
-                    /tb /lth1>{{firstname}}/lt/h1>
-                    /lt/div>
-                    /n
-                    /ltscript>
-                    /tb var app = angular.module('myApp', []);
-                    /tb app.controller('myCtrl', function($scope) {
-                    /tb/tb $scope.firstname = "John";
-                    /tb/tb $scope.lastname = "Doe";
-                    /tb });
-                    /lt/script>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="myApp" ng-controller="myCtrl">
+                /tb Name: /ltinput ng-model="firstname">
+                /tb /lth1>{{firstname}}/lt/h1>
+                /lt/div>
+                /n
+                /ltscript>
+                /tb var app = angular.module('myApp', []);
+                /tb app.controller('myCtrl', function($scope) {
+                /tb/tb $scope.firstname = "John";
+                /tb/tb $scope.lastname = "Doe";
+                /tb });
+                /lt/script>
+            &lt;/pre>
             &lt;strong>Exercise:&lt;/strong>
 
             Refer on our examples then create your own Two-way Binding.
@@ -772,18 +739,15 @@
             Angular's dependency injection subsystem takes care of the rest.
         
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    app.controller('myCtrl', function($scope, MyService, PromiseService) {
-                    /tb $scope.myCustomService = MyService.myFunc();
-                    /n
-                    /tb PromiseService.getDetails().then(function (response) {
-                    /tb/tb $scope.details = response.data;
-                    /tb });
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                app.controller('myCtrl', function($scope, MyService, PromiseService) {
+                /tb $scope.myCustomService = MyService.myFunc();
+                /n
+                /tb PromiseService.getDetails().then(function (response) {
+                /tb/tb $scope.details = response.data;
+                /tb });
+                });
+            &lt;/pre>
             You can create your own custom service using the angular service() function.
 
             &lt;strong>Exercise:&lt;/strong>
@@ -920,14 +884,11 @@
             This is the preferred way to annotate application components. This is how the examples in the documentation are written.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    someModule.controller('MyController', ['$scope', 'greeter', function($scope, greeter) {
-                    /tb // ...
-                    }]);
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                someModule.controller('MyController', ['$scope', 'greeter', function($scope, greeter) {
+                /tb // ...
+                }]);
+            &lt;/pre>
             Here we pass an array whose elements consist of a list of strings (the names of the dependencies) followed by the function itself.
 
             When using this type of annotation, take care to keep the annotation array in sync with the parameters in the function declaration.
@@ -937,18 +898,15 @@
             To allow the minifiers to rename the function parameters and still be able to inject the right services, the function needs to be annotated with the $inject property. The $inject property is an array of service names to inject.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var MyController = function($scope, greeter) {
-                    /tb // ...
-                    }
-                    /n
-                    MyController.$inject = ['$scope', 'greeter'];
-                    /n
-                    someModule.controller('MyController', MyController);
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var MyController = function($scope, greeter) {
+                /tb // ...
+                }
+                /n
+                MyController.$inject = ['$scope', 'greeter'];
+                /n
+                someModule.controller('MyController', MyController);
+            &lt;/pre>
             In this scenario the ordering of the values in the $inject array must match the ordering of the parameters in MyController.
 
             Just like with the array annotation, you'll need to take care to keep the $inject in sync with the parameters in the function declaration.
@@ -958,14 +916,11 @@
             The simplest way to get hold of the dependencies is to assume that the function parameter names are the names of the dependencies.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    someModule.controller('MyController', function($scope, greeter) {
-                    /tb // ...
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                someModule.controller('MyController', function($scope, greeter) {
+                /tb // ...
+                });
+            &lt;/pre>
             Given a function, the injector can infer the names of the services to inject by examining the function declaration and extracting the parameter names. In the above example, $scope and greeter are two services which need to be injected into the function.
 
             One advantage of this approach is that there's no array of names to keep in sync with the function parameters. You can also freely reorder dependencies.
@@ -1097,33 +1052,27 @@
             The uppercase filter format strings to upper case:
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="myApp" ng-controller="personCtrl">
-                    /n
-                    /tb /ltp>The name is {{ lastName | uppercase }}/lt/p>
-                    /n
-                    /lt/div>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="myApp" ng-controller="personCtrl">
+                /n
+                /tb /ltp>The name is {{ lastName | uppercase }}/lt/p>
+                /n
+                /lt/div>
+            &lt;/pre>
             &lt;strong>Adding Filters to Directives&lt;/strong>.
 
             Filters are added to directives, like ng-repeat, by using the pipe character |, followed by a filter:
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="myApp" ng-controller="namesCtrl">
-                    /tb /ltul>
-                    /tb/tb /ltli ng-repeat="x in names | orderBy:'country'">
-                    /tb/tb/tb {{ x.name + ', ' + x.country }}
-                    /tb/tb /lt/li>
-                    /tb /lt/ul>
-                    /lt/div>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="myApp" ng-controller="namesCtrl">
+                /tb /ltul>
+                /tb/tb /ltli ng-repeat="x in names | orderBy:'country'">
+                /tb/tb/tb {{ x.name + ', ' + x.country }}
+                /tb/tb /lt/li>
+                /tb /lt/ul>
+                /lt/div>
+            &lt;/pre>
             You can create your own custom filter using the angular filter() function.
 
             &lt;strong>Exercise:&lt;/strong>
@@ -1232,39 +1181,36 @@
             The key directive in understanding two-way data-binding is ngModel. The ngModel directive provides the two-way data-binding by synchronizing the model to the view, as well as view to the model.
         
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-app="formExample" ng-controller="ExampleController">
-                    /tb/ltform novalidate class="simple-form">
-                    /tb/tb Name: /ltinput type="text" ng-model="user.name" />/ltbr />
-                    /tb/tb Gender: /ltinput type="radio" ng-model="user.gender" value="male" />male
-                    /tb/tb /ltinput type="radio" ng-model="user.gender" value="female" />female/ltbr />
-                    /tb/tb /ltinput type="button" ng-click="reset()" value="Reset" />
-                    /tb/tb /ltinput type="submit" ng-click="update(user)" value="Save" />
-                    /tb/lt/form>
-                    /tb/ltpre>user = {{user | json}}/lt/pre>
-                    /tb/ltpre>master = {{master | json}}/lt/pre>
-                    /lt/div>
-                    /n
-                    /ltscript>
-                    /tb angular.module('formExample', [])
-                    /tb/tb .controller('ExampleController', ['$scope', function($scope) {
-                    /tb/tb/tb $scope.master = {};
-                    /n
-                    /tb/tb/tb $scope.update = function(user) {
-                    /tb/tb/tb/tb $scope.master = angular.copy(user);
-                    /tb/tb/tb };
-                    /n
-                    /tb/tb/tb $scope.reset = function() {
-                    /tb/tb/tb/tb $scope.user = angular.copy($scope.master);
-                    /tb/tb/tb };
-                    /n
-                    /tb/tb/tb $scope.reset();
-                    /tb }]);
-                    /lt/script>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-app="formExample" ng-controller="ExampleController">
+                /tb/ltform novalidate class="simple-form">
+                /tb/tb Name: /ltinput type="text" ng-model="user.name" />/ltbr />
+                /tb/tb Gender: /ltinput type="radio" ng-model="user.gender" value="male" />male
+                /tb/tb /ltinput type="radio" ng-model="user.gender" value="female" />female/ltbr />
+                /tb/tb /ltinput type="button" ng-click="reset()" value="Reset" />
+                /tb/tb /ltinput type="submit" ng-click="update(user)" value="Save" />
+                /tb/lt/form>
+                /tb/ltpre>user = {{user | json}}/lt/pre>
+                /tb/ltpre>master = {{master | json}}/lt/pre>
+                /lt/div>
+                /n
+                /ltscript>
+                /tb angular.module('formExample', [])
+                /tb/tb .controller('ExampleController', ['$scope', function($scope) {
+                /tb/tb/tb $scope.master = {};
+                /n
+                /tb/tb/tb $scope.update = function(user) {
+                /tb/tb/tb/tb $scope.master = angular.copy(user);
+                /tb/tb/tb };
+                /n
+                /tb/tb/tb $scope.reset = function() {
+                /tb/tb/tb/tb $scope.user = angular.copy($scope.master);
+                /tb/tb/tb };
+                /n
+                /tb/tb/tb $scope.reset();
+                /tb }]);
+                /lt/script>
+            &lt;/pre>
             &lt;strong>Exercise:&lt;/strong>
 
             Try to recreate the example form and make it work. Also add two new functions namely Delete and Insert. The Delete Function will just delete the content of the user and master Scope. While the Insert function will automatically insert a name and gender value.
@@ -1363,79 +1309,67 @@
             The ngRoute module helps your application to become a Single Page Application.
         
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltbody ng-app="myApp">
-                    /n
-                    /ltp>/lta href="#/">Main/lt/a>/lt/p>
-                    /n
-                    /lta href="#red">Red/lt/a>
-                    /lta href="#green">Green/lt/a>
-                    /lta href="#blue">Blue/lt/a>
-                    /n
-                    /ltdiv ng-view>/lt/div>
-                    /n
-                    /ltscript>
-                    /tb var app = angular.module("myApp", ["ngRoute"]);
-                    /tb/tb app.config(function($routeProvider) {
-                    /tb/tb/tb $routeProvider
-                    /tb/tb/tb/tb .when("/", {
-                    /tb/tb/tb/tb/tb templateUrl : "main.htm"
-                    /tb/tb/tb/tb })
-                    /tb/tb/tb/tb .when("/red", {
-                    /tb/tb/tb/tb/tb templateUrl : "red.htm"
-                    /tb/tb/tb/tb })
-                    /tb/tb/tb/tb .when("/green", {
-                    /tb/tb/tb/tb/tb templateUrl : "green.htm"
-                    /tb/tb/tb/tb })
-                    /tb/tb/tb/tb .when("/blue", {
-                    /tb/tb/tb/tb/tb templateUrl : "blue.htm"
-                    /tb/tb/tb/tb });
-                    /tb/tb });
-                    /lt/script>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltbody ng-app="myApp">
+                /n
+                /ltp>/lta href="#/">Main/lt/a>/lt/p>
+                /n
+                /lta href="#red">Red/lt/a>
+                /lta href="#green">Green/lt/a>
+                /lta href="#blue">Blue/lt/a>
+                /n
+                /ltdiv ng-view>/lt/div>
+                /n
+                /ltscript>
+                /tb var app = angular.module("myApp", ["ngRoute"]);
+                /tb/tb app.config(function($routeProvider) {
+                /tb/tb/tb $routeProvider
+                /tb/tb/tb/tb .when("/", {
+                /tb/tb/tb/tb/tb templateUrl : "main.htm"
+                /tb/tb/tb/tb })
+                /tb/tb/tb/tb .when("/red", {
+                /tb/tb/tb/tb/tb templateUrl : "red.htm"
+                /tb/tb/tb/tb })
+                /tb/tb/tb/tb .when("/green", {
+                /tb/tb/tb/tb/tb templateUrl : "green.htm"
+                /tb/tb/tb/tb })
+                /tb/tb/tb/tb .when("/blue", {
+                /tb/tb/tb/tb/tb templateUrl : "blue.htm"
+                /tb/tb/tb/tb });
+                /tb/tb });
+                /lt/script>
+            &lt;/pre>
             To make your applications ready for routing, you must include the AngularJS Route module:
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltscript src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js">/lt/script>
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                /ltscript src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js">/lt/script>
+            &lt;/pre>
             Then you must add the ngRoute as a dependency in the application module::
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module("myApp", ["ngRoute"]);
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module("myApp", ["ngRoute"]);
+            &lt;/pre>
             Now your application has access to the route module, which provides the $routeProvider.
 
             Use the $routeProvider to configure different routes in your application:
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    app.config(function($routeProvider) {
-                    /tb $routeProvider
-                    /tb/tb .when("/", {
-                    /tb/tb/tb templateUrl : "main.htm"
-                    /tb/tb })
-                    /tb/tb .when("/red", {
-                    /tb/tb/tb templateUrl : "red.htm"
-                    /tb/tb })
-                    /tb/tb .when("/green", {
-                    /tb/tb/tb templateUrl : "green.htm"
-                    /tb/tb })
-                    /tb/tb .when("/blue", {
-                    /tb/tb/tb templateUrl : "blue.htm"
-                    /tb/tb });
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                app.config(function($routeProvider) {
+                /tb $routeProvider
+                /tb/tb .when("/", {
+                /tb/tb/tb templateUrl : "main.htm"
+                /tb/tb })
+                /tb/tb .when("/red", {
+                /tb/tb/tb templateUrl : "red.htm"
+                /tb/tb })
+                /tb/tb .when("/green", {
+                /tb/tb/tb templateUrl : "green.htm"
+                /tb/tb })
+                /tb/tb .when("/blue", {
+                /tb/tb/tb templateUrl : "blue.htm"
+                /tb/tb });
+                });
+            &lt;/pre>
             &lt;strong>ngView&lt;/strong>
 
             Your application needs a container to put the content provided by the routing.
@@ -1445,121 +1379,106 @@
             There are three different ways to include the ng-view directive in your application:
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltdiv ng-view>/lt/div>
-                    /n
-                    /ltng-view>/lt/ng-view>
-                    /n
-                    /ltdiv class="ng-view">/lt/div>
-                &lt;/pre>
-            &lt;/content-code>
-            
+            &lt;pre class="content-code" content-code>
+                /ltdiv ng-view>/lt/div>
+                /n
+                /ltng-view>/lt/ng-view>
+                /n
+                /ltdiv class="ng-view">/lt/div>
+            &lt;/pre>            
             &lt;strong>$routeProvider&lt;/strong>.
 
             With the $routeProvider you can define what page to display when a user clicks a link.
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module("myApp", ["ngRoute"]);
-                    app.config(function($routeProvider) {
-                    /tb $routeProvider
-                    /tb/tb .when("/", {
-                    /tb/tb/tb templateUrl : "main.htm"
-                    /tb/tb })
-                    /tb/tb .when("/london", {
-                    /tb/tb/tb templateUrl : "london.htm"
-                    /tb/tb })
-                    /tb/tb .when("/paris", {
-                    /tb/tb/tb templateUrl : "paris.htm"
-                    /tb/tb });
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                /tb $routeProvider
+                /tb/tb .when("/", {
+                /tb/tb/tb templateUrl : "main.htm"
+                /tb/tb })
+                /tb/tb .when("/london", {
+                /tb/tb/tb templateUrl : "london.htm"
+                /tb/tb })
+                /tb/tb .when("/paris", {
+                /tb/tb/tb templateUrl : "paris.htm"
+                /tb/tb });
+                });
+            &lt;/pre>
             Define the $routeProvider using the config method of your application. Work registered in the config method will be performed when the application is loading.
 
             &lt;strong>Controllers&lt;/strong>
 
             With the $routeProvider you can also define a controller for each "view".
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module("myApp", ["ngRoute"]);
-                    /n
-                    app.config(function($routeProvider) {
-                    /tb $routeProvider
-                    /tb/tb .when("/", {
-                    /tb/tb/tb templateUrl : "main.htm"
-                    /tb/tb })
-                    /tb/tb .when("/london", {
-                    /tb/tb/tb templateUrl : "london.htm",
-                    /tb/tb/tb controller : "londonCtrl"
-                    /tb/tb })
-                    /tb/tb .when("/paris", {
-                    /tb/tb/tb templateUrl : "paris.htm",
-                    /tb/tb/tb controller : "parisCtrl"
-                    /tb/tb });
-                    });
-                    /n
-                    app.controller("londonCtrl", function ($scope) {
-                    /tb $scope.msg = "I love London";
-                    });
-                    /n
-                    app.controller("parisCtrl", function ($scope) {
-                    /tb $scope.msg = "I love Paris";
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module("myApp", ["ngRoute"]);
+                /n
+                app.config(function($routeProvider) {
+                /tb $routeProvider
+                /tb/tb .when("/", {
+                /tb/tb/tb templateUrl : "main.htm"
+                /tb/tb })
+                /tb/tb .when("/london", {
+                /tb/tb/tb templateUrl : "london.htm",
+                /tb/tb/tb controller : "londonCtrl"
+                /tb/tb })
+                /tb/tb .when("/paris", {
+                /tb/tb/tb templateUrl : "paris.htm",
+                /tb/tb/tb controller : "parisCtrl"
+                /tb/tb });
+                });
+                /n
+                app.controller("londonCtrl", function ($scope) {
+                /tb $scope.msg = "I love London";
+                });
+                /n
+                app.controller("parisCtrl", function ($scope) {
+                /tb $scope.msg = "I love Paris";
+                });
+            &lt;/pre>
             &lt;strong>Template&lt;/strong>
 
             In the previous examples we have used the templateUrl property in the $routeProvider.when method.
 
             You can also use the template property, which allows you to write HTML directly in the property value, and not refer to a page.
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module("myApp", ["ngRoute"]);
-                    app.config(function($routeProvider) {
-                    /tb $routeProvider
-                    /tb/tb .when("/", {
-                    /tb/tb/tb template : "/lth1>Main/lt/h1>/ltp>Click on the links to change this content/lt/p>"
-                    /tb/tb })
-                    /tb/tb .when("/banana", {
-                    /tb/tb/tb template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
-                    /tb/tb })
-                    /tb/tb .when("/tomato", {
-                    /tb/tb/tb template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
-                    /tb/tb });
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                /tb $routeProvider
+                /tb/tb .when("/", {
+                /tb/tb/tb template : "/lth1>Main/lt/h1>/ltp>Click on the links to change this content/lt/p>"
+                /tb/tb })
+                /tb/tb .when("/banana", {
+                /tb/tb/tb template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
+                /tb/tb })
+                /tb/tb .when("/tomato", {
+                /tb/tb/tb template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
+                /tb/tb });
+                });
+            &lt;/pre>
             &lt;strong>The otherwise method&lt;/strong>
 
             In the previous examples we have used the when method of the $routeProvider.
 
             You can also use the otherwise method, which is the default route when none of the others get a match.
 
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    var app = angular.module("myApp", ["ngRoute"]);
-                    app.config(function($routeProvider) {
-                    /tb $routeProvider
-                    /tb/tb .when("/banana", {
-                    /tb/tb/tb template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
-                    /tb/tb })
-                    /tb/tb .when("/tomato", {
-                    /tb/tb/tb template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
-                    /tb/tb })
-                    /tb/tb .otherwise({
-                    /tb/tb/tb template : "/lth1>None/lt/h1>/ltp>Nothing has been selected,/lt/p>"
-                    /tb/tb });
-                    });
-                &lt;/pre>
-            &lt;/content-code>
-
+            &lt;pre class="content-code" content-code>
+                var app = angular.module("myApp", ["ngRoute"]);
+                app.config(function($routeProvider) {
+                /tb $routeProvider
+                /tb/tb .when("/banana", {
+                /tb/tb/tb template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
+                /tb/tb })
+                /tb/tb .when("/tomato", {
+                /tb/tb/tb template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
+                /tb/tb })
+                /tb/tb .otherwise({
+                /tb/tb/tb template : "/lth1>None/lt/h1>/ltp>Nothing has been selected,/lt/p>"
+                /tb/tb });
+                });
+            &lt;/pre>
             &lt;strong>Exercise:&lt;/strong>
 
             Create your own Routing with at least three routes. You can just use Template instead of TemplateUrl. Also use the Otherwise method. Don't forget to add ngRoute to your module.
@@ -1650,25 +1569,22 @@
             'M' - only matches comment
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
-            &lt;content-code>
-                &lt;pre class="content-code">
-                    /ltscript>
-                    /tb app.directive('myCustomDirective', function () {
-                    /tb/tb return {
-                    /tb/tb/tb restrict: 'E', // Restriction for Element
-                    /tb/tb/tb replace: true, // If true, Replace the custom element with the template 
-                    /tb/tb/tb scope: {
-                    /tb/tb/tb/tb list: '='
-                    /tb/tb/tb },
-                    /tb/tb/tb template: '/lta href="#" ng-repeat="x in list">{{x}}/lt/a>'
-                    /tb/tb };
-                    /tb });
-                    /lt/script>
+            &lt;pre class="content-code" content-code>
+                /ltscript>
+                /tb app.directive('myCustomDirective', function () {
+                /tb/tb return {
+                /tb/tb/tb restrict: 'E', // Restriction for Element
+                /tb/tb/tb replace: true, // If true, Replace the custom element with the template 
+                /tb/tb/tb scope: {
+                /tb/tb/tb/tb list: '='
+                /tb/tb/tb },
+                /tb/tb/tb template: '/lta href="#" ng-repeat="x in list">{{x}}/lt/a>'
+                /tb/tb };
+                /tb });
+                /lt/script>
 
-                    /ltmy-custom-directive list="myList">/lt/my-custom-directive>
-                &lt;/pre>
-            &lt;/content-code>
-
+                /ltmy-custom-directive list="myList">/lt/my-custom-directive>
+            &lt;/pre>
             &lt;strong>Exercise:&lt;/strong>
 
             Create your own directive where you can use the object in our controller.

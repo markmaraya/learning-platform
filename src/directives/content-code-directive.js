@@ -5,8 +5,7 @@
         .module('LearningPlatformApplication')
         .directive('contentCode', [function () {
             return {
-                restrict: 'E',
-                replace: true,
+                restrict: 'A',
                 link: function (scope, element) {
                     var contentCode = element.html();
                     element.html(contentCode.trim()

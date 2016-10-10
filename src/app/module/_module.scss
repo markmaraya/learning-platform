@@ -2,18 +2,44 @@ a:hover {
     text-decoration: none;
 }
 
-a:first-child {
-    .lesson-div {
-        margin-top: 100px;
-    }
-}
-
 .lesson-div {
-    margin: 20px 0;
+    position: relative;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin: 200px 0;
     padding: 10px 20px;
     text-align: center;
     
-    h1 {
-        margin-top: 0px;
+    span {
+        position: absolute;
+        top: 60%;
+        left: 0;
+        width: 100%;
+    }
+
+    .icon-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 200px;
+        width: 200px;
+        font-size: 200px;
+        line-height: 200px;
+        opacity: 0.1;
+    }
+
+    .lesson-icon {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        margin: -30px 0 0 -30px;
+        font-size: 60px;
+    }
+}
+
+.lesson-div:hover {
+    .icon-background {
+        opacity: 0.2;
     }
 }
