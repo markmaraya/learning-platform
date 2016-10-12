@@ -1,29 +1,30 @@
 <div class="container-fluid bg-info">
-    <div class="container-fluid">
-        <ol class="breadcrumb bg-info">
-            <li><a href="#/">Home</a></li>
-            <li><a href="#/">Modules</a></li>
-            <li class="active">{{level.lesson | toTitleCase}}</li>
-        </ol>
-    </div>
+	<div class="breadcrumb-wrapper">
+		<ol class="breadcrumb bg-info">
+			<li><a href="#/">Home</a></li>
+			<li><a href="#/">Modules</a></li>
+			<li class="active">{{level.lesson | toTitleCase}}</li>
+		</ol>
+        <a href="#/" class="btn btn-primary back-button">Back</a>
+	</div>
 </div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 level-col">
-            <a href="#lesson/{{level.lesson}}/beginner">
-                <h1>Beginner</h1>
-            </a>
-        </div>
-        <div class="col-md-4 level-col">
-            <a href="#lesson/{{level.lesson}}/intermediate">
-                <h1>Intermediate</h1>
-            </a>
-        </div>
-        <div class="col-md-4 level-col">
-            <a href="#lesson/{{level.lesson}}/advanced">
-                <h1>Advanced</h1>
-            </a>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-4 level-col">
+			<a href="#lesson/{{level.lesson}}/beginner">
+				<h1>Beginner</h1>
+			</a>
+		</div>
+		<div class="col-md-4 level-col">
+			<a href="#lesson/{{level.lesson}}/intermediate">
+				<h1>Intermediate</h1>
+			</a>
+		</div>
+		<div class="col-md-4 level-col">
+			<a href="#lesson/{{level.lesson}}/advanced">
+				<h1>Advanced</h1>
+			</a>
+		</div>
+	</div>
 </div>

@@ -4,10 +4,6 @@
   #sideNav a {
     display: block; }
 
-.breadcrumb {
-  background: #d9edf7;
-  margin: 0; }
-
 .section {
   padding: 0 30px;
   background: #ffffff;
@@ -26,9 +22,14 @@
   font-size: 18px; }
 
 .content-code {
-  margin-bottom: 0;
-  border: solid 10px #337ab7;
-  border-radius: 0; }
+  margin: 0 !important;
+  border: solid 10px #337ab7 !important;
+  border-radius: 0;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; }
+  .content-code code {
+    padding: 5px 10px; }
 
 .code-editor {
   height: 260px;
@@ -74,12 +75,11 @@ a:hover {
   height: 200px;
   width: 200px;
   margin: 200px 0;
-  padding: 10px 20px;
-  text-align: center; }
+  padding: 10px 20px; }
   .lesson-div span {
     position: absolute;
-    top: 60%;
-    left: 0;
+    top: 80%;
+    left: 5%;
     width: 100%; }
   .lesson-div .icon-background {
     position: absolute;
@@ -89,16 +89,13 @@ a:hover {
     width: 200px;
     font-size: 200px;
     line-height: 200px;
-    opacity: 0.1; }
+    opacity: 0.06; }
   .lesson-div .lesson-icon {
     position: absolute;
     top: 40%;
     left: 50%;
-    margin: -30px 0 0 -30px;
-    font-size: 60px; }
-
-.lesson-div:hover .icon-background {
-  opacity: 0.2; }
+    margin: -40px 0 0 -40px;
+    font-size: 80px; }
 
 .navbar,
 .footer {
@@ -130,6 +127,19 @@ a:hover {
   position: relative;
   bottom: 0;
   width: 100%; }
+
+.breadcrumb-wrapper {
+  position: relative;
+  padding: 10px 0; }
+
+.breadcrumb {
+  background: #d9edf7;
+  margin: 0; }
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  right: 0; }
 
 /* Scrollbar */
 ::-webkit-scrollbar {

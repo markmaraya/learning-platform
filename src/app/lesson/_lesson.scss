@@ -7,11 +7,6 @@
     }
 }
 
-.breadcrumb {
-    background: #d9edf7;
-    margin: 0;
-}
-
 .section {
     padding: 0 30px;
     background: #ffffff;
@@ -33,9 +28,16 @@
 }
 
 .content-code {
-    margin-bottom: 0;
-    border: solid 10px #337ab7;
+    margin: 0 !important;
+    border: solid 10px #337ab7 !important;
     border-radius: 0;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+
+    code {
+        padding: 5px 10px;
+    }
 }
 
 .code-editor {

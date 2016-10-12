@@ -105,7 +105,7 @@ gulp.task("demo", ["compile"], function () {
             gulp.src([
                 "./bower_components/bootstrap/dist/css/bootstrap.min.css",
                 "./bower_components/mdi/css/materialdesignicons.min.css",
-                "./bower_components/prism/themes/prism.css",
+                "./bower_components/prism/themes/prism-coy.css",
                 "./bower_components/angular/angular.min.js",
                 "./bower_components/angular-route/angular-route.min.js",
                 "./bower_components/abdmob/x2js/xml2json.js",
