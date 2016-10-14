@@ -3,7 +3,7 @@
 
     angular
         .module('LearningPlatformApplication')
-        .service('UtilityService', [function () {
+        .service('UtilityService', ['$filter', function ($filter) {
             this.TrimCDataForView = function (code) {
                 return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
             };
@@ -40,6 +40,16 @@
                         this.CopyCodeValue(scope);
 
                         document.getElementById('iframeWrapper').innerHTML = '';
+                    }
+                }
+            };
+
+            this.showHideLesson = function (lesson, list) {
+                for (var key in list) {
+                    if (lesson != $filter('spaceToDash')(list[key].title)) {
+                        list[key].hide = 'hide-lesson';
+                    } else {
+                        list[key].hide = 'show-lesson';
                     }
                 }
             };

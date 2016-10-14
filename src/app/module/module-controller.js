@@ -11,7 +11,7 @@
                     controllerAs: 'module'
                 });
         }])
-        .controller('ModuleController', ['LessonListService', 'X2jsService', '$filter', function (LessonListService, X2jsService, $filter) {
+        .controller('ModuleController', ['LessonListService', 'X2jsService', 'UtilityService', function (LessonListService, X2jsService, UtilityService) {
             var vm = this;
 
             vm.topicList = [];
@@ -31,13 +31,7 @@
                 vm.showHideClass.levelLinks = 'show';
                 vm.showHideClass.levelBackButton = 'show';
 
-                for (var key in vm.topicList) {
-                    if (lesson != $filter('spaceToDash')(vm.topicList[key].title)) {
-                        vm.topicList[key].hide = 'hide-lesson';
-                    } else {
-                        vm.topicList[key].hide = 'show-lesson';
-                    }
-                }
+                UtilityService.showHideLesson(lesson, vm.topicList);
             };
 
             vm.backToModules = function () {
