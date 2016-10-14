@@ -2,11 +2,10 @@
 	<div class="breadcrumb-wrapper">
 		<ol class="breadcrumb bg-info">
 			<li><a href="#/">Home</a></li>
-			<li><a href="#/">Modules</a></li>
-			<li><a href="#/lesson/{{lesson.breadcrumb.lesson}}">{{lesson.breadcrumb.lesson | toTitleCase}}</a></li>
-			<li class="active">{{lesson.breadcrumb.level | toTitleCase}}</li>
+			<li><a href="#/module">Modules</a></li>
+			<li class="active">{{lesson.breadcrumb.lesson | toTitleCase}}</li>
 		</ol>
-		<a href="#/lesson/{{lesson.breadcrumb.lesson}}" class="btn btn-primary back-button">Back</a>
+		<a href="#/module" class="btn btn-primary back-button">Back</a>
 	</div>
 </div>
 
@@ -16,12 +15,14 @@
 			<div class="col-md-2 col-sm-2 col">
 				<div id="sideNav">
 					<h4>{{lesson.breadcrumb.level | toTitleCase}}</h4>
-					<a href="" ng-repeat="title in lesson.titleList" ng-click="lesson.choiceFunction(title)">{{title | toTitleCase}}</a>
+					<a href="" ng-repeat="title in lesson.titleList" ng-click="lesson.choiceFunction(title)">
+						<i class="mdi mdi-menu-right"></i>{{title | toTitleCase}}
+					</a>
 				</div>
 			</div>
 			<div class="col-md-5 col-sm-5 col">
 				<div class="section" ng-show="lesson.chapter">
-					<h4>{{lesson.chapter.title}}</h4>
+					<h1>{{lesson.chapter.title}}</h1>
 					<chapter-content content="lesson.chapter.content"></chapter-content>
 				</div>
 				<div ng-hide="lesson.chapter">Invalid link</div>

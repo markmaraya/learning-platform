@@ -5,7 +5,7 @@
         .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
-                .when('/lesson/:lesson/:level', {
+                .when('/module/:lesson/:level', {
                     templateUrl: 'lesson/lesson.html',
                     controller: 'LessonController',
                     controllerAs: 'lesson'

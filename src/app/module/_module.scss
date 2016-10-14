@@ -1,14 +1,35 @@
-a:hover {
-    text-decoration: none;
+.content,
+.content .container {
+    height: -webkit-calc(100vh - 96px);
+    height: -moz-calc(100vh - 96px);
+    height: calc(100vh - 96px);
+    
+    .container {
+        position: relative;
+    }
+}
+
+.lessons-container,
+.level-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.lessons-container {
+    margin: -202px 0 0 -508px;
 }
 
 .lesson-div {
-    position: relative;
-    display: inline-block;
+    position: absolute;
     height: 200px;
     width: 200px;
-    margin: 200px 0;
-    padding: 10px 20px;
+    margin: 2px;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-transition: top 0.3s, left 0.3s, opacity 0.3s, visibility 0.3s;
+    -moz-transition: top 0.3s, left 0.3s, opacity 0.3s, visibility 0.3s;
+    transition: top 0.3s, left 0.3s, opacity 0.3s, visibility 0.3s;
     
     span {
         position: absolute;
@@ -26,13 +47,134 @@ a:hover {
         font-size: 200px;
         line-height: 200px;
         opacity: 0.06;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
     }
 
     .lesson-icon {
         position: absolute;
-        top: 40%;
+        top: 50%;
         left: 50%;
+        height: 80px;
+        width: 80px;
         margin: -40px 0 0 -40px;
         font-size: 80px;
+        line-height: 80px;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    &:hover {
+        .icon-background {
+            top: 50%;
+            left: 50%;
+            height: 80px;
+            width: 80px;
+            margin: -40px 0 0 -40px;
+            font-size: 80px;
+            line-height: 80px;
+        }
+
+        .lesson-icon {
+            height: 100px;
+            width: 100px;
+            margin: -50px 0 0 -50px;
+            font-size: 100px;
+            line-height: 100px;
+        }
+    }
+}
+
+.show-lesson {
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.hide-lesson {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 0;
+}
+
+.level-container {
+    width: 500px;
+    margin: -200px 0 0 -250px;
+
+    a {
+        position: relative;
+        display: block;
+        left: 200px;
+        height: 100px;
+        margin-bottom: 30px;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+
+        h1 {
+            margin: 0;
+            line-height: 100px;
+        }
+    }
+
+    a.show {
+        left: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+.level-back-button {
+    position: absolute;
+    top: 280px;
+    left: 70px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+
+    &.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+$level-color: #5cb85c, #f0ad4e, #5bc0de;
+@for $i from 1 through 3 {
+    .level-container {
+        a:nth-child(#{$i}) {
+            background-color: nth($level-color, $i);
+            -webkit-transition: all 0.3s ((0.2 + ($i/16)) * 1s);
+            -moz-transition: all 0.3s ((0.2 + ($i/16)) * 1s);
+            transition: all 0.3s ((0.2 + ($i/16)) * 1s);
+        }
+    }
+}
+
+$lesson-div: lesson-div;
+@for $i from 1 through 10 {
+    @if $i == 1 {
+        .#{lesson-div}:nth-child(#{$i}) {
+            left: ((200 * $i) - 200) * 1px;
+        }
+    } @else {
+        .#{lesson-div}:nth-child(#{$i}) {
+            left: (((200 * $i) + (4 * $i)) - 204) * 1px;
+        }
+    }
+
+    @if $i > 5 {
+        .#{lesson-div}:nth-child(#{$i}) {
+            top: 204px;
+            left: (((200 * $i) + (4 * $i)) - 1224) * 1px;
+        }
     }
 }

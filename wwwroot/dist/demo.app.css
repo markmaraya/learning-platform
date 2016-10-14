@@ -1,19 +1,35 @@
+.content-main .row {
+  height: -webkit-calc(100vh - 96px);
+  height: -moz-calc(100vh - 96px);
+  height: calc(100vh - 96px); }
+  .content-main .row .col {
+    height: inherit; }
+
 #sideNav {
-  padding: 20px 30px;
+  padding: 20px 10px;
   background: #ffffff; }
   #sideNav a {
-    display: block; }
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .section {
   padding: 0 30px;
   background: #ffffff;
   white-space: pre-line; }
+  .section h1 {
+    margin: 5px 0 0 0; }
 
 #chapterContent {
-  height: 76vh;
+  height: 74vh;
   text-align: justify;
   padding-right: 10px;
   overflow-y: scroll; }
+  #chapterContent h2,
+  #chapterContent h3 {
+    display: inline;
+    margin: 0; }
 
 .content-code-label {
   margin-bottom: 0;
@@ -50,32 +66,34 @@
   height: 100%;
   width: 100%; }
 
-.level-col {
-  height: -webkit-calc(100vh - 86px);
-  height: -moz-calc(100vh - 86px);
-  height: calc(100vh - 86px);
-  padding: 0; }
-  .level-col a {
-    display: block;
-    height: inherit;
-    width: 100%; }
-  .level-col h1 {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-    text-align: center; }
+.content,
+.content .container {
+  height: -webkit-calc(100vh - 96px);
+  height: -moz-calc(100vh - 96px);
+  height: calc(100vh - 96px); }
+  .content .container,
+  .content .container .container {
+    position: relative; }
 
-a:hover {
-  text-decoration: none; }
+.lessons-container,
+.level-container {
+  position: absolute;
+  top: 50%;
+  left: 50%; }
+
+.lessons-container {
+  margin: -202px 0 0 -508px; }
 
 .lesson-div {
-  position: relative;
-  display: inline-block;
+  position: absolute;
   height: 200px;
   width: 200px;
-  margin: 200px 0;
-  padding: 10px 20px; }
+  margin: 2px;
+  cursor: pointer;
+  z-index: 1;
+  -webkit-transition: top 0.3s, left 0.3s, opacity 0.3s, visibility 0.3s;
+  -moz-transition: top 0.3s, left 0.3s, opacity 0.3s, visibility 0.3s;
+  transition: top 0.3s, left 0.3s, opacity 0.3s, visibility 0.3s; }
   .lesson-div span {
     position: absolute;
     top: 80%;
@@ -89,13 +107,150 @@ a:hover {
     width: 200px;
     font-size: 200px;
     line-height: 200px;
-    opacity: 0.06; }
+    opacity: 0.06;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s; }
   .lesson-div .lesson-icon {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
+    height: 80px;
+    width: 80px;
     margin: -40px 0 0 -40px;
-    font-size: 80px; }
+    font-size: 80px;
+    line-height: 80px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s; }
+  .lesson-div:hover .icon-background {
+    top: 50%;
+    left: 50%;
+    height: 80px;
+    width: 80px;
+    margin: -40px 0 0 -40px;
+    font-size: 80px;
+    line-height: 80px; }
+  .lesson-div:hover .lesson-icon {
+    height: 100px;
+    width: 100px;
+    margin: -50px 0 0 -50px;
+    font-size: 100px;
+    line-height: 100px; }
+
+.show-lesson {
+  top: 0 !important;
+  left: 0 !important; }
+
+.hide-lesson {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 0; }
+
+.level-container {
+  width: 500px;
+  margin: -200px 0 0 -250px; }
+  .level-container a {
+    position: relative;
+    display: block;
+    left: 200px;
+    height: 100px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden; }
+    .level-container a h1 {
+      margin: 0;
+      line-height: 100px; }
+  .level-container a.show {
+    left: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important; }
+
+.level-back-button {
+  position: absolute;
+  top: 280px;
+  left: 70px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s; }
+  .level-back-button.show {
+    opacity: 1 !important;
+    visibility: visible !important; }
+  .level-back-button:focus {
+    outline: none; }
+
+.level-container a:nth-child(1) {
+  background-color: #5cb85c;
+  -webkit-transition: all 0.3s 0.2625s;
+  -moz-transition: all 0.3s 0.2625s;
+  transition: all 0.3s 0.2625s; }
+
+.level-container a:nth-child(2) {
+  background-color: #f0ad4e;
+  -webkit-transition: all 0.3s 0.325s;
+  -moz-transition: all 0.3s 0.325s;
+  transition: all 0.3s 0.325s; }
+
+.level-container a:nth-child(3) {
+  background-color: #5bc0de;
+  -webkit-transition: all 0.3s 0.3875s;
+  -moz-transition: all 0.3s 0.3875s;
+  transition: all 0.3s 0.3875s; }
+
+.lesson-div:nth-child(1) {
+  left: 0px; }
+
+.lesson-div:nth-child(2) {
+  left: 204px; }
+
+.lesson-div:nth-child(3) {
+  left: 408px; }
+
+.lesson-div:nth-child(4) {
+  left: 612px; }
+
+.lesson-div:nth-child(5) {
+  left: 816px; }
+
+.lesson-div:nth-child(6) {
+  left: 1020px; }
+
+.lesson-div:nth-child(6) {
+  top: 204px;
+  left: 0px; }
+
+.lesson-div:nth-child(7) {
+  left: 1224px; }
+
+.lesson-div:nth-child(7) {
+  top: 204px;
+  left: 204px; }
+
+.lesson-div:nth-child(8) {
+  left: 1428px; }
+
+.lesson-div:nth-child(8) {
+  top: 204px;
+  left: 408px; }
+
+.lesson-div:nth-child(9) {
+  left: 1632px; }
+
+.lesson-div:nth-child(9) {
+  top: 204px;
+  left: 612px; }
+
+.lesson-div:nth-child(10) {
+  left: 1836px; }
+
+.lesson-div:nth-child(10) {
+  top: 204px;
+  left: 816px; }
 
 .navbar,
 .footer {
@@ -111,18 +266,6 @@ a:hover {
   margin: 0;
   color: #fff; }
 
-.content {
-  height: -webkit-calc(100vh - 86px);
-  height: -moz-calc(100vh - 86px);
-  height: calc(100vh - 86px); }
-
-.content-main .row {
-  height: -webkit-calc(100vh - 86px);
-  height: -moz-calc(100vh - 86px);
-  height: calc(100vh - 86px); }
-  .content-main .row .col {
-    height: inherit; }
-
 .footer {
   position: relative;
   bottom: 0;
@@ -130,7 +273,7 @@ a:hover {
 
 .breadcrumb-wrapper {
   position: relative;
-  padding: 10px 0; }
+  padding: 5px 0; }
 
 .breadcrumb {
   background: #d9edf7;
@@ -138,7 +281,7 @@ a:hover {
 
 .back-button {
   position: absolute;
-  top: 10px;
+  top: 6px;
   right: 0; }
 
 /* Scrollbar */

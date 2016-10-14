@@ -1,5 +1,4 @@
 @import '../lesson/lesson';
-@import '../level/level';
 @import '../module/module';
 
 .navbar,
@@ -20,24 +19,6 @@
     }
 }
 
-.content {
-    height: -webkit-calc(100vh - 86px);
-    height: -moz-calc(100vh - 86px);
-    height: calc(100vh - 86px);
-}
-
-.content-main {
-    .row {
-        height: -webkit-calc(100vh - 86px);
-        height: -moz-calc(100vh - 86px);
-        height: calc(100vh - 86px);
-
-        .col {
-            height: inherit;
-        }
-    }
-}
-
 .footer {
     position: relative;
     bottom: 0;
@@ -46,7 +27,7 @@
 
 .breadcrumb-wrapper {
     position: relative;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 .breadcrumb {
@@ -56,7 +37,7 @@
 
 .back-button {
     position: absolute;
-    top: 10px;
+    top: 6px;
     right: 0;
 }
 

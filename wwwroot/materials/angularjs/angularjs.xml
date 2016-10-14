@@ -7,7 +7,7 @@
             Introduction
         </title>
         <content>
-            &lt;strong>What is AngularJS?&lt;/strong>
+            &lt;h2>What is AngularJS?&lt;/h2>
 
             AngularJS is a structural framework for dynamic web apps.It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly. Angular's data binding and dependency injection eliminate much of the code you would otherwise have to write. And it all happens within the browser, making it an ideal partner with any server technology.
 
@@ -15,7 +15,7 @@
 
             Try running the sample code on our Code Editor.
 
-            &lt;strong>Code Explanation:&lt;/strong>
+            &lt;h3>Code Explanation:&lt;/h3>
 
             The controller creates two properties (variables) in the scope (firstName and lastName).
 
@@ -101,7 +101,7 @@
                 /nl    
                 /lt/div>
             &lt;/code>&lt;/pre>
-            &lt;strong>Repeating HTML Elements&lt;/strong>
+            &lt;h2>Repeating HTML Elements&lt;/h2>
 
             The &lt;strong>ng-repeat&lt;/strong> directive repeats an HTML element.
 
@@ -117,7 +117,7 @@
             &lt;/code>&lt;/pre>
             You can create your own custom directive using the angular &lt;strong>directive()&lt;/strong> function.
 
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             1. Try to supply the missing Directives on the example on our Code Editor. When you're done you'll have a text input and anything that you type on it will be shown below it.
         
@@ -236,15 +236,15 @@
                     /nl
                 /lt/div>
             &lt;/code>&lt;/pre>
-            &lt;strong>One-time binding&lt;/strong>
+            &lt;h2>One-time binding&lt;/h2>
 
             An expression that starts with :: is considered a one-time expression. One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
 
-            &lt;strong>Reasons for using one-time binding&lt;/strong>
+            &lt;h2>Reasons for using one-time binding&lt;/h2>
 
             The main purpose of one-time binding expression is to provide a way to create a binding that gets deregistered and frees up resources once the binding is stabilized. Reducing the number of expressions being watched makes the digest loop faster and allows more information to be displayed at the same time.
 
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Refer to our example and try to recreate them in our Code Editor.
         </content>
@@ -340,7 +340,7 @@
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 var app = angular.module("myApp", []);
             &lt;/code>&lt;/pre>
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Try to create the module of our app in the Code Editor to make it work.
         </content>
@@ -405,12 +405,12 @@
 
             When a Controller is attached to the DOM via the ng-controller directive, Angular will instantiate a new Controller object, using the specified Controller's constructor function. A new child scope will be created and made available as an injectable parameter to the Controller's constructor function as $scope.
 
-            &lt;strong>Use controllers to:&lt;/strong>
+            &lt;h2>Use controllers to:&lt;/h2>
 
             Set up the initial state of the $scope object.
             Add behavior to the $scope object.
 
-            &lt;strong>Do not use controllers to:&lt;/strong>
+            &lt;h2>Do not use controllers to:&lt;/h2>
 
             &lt;strong>Manipulate DOM&lt;/strong> — Controllers should contain only business logic. Putting any presentation logic into Controllers significantly
             affects its testability. Angular has databinding for most cases and directives to encapsulate manual DOM manipulation.
@@ -440,7 +440,7 @@
                 /tb });
                 /lt/script>
             &lt;/code>&lt;/pre>
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Create your own controller and supply a value for each scope so that the expressions in the View will output a value.
         </content>
@@ -509,7 +509,7 @@
 
             When you make a controller in AngularJS, you pass the $scope object as an argument.
 
-            &lt;strong>Understanding the Scope&lt;/strong>
+            &lt;h2>Understanding the Scope&lt;/h2>
 
             If we consider an AngularJS application to consist of:
 
@@ -534,13 +534,13 @@
                 /tb });
                 /lt/script>
             &lt;/code>&lt;/pre>
-            &lt;strong>Root Scope&lt;/strong>
+            &lt;h2>Root Scope&lt;/h2>
 
             All applications have a $rootScope which is the scope created on the HTML element that contains the ng-app directive.
 
             The rootScope is available in the entire application.
 
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Create atleast three scopes in the controller and output them in the View using Expressions.
         </content>
@@ -607,7 +607,7 @@
             The way that Angular implements data-binding lets you treat the model as the single-source-of-truth in your application.
             The view is a projection of the model at all times. When the model changes, the view reflects the change, and vice versa.
 
-            &lt;strong>Data Model&lt;/strong>
+            &lt;h2>Data Model&lt;/h2>
 
             AngularJS applications usually have a data model. The data model is a collection of data available for the application.
         
@@ -619,7 +619,7 @@
                 /tb $scope.lastname = "Doe";
                 });
             &lt;/code>&lt;/pre>
-            &lt;strong>HTML View&lt;/strong>
+            &lt;h2>HTML View&lt;/h2>
 
             The HTML container where the AngularJS application is displayed, is called the view.
 
@@ -643,7 +643,7 @@
             &lt;/code>&lt;/pre>
             The ng-model directive provides a two-way binding between the model and the view.
 
-            &lt;strong>Two-way Binding&lt;/strong>
+            &lt;h2>Two-way Binding&lt;/h2>
 
             Data binding in AngularJS is the synchronization between the model and the view.
 
@@ -665,7 +665,7 @@
                 /tb });
                 /lt/script>
             &lt;/code>&lt;/pre>
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Refer on our examples then create your own Two-way Binding.
         </content>
@@ -729,7 +729,7 @@
             Angular services are substitutable objects that are wired together using dependency injection (DI).
             You can use services to organize and share code across your app.
 
-            &lt;strong>Angular services are:&lt;/strong>
+            &lt;h2>Angular services are:&lt;/h2>
 
             &lt;strong>Lazily instantiated&lt;/strong> – Angular only instantiates a service when an application component depends on it.
             &lt;strong>Singletons&lt;/strong> – Each component dependent on a service gets a reference to the single instance generated by the service factory.
@@ -750,7 +750,7 @@
             &lt;/code>&lt;/pre>
             You can create your own custom service using the angular service() function.
 
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             1. On our code editor we have a service that convert your input to Uppercase. Make another service that convert your input to Lowercase. Don't forget to add it on your Controller.
 
@@ -872,7 +872,7 @@
 
             The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.
 
-            &lt;strong>Dependency Annotation&lt;/strong>
+            &lt;h2>Dependency Annotation&lt;/h2>
 
             Angular invokes certain functions (like service factories and controllers) via the injector. You need to annotate these functions so that the injector knows what services to inject into the function. There are three ways of annotating your code with service name information:
 
@@ -880,7 +880,8 @@
             Using the $inject property annotation
             Implicitly from the function parameter names (has caveats)
 
-            &lt;strong>Inline Array Annotation&lt;/strong>
+            &lt;h2>Inline Array Annotation&lt;/h2>
+
             This is the preferred way to annotate application components. This is how the examples in the documentation are written.
 
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
@@ -893,7 +894,7 @@
 
             When using this type of annotation, take care to keep the annotation array in sync with the parameters in the function declaration.
 
-            &lt;strong>$inject Property Annotation&lt;/strong>
+            &lt;h2>$inject Property Annotation&lt;/h2>
             
             To allow the minifiers to rename the function parameters and still be able to inject the right services, the function needs to be annotated with the $inject property. The $inject property is an array of service names to inject.
 
@@ -911,7 +912,7 @@
 
             Just like with the array annotation, you'll need to take care to keep the $inject in sync with the parameters in the function declaration.
 
-            &lt;strong>Implicit Annotation&lt;/strong>
+            &lt;h2>Implicit Annotation&lt;/h2>
 
             The simplest way to get hold of the dependencies is to assume that the function parameter names are the names of the dependencies.
 
@@ -931,7 +932,7 @@
 
             Because of these caveats, we recommend avoiding this style of annotation.
 
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Supply the needed dependency on the controller in order for the app to work.
         </content>
@@ -1045,7 +1046,7 @@
             Filters format the value of an expression for display to the user. They can be used in view templates, controllers or services.
             Angular comes with a collection of built-in filters, but it is easy to define your own as well.
 
-            &lt;strong>Adding Filters to Expressions&lt;/strong>
+            &lt;h2>Adding Filters to Expressions&lt;/h2>
 
             Filters can be added to expressions by using the pipe character |, followed by a filter.
 
@@ -1059,7 +1060,7 @@
                 /nl
                 /lt/div>
             &lt;/code>&lt;/pre>
-            &lt;strong>Adding Filters to Directives&lt;/strong>.
+            &lt;h2>Adding Filters to Directives&lt;/h2>.
 
             Filters are added to directives, like ng-repeat, by using the pipe character |, followed by a filter:
 
@@ -1075,7 +1076,7 @@
             &lt;/code>&lt;/pre>
             You can create your own custom filter using the angular filter() function.
 
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             1. See our example in the Code Editor. Use Uppercase filter on the first Expression and Lowercase filter on the other Expression.
 
@@ -1176,7 +1177,7 @@
 
             Server-side validation is still necessary for a secure application.
 
-            &lt;strong>Simple form&lt;/strong>
+            &lt;h2>Simple form&lt;/h2>
 
             The key directive in understanding two-way data-binding is ngModel. The ngModel directive provides the two-way data-binding by synchronizing the model to the view, as well as view to the model.
         
@@ -1211,7 +1212,7 @@
                 /tb }]);
                 /lt/script>
             &lt;/code>&lt;/pre>
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Try to recreate the example form and make it work. Also add two new functions namely Delete and Insert. The Delete Function will just delete the content of the user and master Scope. While the Insert function will automatically insert a name and gender value.
         </content>
@@ -1370,7 +1371,7 @@
                 /tb/tb });
                 });
             &lt;/code>&lt;/pre>
-            &lt;strong>ngView&lt;/strong>
+            &lt;h2>ngView&lt;/h2>
 
             Your application needs a container to put the content provided by the routing.
 
@@ -1386,7 +1387,7 @@
                 /nl
                 /ltdiv class="ng-view">/lt/div>
             &lt;/code>&lt;/pre>            
-            &lt;strong>$routeProvider&lt;/strong>.
+            &lt;h2>$routeProvider&lt;/h2>.
 
             With the $routeProvider you can define what page to display when a user clicks a link.
 
@@ -1407,7 +1408,7 @@
             &lt;/code>&lt;/pre>
             Define the $routeProvider using the config method of your application. Work registered in the config method will be performed when the application is loading.
 
-            &lt;strong>Controllers&lt;/strong>
+            &lt;h2>Controllers&lt;/h2>
 
             With the $routeProvider you can also define a controller for each "view".
 
@@ -1437,7 +1438,7 @@
                 /tb $scope.msg = "I love Paris";
                 });
             &lt;/code>&lt;/pre>
-            &lt;strong>Template&lt;/strong>
+            &lt;h2>Template&lt;/h2>
 
             In the previous examples we have used the templateUrl property in the $routeProvider.when method.
 
@@ -1458,7 +1459,7 @@
                 /tb/tb });
                 });
             &lt;/code>&lt;/pre>
-            &lt;strong>The otherwise method&lt;/strong>
+            &lt;h2>The otherwise method&lt;/h2>
 
             In the previous examples we have used the when method of the $routeProvider.
 
@@ -1479,7 +1480,7 @@
                 /tb/tb });
                 });
             &lt;/code>&lt;/pre>
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Create your own Routing with at least three routes. You can just use Template instead of TemplateUrl. Also use the Otherwise method. Don't forget to add ngRoute to your module.
         </content>
@@ -1585,7 +1586,7 @@
 
                 /ltmy-custom-directive list="myList">/lt/my-custom-directive>
             &lt;/code>&lt;/pre>
-            &lt;strong>Exercise:&lt;/strong>
+            &lt;h3>Exercise:&lt;/h3>
 
             Create your own directive where you can use the object in our controller.
         </content>

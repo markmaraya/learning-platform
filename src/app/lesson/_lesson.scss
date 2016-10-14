@@ -1,9 +1,24 @@
+.content-main {
+    .row {
+        height: -webkit-calc(100vh - 96px);
+        height: -moz-calc(100vh - 96px);
+        height: calc(100vh - 96px);
+
+        .col {
+            height: inherit;
+        }
+    }
+}
+
 #sideNav {
-    padding: 20px 30px;
-    background: #ffffff;
+    padding: 20px 10px;
+    background: #ffffff;    
 
     a {
         display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -11,13 +26,23 @@
     padding: 0 30px;
     background: #ffffff;
     white-space: pre-line;
+
+    h1 {
+        margin: 5px 0 0 0;
+    }
 }
 
 #chapterContent {
-    height: 76vh;
+    height: 74vh;
     text-align: justify;
     padding-right: 10px;
     overflow-y: scroll;
+
+    h2,
+    h3 {
+        display: inline;
+        margin: 0;
+    }
 }
 
 .content-code-label {

@@ -1,28 +1,37 @@
 <div class="container-fluid bg-info">
-    <div class="breadcrumb-wrapper">
-        <ol class="breadcrumb bg-info">
-            <li><a href="#/">Home</a></li>
-            <li class="active">Modules</li>
-        </ol>
-        <a href="#/" class="btn btn-primary back-button">Back</a>
-    </div>
+	<div class="breadcrumb-wrapper">
+		<ol class="breadcrumb bg-info">
+			<li><a href="#/">Home</a></li>
+			<li class="active">Modules</li>
+		</ol>
+		<a href="#/" class="btn btn-primary back-button">Back</a>
+	</div>
 </div>
 
 <div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#lesson/{{lesson.title | spaceToDash}}" ng-repeat="lesson in module.topicList">
-                    <div class="lesson-div bg-primary">
-                        <i class="mdi mdi-{{lesson.icon}} icon-background"></i>
-                        <i class="mdi mdi-{{lesson.icon}} lesson-icon"></i>
-                        <span>
-                            <h4>{{lesson.title}}</h4>
-                        </span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="lessons-container">
+			<div class="lesson-div bg-primary" ng-click="module.selectLesson(lesson.title | spaceToDash, $index+1)" ng-repeat="lesson in module.topicList"
+				ng-class="lesson.hide">
+				<i class="mdi mdi-{{lesson.icon}} icon-background"></i>
+				<i class="mdi mdi-{{lesson.icon}} lesson-icon"></i>
+				<span><h4>{{lesson.title}}</h4></span>
+			</div>
+			<button class="btn btn-primary level-back-button" ng-click="module.backToModules()" ng-class="module.showHideClass.levelBackButton">
+				<i class="mdi mdi-arrow-left-bold mdi-36px"></i>
+			</button>
+		</div>
+		<div class="level-container">
+			<a href="#module/{{module.lesson}}/beginner" ng-class="module.showHideClass.levelLinks">
+				<h1>Beginner</h1>
+			</a>
+			<a href="#module/{{module.lesson}}/intermediate" ng-class="module.showHideClass.levelLinks">
+				<h1>Intermediate</h1>
+			</a>
+			<a href="#module/{{module.lesson}}/advanced" ng-class="module.showHideClass.levelLinks">
+				<h1>Advanced</h1>
+			</a>
+		</div>
+		
+	</div>
 </div>
-<!--<iframe src="https://docs.google.com/presentation/d/1fpcshynOXj2r63qE8XG3V5WFGgH731X1obSuFn_6KH0/embed?start=false&loop=true&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
