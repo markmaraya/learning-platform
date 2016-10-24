@@ -13,6 +13,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
+  #sideNav h4,
+  #sideNav li {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none; }
+  #sideNav h4:hover {
+    color: #337ab7; }
+  #sideNav ul {
+    padding: 0 10px; }
 
 .section {
   padding: 0 30px;
@@ -163,11 +173,16 @@
     visibility: hidden; }
     .level-container a h1 {
       margin: 0;
-      line-height: 100px; }
+      line-height: 100px;
+      -webkit-transition: font-size 0.3s;
+      -moz-transition: font-size 0.3s;
+      transition: font-size 0.3s; }
   .level-container a.show {
     left: 0 !important;
     opacity: 1 !important;
     visibility: visible !important; }
+  .level-container a:hover h1 {
+    font-size: 40px; }
 
 .level-back-button {
   position: absolute;

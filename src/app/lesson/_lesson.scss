@@ -20,6 +20,22 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    h4,
+    li {
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    h4:hover {
+        color: #337ab7;
+    }
+
+    ul {
+        padding: 0 10px;
+    }
 }
 
 .section {

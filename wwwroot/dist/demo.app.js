@@ -110,10 +110,10 @@
                 ifrw.document.write('<style>' + styleText + '<\/style>');
 
                 angular.forEach(dependencyLink, function (value) {
-                    ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/scr' + 'ipt>');
+                    ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/script>');
                 });
 
-                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/scr' + 'ipt>');
+                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/script>');
                 ifrw.document.close();
             };
         }]);
@@ -232,35 +232,6 @@
             };
         }]);
 })();
-// (function () {
-//     'use strict';
-
-//     angular
-//         .module('LearningPlatformApplication')
-//         .directive('DisplayWindow', DisplayWindow);
-
-//     function DisplayWindow() {
-//         return {
-//             template: '<div></div>',
-//             scope: {
-//                 contents: '=',
-//                 id: '@'
-//             },
-
-
-
-
-//         }
-
-
-
-
-//     }
-
-
-//     show(id)
-
-// })();
 (function () {
     'use strict';
 
@@ -339,6 +310,10 @@
 
             vm.updateStyleCode = function (data) {
                 vm.code.style = data;
+            };
+
+            vm.changeLevel = function (level) {
+                path = level;
             };
         }]);
 })();

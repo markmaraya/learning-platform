@@ -14,7 +14,19 @@
 		<div class="row">
 			<div class="col-md-2 col-sm-2 col">
 				<div id="sideNav">
-					<h4>{{lesson.breadcrumb.level | toTitleCase}}</h4>
+					<h4 ng-click="changeLevel = ! changeLevel">{{lesson.breadcrumb.level | toTitleCase}} <i class="mdi mdi-menu-down"></i></h4>
+					<ul ng-show="changeLevel">
+						<h5><span class="label label-primary">Select Level</span></h5>
+						<li ng-hide="lesson.breadcrumb.level == 'beginner'">
+							<a href="#module/{{lesson.breadcrumb.lesson}}/beginner"><i class="mdi mdi-subdirectory-arrow-right"></i>Beginner</a>
+						</li>
+						<li ng-hide="lesson.breadcrumb.level == 'intermediate'">
+							<a href="#module/{{lesson.breadcrumb.lesson}}/intermediate"><i class="mdi mdi-subdirectory-arrow-right"></i>Intermediate</a>
+						</li>
+						<li ng-hide="lesson.breadcrumb.level == 'advanced'">
+							<a href="#module/{{lesson.breadcrumb.lesson}}/advanced"><i class="mdi mdi-subdirectory-arrow-right"></i>Advance</a>
+						</li>
+					</ul>
 					<a href="" ng-repeat="title in lesson.titleList" ng-click="lesson.choiceFunction(title)">
 						<i class="mdi mdi-menu-right"></i>{{title | toTitleCase}}
 					</a>
@@ -25,7 +37,6 @@
 					<h1>{{lesson.chapter.title}}</h1>
 					<chapter-content content="lesson.chapter.content"></chapter-content>
 				</div>
-				<div ng-hide="lesson.chapter">Invalid link</div>
 			</div>
 			<div class="col-md-5 col-sm-5 col">
 				<uib-tabset active="active">

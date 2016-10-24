@@ -117,6 +117,9 @@
         h1 {
             margin: 0;
             line-height: 100px;
+            -webkit-transition: font-size 0.3s;
+            -moz-transition: font-size 0.3s;
+            transition: font-size 0.3s;
         }
     }
 
@@ -124,6 +127,12 @@
         left: 0 !important;
         opacity: 1 !important;
         visibility: visible !important;
+    }
+
+    a:hover {
+        h1 {
+            font-size: 40px;
+        }
     }
 }
 
