@@ -66,6 +66,8 @@
 
 .code-buttons {
   margin: 10px 0; }
+  .code-buttons:active, .code-buttons:focus {
+    outline: none !important; }
 
 #iframeWrapper {
   height: 300px;

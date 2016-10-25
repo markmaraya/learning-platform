@@ -77,9 +77,5 @@
             vm.updateStyleCode = function (data) {
                 vm.code.style = data;
             };
-
-            vm.changeLevel = function (level) {
-                path = level;
-            };
         }]);
 })();

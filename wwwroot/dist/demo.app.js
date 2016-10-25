@@ -41,7 +41,12 @@
         .module('LearningPlatformApplication')
         .service('UtilityService', ['$filter', function ($filter) {
             this.TrimCDataForView = function (code) {
-                return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
+                return code.toString().trim()
+                    .replace(/\s\s+/g, '\n')
+                    .replace(/\/tb1/g, '   ')
+                    .replace(/\/tb2/g, '      ')
+                    .replace(/\/tb3/g, '         ')
+                    .replace(/\/tb4/g, '            ');
             };
 
             this.GetTitleByLevel = function (scope, chapterList, level) {
@@ -166,7 +171,10 @@
                     var contentCode = element.html();
                     element.html(contentCode.trim()
                         .replace(/\s\s+/g, '\n')
-                        .replace(/\/tb/g, '   ')
+                        .replace(/\/tb1/g, '   ')
+                        .replace(/\/tb2/g, '      ')
+                        .replace(/\/tb3/g, '         ')
+                        .replace(/\/tb4/g, '            ')
                         .replace(/\/nl/g,'')
                         .replace(/\/lt/g, '<span><</span>')
                         .replace(/\/gt/g, '<span>></span>'));
@@ -311,10 +319,6 @@
             vm.updateStyleCode = function (data) {
                 vm.code.style = data;
             };
-
-            vm.changeLevel = function (level) {
-                path = level;
-            };
         }]);
 })();
 (function () {
@@ -324,6 +328,11 @@
         .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
+                .when('/', {
+                    templateUrl: 'module/module.html',
+                    controller: 'ModuleController',
+                    controllerAs: 'module'
+                })
                 .when('/module', {
                     templateUrl: 'module/module.html',
                     controller: 'ModuleController',

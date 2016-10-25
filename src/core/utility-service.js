@@ -5,7 +5,12 @@
         .module('LearningPlatformApplication')
         .service('UtilityService', ['$filter', function ($filter) {
             this.TrimCDataForView = function (code) {
-                return code.toString().trim().replace(/\s\s+/g, '\n').replace(/\/tb/g, '   ');
+                return code.toString().trim()
+                    .replace(/\s\s+/g, '\n')
+                    .replace(/\/tb1/g, '   ')
+                    .replace(/\/tb2/g, '      ')
+                    .replace(/\/tb3/g, '         ')
+                    .replace(/\/tb4/g, '            ');
             };
 
             this.GetTitleByLevel = function (scope, chapterList, level) {

@@ -12,7 +12,7 @@
 <div class="content-main">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-2 col-sm-2 col">
+			<div class="col-md-2 col-sm-2 col" ng-hide="lesson.expandEditor">
 				<div id="sideNav">
 					<h4 ng-click="changeLevel = ! changeLevel">{{lesson.breadcrumb.level | toTitleCase}} <i class="mdi mdi-menu-down"></i></h4>
 					<ul ng-show="changeLevel">
@@ -38,7 +38,7 @@
 					<chapter-content content="lesson.chapter.content"></chapter-content>
 				</div>
 			</div>
-			<div class="col-md-5 col-sm-5 col">
+			<div class="col" ng-class="{'col-md-7 col-sm-7' : lesson.expandEditor, 'col-md-5 col-sm-5' : !lesson.expandEditor}">
 				<uib-tabset active="active">
 					<uib-tab index="0" heading="HTML">
 						<section class="code-editor" ng-model="lesson.code.html" ng-change="lesson.updateHtmlCode(lesson.code.html)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'html'}"></section>
@@ -54,6 +54,10 @@
 				<button class="btn btn-success code-buttons" ng-click="lesson.submitCode()">Try It</button>
 				<button class="btn btn-warning code-buttons" ng-click="lesson.resetCode()">Reset</button>
 				<button class="btn btn-info code-buttons" ng-click="lesson.showExample()">Example</button>
+				<button class="btn btn-primary pull-right code-buttons" ng-click="lesson.expandEditor = !lesson.expandEditor">
+					<i class="mdi mdi-arrow-expand" ng-show="!lesson.expandEditor"></i>
+					<i class="mdi mdi-arrow-compress" ng-show="lesson.expandEditor"></i>
+				</button>
 				<div id="iframeWrapper"></div>
 			</div>
 		</div>

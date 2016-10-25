@@ -25,8 +25,8 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h1 ng-bind="firstName"></h1>
-                    /tb <h1 ng-bind="lastName"></h1>
+                    /tb1 <h1 ng-bind="firstName"></h1>
+                    /tb1 <h1 ng-bind="lastName"></h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -35,8 +35,8 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', function ($scope) {
-                    /tb $scope.firstName = 'John';
-                    /tb $scope.lastName = 'Doe';
+                    /tb1 $scope.firstName = 'John';
+                    /tb1 $scope.lastName = 'Doe';
                     }]);
                  ]]>
             </scriptcode>
@@ -50,8 +50,8 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h1 ng-bind="firstName"></h1>
-                    /tb <h1 ng-bind="lastName"></h1>
+                    /tb1 <h1 ng-bind="firstName"></h1>
+                    /tb1 <h1 ng-bind="lastName"></h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -60,8 +60,8 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', function ($scope) {
-                    /tb $scope.firstName = 'John';
-                    /tb $scope.lastName = 'Doe';
+                    /tb1 $scope.firstName = 'John';
+                    /tb1 $scope.lastName = 'Doe';
                     }]);
                  ]]>
             </scriptcode>
@@ -96,8 +96,8 @@
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="" ng-init="firstName='John'">
                 /nl
-                /tb /ltp>Name: /ltinput type="text" ng-model="firstName">/lt/p>
-                /tb /ltp>You wrote: {{ firstName }}/lt/p>
+                /tb1 /ltp>Name: /ltinput type="text" ng-model="firstName">/lt/p>
+                /tb1 /ltp>You wrote: {{ firstName }}/lt/p>
                 /nl    
                 /lt/div>
             &lt;/code>&lt;/pre>
@@ -108,11 +108,11 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="" ng-init="names=['Jani','Hege','Kai']">
-                /tb /ltul>
-                /tb/tb /ltli ng-repeat="x in names">
-                /tb/tb/tb {{ x }}
-                /tb/tb /lt/li>
-                /tb /lt/ul>
+                /tb1 /ltul>
+                /tb2 /ltli ng-repeat="x in names">
+                /tb3 {{ x }}
+                /tb2 /lt/li>
+                /tb1 /lt/ul>
                 /lt/div>
             &lt;/code>&lt;/pre>
             You can create your own custom directive using the angular &lt;strong>directive()&lt;/strong> function.
@@ -127,18 +127,18 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="">
-                    /tb Exercise 1
-                    /tb <div>
-                    /tb/tb <p>Name: <input type="text"></p>
-                    /tb/tb <p>You wrote: {{ firstName }}</p>
-                    /tb </div>
+                    /tb1 Exercise 1
+                    /tb1 <div>
+                    /tb2 <p>Name: <input type="text"></p>
+                    /tb2 <p>You wrote: {{ firstName }}</p>
+                    /tb1 </div>
                     
-                    /tb Exercise 2
-                    /tb <div ng-init="">
-                    /tb/tb <ul>
-                    /tb/tb/tb <li></li>
-                    /tb/tb </ul>
-                    /tb </div>
+                    /tb1 Exercise 2
+                    /tb1 <div ng-init="">
+                    /tb2 <ul>
+                    /tb3 <li></li>
+                    /tb2 </ul>
+                    /tb1 </div>
                     </div>
                 ]]>
             </htmlcode>
@@ -157,18 +157,18 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="">
-                    /tb Exercise 1
-                    /tb <div ng-init="firstName = 'John'">
-                    /tb/tb <p>Name: <input type="text" ng-model="firstName"></p>
-                    /tb/tb <p>You wrote: {{ firstName }}</p>
-                    /tb </div>
+                    /tb1 Exercise 1
+                    /tb1 <div ng-init="firstName = 'John'">
+                    /tb2 <p>Name: <input type="text" ng-model="firstName"></p>
+                    /tb2 <p>You wrote: {{ firstName }}</p>
+                    /tb1 </div>
                     
-                    /tb Exercise 2
-                    /tb <div ng-init="names=['Peter','Sebastian','Erika','Patrick','Samantha']">
-                    /tb/tb <ul>
-                    /tb/tb/tb <li ng-repeat="x in names">{{x}}</li>
-                    /tb/tb </ul>
-                    /tb </div>
+                    /tb1 Exercise 2
+                    /tb1 <div ng-init="names=['Peter','Sebastian','Erika','Patrick','Samantha']">
+                    /tb2 <ul>
+                    /tb3 <li ng-repeat="x in names">{{x}}</li>
+                    /tb2 </ul>
+                    /tb1 </div>
                     </div>
                 ]]>
             </htmlcode>
@@ -209,28 +209,28 @@
                     Numbers
                     /ltdiv ng-init="quantity=1;cost=5">
                     /nl
-                    /tb /ltp>Total in dollar: /ltspan ng-bind="quantity * cost">/lt/span>/lt/p>
+                    /tb1 /ltp>Total in dollar: /ltspan ng-bind="quantity * cost">/lt/span>/lt/p>
                     /nl
                     /lt/div>
                     /nl
                     Strings
                     /ltdiv ng-init="firstName='John';lastName='Doe'">
                     /nl
-                    /tb /ltp>The name is {{ firstName + " " + lastName }}/lt/p>
+                    /tb1 /ltp>The name is {{ firstName + " " + lastName }}/lt/p>
                     /nl
                     /lt/div>
                     /nl
                     Objects
                     /ltdiv ng-init="person={firstName:'John',lastName:'Doe'}">
                     /nl
-                    /tb /ltp>The name is {{ person.lastName }}/lt/p>
+                    /tb1 /ltp>The name is {{ person.lastName }}/lt/p>
                     /nl
                     /lt/div>
                     /nl
                     Arrays
                     /ltdiv ng-init="points=[1,15,19,2,40]">
                     /nl
-                    /tb /ltp>The third result is {{ points[2] }}/lt/p>
+                    /tb1 /ltp>The third result is {{ points[2] }}/lt/p>
                     /nl
                     /lt/div>
                     /nl
@@ -252,25 +252,25 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="">
-                    /tb <h4>Numbers</h4>
-                    /tb <div ng-init="">
-                    /tb/tb <p></p>
-                    /tb </div>
+                    /tb1 <h4>Numbers</h4>
+                    /tb1 <div ng-init="">
+                    /tb2 <p></p>
+                    /tb1 </div>
 
-                    /tb <h4>Strings</h4>
-                    /tb <div ng-init="">
-                    /tb/tb <p></p>
-                    /tb </div>
+                    /tb1 <h4>Strings</h4>
+                    /tb1 <div ng-init="">
+                    /tb2 <p></p>
+                    /tb1 </div>
 
-                    /tb <h4>Objects</h4>
-                    /tb <div ng-init="">
-                    /tb/tb <p></p>
-                    /tb </div>
+                    /tb1 <h4>Objects</h4>
+                    /tb1 <div ng-init="">
+                    /tb2 <p></p>
+                    /tb1 </div>
 
-                    /tb <h4>Arrays</h4>
-                    /tb <div ng-init="">
-                    /tb/tb <p></p>
-                    /tb </div>
+                    /tb1 <h4>Arrays</h4>
+                    /tb1 <div ng-init="">
+                    /tb2 <p></p>
+                    /tb1 </div>
                     </div>
                 ]]>
             </htmlcode>
@@ -289,25 +289,25 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="">
-                    /tb <h4>Numbers</h4>
-                    /tb <div ng-init="quantity=1;cost=5"> 
-                    /tb/tb <p>Total: <span ng-bind="quantity * cost"></span></p>
-                    /tb </div> 
+                    /tb1 <h4>Numbers</h4>
+                    /tb1 <div ng-init="quantity=1;cost=5"> 
+                    /tb2 <p>Total: <span ng-bind="quantity * cost"></span></p>
+                    /tb1 </div> 
 
-                    /tb <h4>Strings</h4>
-                    /tb <div ng-init="firstName='John';lastName='Doe'">
-                    /tb/tb <p>The name is {{ firstName + " " + lastName }}</p>
-                    /tb </div>
+                    /tb1 <h4>Strings</h4>
+                    /tb1 <div ng-init="firstName='John';lastName='Doe'">
+                    /tb2 <p>The name is {{ firstName + " " + lastName }}</p>
+                    /tb1 </div>
 
-                    /tb <h4>Objects</h4>
-                    /tb <div ng-init="person={firstName:'John',lastName:'Doe'}">
-                    /tb/tb <p>The name is {{ person.firstName + " " + person.lastName }}</p>
-                    /tb </div>
+                    /tb1 <h4>Objects</h4>
+                    /tb1 <div ng-init="person={firstName:'John',lastName:'Doe'}">
+                    /tb2 <p>The name is {{ person.firstName + " " + person.lastName }}</p>
+                    /tb1 </div>
                       
-                    /tb <h4>Arrays</h4>
-                    /tb <div ng-init="points=[1,15,19,2,40]">
-                    /tb/tb <p>The third result is {{ points[2] }}</p>
-                    /tb </div>
+                    /tb1 <h4>Arrays</h4>
+                    /tb1 <div ng-init="points=[1,15,19,2,40]">
+                    /tb2 <p>The third result is {{ points[2] }}</p>
+                    /tb1 </div>
                     </div>
                 ]]>
             </htmlcode>
@@ -348,7 +348,7 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h1>{{firstName}} {{lastName}}</h1>
+                    /tb1 <h1>{{firstName}} {{lastName}}</h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -357,8 +357,8 @@
                     // Write your module here!
 
                     app.controller('myController', ['$scope', function ($scope) {
-                    /tb $scope.firstName = 'John';
-                    /tb $scope.lastName = 'Doe';
+                    /tb1 $scope.firstName = 'John';
+                    /tb1 $scope.lastName = 'Doe';
                     }]);
                  ]]>
             </scriptcode>
@@ -372,7 +372,7 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h1>{{firstName}} {{lastName}}</h1>
+                    /tb1 <h1>{{firstName}} {{lastName}}</h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -381,8 +381,8 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', function ($scope) {
-                    /tb $scope.firstName = 'John';
-                    /tb $scope.lastName = 'Doe';
+                    /tb1 $scope.firstName = 'John';
+                    /tb1 $scope.lastName = 'Doe';
                     }]);
                  ]]>
             </scriptcode>
@@ -425,19 +425,19 @@
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="myApp" ng-controller="myController">
                 /nl
-                /tb First Name: /ltinput type="text" ng-model="firstName">/ltbr>
-                /tb Last Name: /ltinput type="text" ng-model="lastName">/ltbr>
-                /tb /ltbr>
-                /tb Full Name: {{firstName + " " + lastName}}
+                /tb1 First Name: /ltinput type="text" ng-model="firstName">/ltbr>
+                /tb1 Last Name: /ltinput type="text" ng-model="lastName">/ltbr>
+                /tb1 /ltbr>
+                /tb1 Full Name: {{firstName + " " + lastName}}
                 /nl
                 /lt/div>
                 /nl
                 /ltscript>
-                /tb var app = angular.module('myApp', []);
-                /tb app.controller('myController', function($scope) {
-                /tb/tb $scope.firstName = "John";
-                /tb/tb $scope.lastName = "Doe";
-                /tb });
+                /tb1 var app = angular.module('myApp', []);
+                /tb1 app.controller('myController', function($scope) {
+                /tb2 $scope.firstName = "John";
+                /tb2 $scope.lastName = "Doe";
+                /tb1 });
                 /lt/script>
             &lt;/code>&lt;/pre>
             &lt;h3>Exercise:&lt;/h3>
@@ -448,9 +448,9 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="">
-                    /tb <h1>{{scopeOne}}</h1>
-                    /tb <h1>{{scopeTwo}}</h1>
-                    /tb <h1>{{scopeThree}}</h1>
+                    /tb1 <h1>{{scopeOne}}</h1>
+                    /tb1 <h1>{{scopeTwo}}</h1>
+                    /tb1 <h1>{{scopeThree}}</h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -471,9 +471,9 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h1>scopeOne: {{scopeOne}}</h1>
-                    /tb <h1>scopeTwo: {{scopeTwo}}</h1>
-                    /tb <h1>scopeThree: {{scopeThree.name + " " + scopeThree.age}}</h1>
+                    /tb1 <h1>scopeOne: {{scopeOne}}</h1>
+                    /tb1 <h1>scopeTwo: {{scopeTwo}}</h1>
+                    /tb1 <h1>scopeThree: {{scopeThree.name + " " + scopeThree.age}}</h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -482,9 +482,9 @@
                     var app = angular.module('myApp', []);
                     
                     app.controller('myController', ['$scope', function($scope) {
-                    /tb $scope.scopeOne = 'John Doe';
-                    /tb $scope.scopeTwo = 42;
-                    /tb $scope.scopeThree = {'name':'John','age':42};
+                    /tb1 $scope.scopeOne = 'John Doe';
+                    /tb1 $scope.scopeTwo = 42;
+                    /tb1 $scope.scopeThree = {'name':'John','age':42};
                     }]);
                  ]]>
             </scriptcode>
@@ -522,16 +522,16 @@
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="myApp" ng-controller="myCtrl">
                 /nl
-                /tb /lth1>{{carname}}/lt/h1>
+                /tb1 /lth1>{{carname}}/lt/h1>
                 /nl
                 /lt/div>
                 /nl
                 /ltscript>
-                /tb var app = angular.module('myApp', []);
+                /tb1 var app = angular.module('myApp', []);
                 /nl
-                /tb app.controller('myCtrl', function($scope) {
-                /tb/tb $scope.carname = "Volvo";
-                /tb });
+                /tb1 app.controller('myCtrl', function($scope) {
+                /tb2 $scope.carname = "Volvo";
+                /tb1 });
                 /lt/script>
             &lt;/code>&lt;/pre>
             &lt;h2>Root Scope&lt;/h2>
@@ -571,9 +571,9 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h3>{{carOne}}</h3>
-                    /tb <h3>{{carTwo}}</h3>
-                    /tb <h3>{{carThree}}</h3>
+                    /tb1 <h3>{{carOne}}</h3>
+                    /tb1 <h3>{{carTwo}}</h3>
+                    /tb1 <h3>{{carThree}}</h3>
                     </div>
                 ]]>
             </htmlcode>
@@ -582,9 +582,9 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', function ($scope) {
-                    /tb $scope.carOne = 'Volvo';
-                    /tb $scope.carTwo = 'Audi';
-                    /tb $scope.carThree = 'Mercedes';
+                    /tb1 $scope.carOne = 'Volvo';
+                    /tb1 $scope.carTwo = 'Audi';
+                    /tb1 $scope.carThree = 'Mercedes';
                     }]);
                  ]]>
             </scriptcode>
@@ -615,8 +615,8 @@
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 var app = angular.module('myApp', []);
                 app.controller('myCtrl', function($scope) {
-                /tb $scope.firstname = "John";
-                /tb $scope.lastname = "Doe";
+                /tb1 $scope.firstname = "John";
+                /tb1 $scope.lastname = "Doe";
                 });
             &lt;/code>&lt;/pre>
             &lt;h2>HTML View&lt;/h2>
@@ -653,16 +653,16 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="myApp" ng-controller="myCtrl">
-                /tb Name: /ltinput ng-model="firstname">
-                /tb /lth1>{{firstname}}/lt/h1>
+                /tb1 Name: /ltinput ng-model="firstname">
+                /tb1 /lth1>{{firstname}}/lt/h1>
                 /lt/div>
                 /nl
                 /ltscript>
-                /tb var app = angular.module('myApp', []);
-                /tb app.controller('myCtrl', function($scope) {
-                /tb/tb $scope.firstname = "John";
-                /tb/tb $scope.lastname = "Doe";
-                /tb });
+                /tb1 var app = angular.module('myApp', []);
+                /tb1 app.controller('myCtrl', function($scope) {
+                /tb2 $scope.firstname = "John";
+                /tb2 $scope.lastname = "Doe";
+                /tb1 });
                 /lt/script>
             &lt;/code>&lt;/pre>
             &lt;h3>Exercise:&lt;/h3>
@@ -673,7 +673,7 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myCtrl">
-                    
+                    /tb1 <!-- -->
                     </div>
                 ]]>
             </htmlcode>
@@ -682,7 +682,7 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myCtrl', function($scope) {
-                    
+                    /tb1 //
                     });
                  ]]>
             </scriptcode>
@@ -696,8 +696,8 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myCtrl">
-                    /tb Name: <input ng-model="firstname">
-                    /tb <h1>{{firstname}}</h1>
+                    /tb1 Name: <input ng-model="firstname">
+                    /tb1 <h1>{{firstname}}</h1>
                     </div>
                 ]]>
             </htmlcode>
@@ -706,8 +706,8 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myCtrl', function($scope) {
-                    /tb $scope.firstname = 'John';
-                    /tb $scope.lastname = 'Doe';
+                    /tb1 $scope.firstname = 'John';
+                    /tb1 $scope.lastname = 'Doe';
                     });
                  ]]>
             </scriptcode>
@@ -741,11 +741,11 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 app.controller('myCtrl', function($scope, MyService, PromiseService) {
-                /tb $scope.myCustomService = MyService.myFunc();
+                /tb1 $scope.myCustomService = MyService.myFunc();
                 /nl
-                /tb PromiseService.getDetails().then(function (response) {
-                /tb/tb $scope.details = response.data;
-                /tb });
+                /tb1 PromiseService.getDetails().then(function (response) {
+                /tb2 $scope.details = response.data;
+                /tb1 });
                 });
             &lt;/code>&lt;/pre>
             You can create your own custom service using the angular service() function.
@@ -760,14 +760,14 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h4>Service Example</h4>
-                    /tb <input ng-model="myInput" ng-change="toUpperCaseFunction(myInput)">
-                    /tb <h2>{{myOutput}}</h2>
+                    /tb1 <h4>Service Example</h4>
+                    /tb1 <input ng-model="myInput" ng-change="toUpperCaseFunction(myInput)">
+                    /tb1 <h2>{{myOutput}}</h2>
 
-                    /tb <h4>Exercise 1</h4>
-                    /tb <!-- Write here! -->
-                    /tb <h4>Exercise 2</h4>
-                    /tb <!-- Write here! -->
+                    /tb1 <h4>Exercise 1</h4>
+                    /tb1 <!-- Write here! -->
+                    /tb1 <h4>Exercise 2</h4>
+                    /tb1 <!-- Write here! -->
                     </div>
                 ]]>
             </htmlcode>
@@ -776,21 +776,21 @@
                     var app = angular.module('myApp', []);
 
                     app.service('MyService', function() {
-                    /tb this.myFunction = function (data) {
-                    /tb/tb return data.toUpperCase();
-                    /tb }
+                    /tb1 this.myFunction = function (data) {
+                    /tb2 return data.toUpperCase();
+                    /tb1 }
                     });
 
                     app.service('AnotherService', ['$http', function($http) {
-                    /tb this.getDetails = function () {
-                    /tb/tb return $http.get('http://www.w3schools.com/website/customers_mysql.php');
-                    /tb }
+                    /tb1 this.getDetails = function () {
+                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb1 }
                     }]);
 
                     app.controller('myController', ['$scope', 'MyService', function($scope, MyService) {
-                    /tb $scope.toUpperCaseFunction = function(data) {
-                    /tb/tb $scope.myOutput = MyService.myFunction(data);
-                    /tb };
+                    /tb1 $scope.toUpperCaseFunction = function(data) {
+                    /tb2 $scope.myOutput = MyService.myFunction(data);
+                    /tb1 };
                     }]);
                  ]]>
             </scriptcode>
@@ -804,16 +804,16 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <h4>Service Example</h4>
-                    /tb <div>Uppercase: <input ng-model="myInput" ng-change="toUpperCaseFunction(myInput)"></div><br />
-                    /tb <h2>{{myOutput}}</h2>
+                    /tb1 <h4>Service Example</h4>
+                    /tb1 <div>Uppercase: <input ng-model="myInput" ng-change="toUpperCaseFunction(myInput)"></div><br />
+                    /tb1 <h2>{{myOutput}}</h2>
 
-                    /tb <h4>Exercise 1</h4>
-                    /tb <div>Lowercase: <input ng-model="lowercaseInput" ng-change="toLowerCaseFunction(lowercaseInput)"></div>
-                    /tb <h2>{{lowercaseOutput}}</h2>
+                    /tb1 <h4>Exercise 1</h4>
+                    /tb1 <div>Lowercase: <input ng-model="lowercaseInput" ng-change="toLowerCaseFunction(lowercaseInput)"></div>
+                    /tb1 <h2>{{lowercaseOutput}}</h2>
 
-                    /tb <h4>Exercise 2</h4>
-                    /tb <h3 ng-repeat="details in list">{{details.Name}}</h3>
+                    /tb1 <h4>Exercise 2</h4>
+                    /tb1 <h3 ng-repeat="details in list">{{details.Name}}</h3>
                     </div>
                 ]]>
             </htmlcode>
@@ -822,34 +822,34 @@
                     var app = angular.module('myApp', []);
 
                     app.service('MyService', function() {
-                    /tb this.myFunction = function (data) {
-                    /tb/tb return data.toUpperCase();
-                    /tb }
+                    /tb1 this.myFunction = function (data) {
+                    /tb2 return data.toUpperCase();
+                    /tb1 }
                     });
 
                     app.service('ToLowerCaseService', function() {
-                    /tb this.myFunction = function (data) {
-                    /tb/tb return data.toLowerCase();
-                    /tb }
+                    /tb1 this.myFunction = function (data) {
+                    /tb2 return data.toLowerCase();
+                    /tb1 }
                     });
 
                     app.service('AnotherService', ['$http', function($http) {
-                    /tb this.getDetails = function () {
-                    /tb/tb return $http.get('http://www.w3schools.com/website/customers_mysql.php');
-                    /tb }
+                    /tb1 this.getDetails = function () {
+                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb1 }
                     }]);
 
                     app.controller('myController', ['$scope', 'MyService', 'ToLowerCaseService', 'AnotherService', function($scope, MyService, ToLowerCaseService, AnotherService) {
-                    /tb $scope.toUpperCaseFunction = function(data) {
-                    /tb/tb $scope.myOutput = MyService.myFunction(data);
-                    /tb };
-                    /tb $scope.toLowerCaseFunction = function(data) {
-                    /tb/tb $scope.lowercaseOutput = ToLowerCaseService.myFunction(data);
-                    /tb };
-                    /tb AnotherService.getDetails()
-                    /tb/tb .then(function (response) {
-                    /tb/tb/tb $scope.list = response.data;
-                    /tb/tb });
+                    /tb1 $scope.toUpperCaseFunction = function(data) {
+                    /tb2 $scope.myOutput = MyService.myFunction(data);
+                    /tb1 };
+                    /tb1 $scope.toLowerCaseFunction = function(data) {
+                    /tb2 $scope.lowercaseOutput = ToLowerCaseService.myFunction(data);
+                    /tb1 };
+                    /tb1 AnotherService.getDetails()
+                    /tb2 .then(function (response) {
+                    /tb3 $scope.list = response.data;
+                    /tb2 });
                     }]);
                  ]]>
             </scriptcode>
@@ -887,7 +887,7 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 someModule.controller('MyController', ['$scope', 'greeter', function($scope, greeter) {
-                /tb // ...
+                /tb1 // ...
                 }]);
             &lt;/code>&lt;/pre>
             Here we pass an array whose elements consist of a list of strings (the names of the dependencies) followed by the function itself.
@@ -901,7 +901,7 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 var MyController = function($scope, greeter) {
-                /tb // ...
+                /tb1 // ...
                 }
                 /nl
                 MyController.$inject = ['$scope', 'greeter'];
@@ -919,7 +919,7 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 someModule.controller('MyController', function($scope, greeter) {
-                /tb // ...
+                /tb1 // ...
                 });
             &lt;/code>&lt;/pre>
             Given a function, the injector can infer the names of the services to inject by examining the function declaration and extracting the parameter names. In the above example, $scope and greeter are two services which need to be injected into the function.
@@ -940,13 +940,13 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb Input first Number: <input ng-model="a"><br />
-                    /tb Input second Number: <input ng-model="b"><br />
-                    /tb <button ng-click="compute(a, b)">Compute</button><br />
-                    /tb <h3>Sum is: {{sum}}</h3>
-                    /tb <h3>Difference is: {{difference}}</h3>
-                    /tb <h3>Product is: {{product}}</h3>
-                    /tb <h3>Quotient is: {{quotient}}</h3>
+                    /tb1 Input first Number: <input ng-model="a"><br />
+                    /tb1 Input second Number: <input ng-model="b"><br />
+                    /tb1 <button ng-click="compute(a, b)">Compute</button><br />
+                    /tb1 <h3>Sum is: {{sum}}</h3>
+                    /tb1 <h3>Difference is: {{difference}}</h3>
+                    /tb1 <h3>Product is: {{product}}</h3>
+                    /tb1 <h3>Quotient is: {{quotient}}</h3>
                     </div>
                 ]]>
             </htmlcode>
@@ -955,27 +955,27 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', [function() {
-                    /tb $scope.compute = function(a, b) {
-                    /tb/tb $scope.sum = ComputeService.getSum(a, b);
-                    /tb/tb $scope.difference = ComputeService.getDifference(a, b);
-                    /tb/tb $scope.product = ComputeService.getProduct(a, b);
-                    /tb/tb $scope.quotient = ComputeService.getQuotient(a, b);
-                    /tb };
+                    /tb1 $scope.compute = function(a, b) {
+                    /tb2 $scope.sum = ComputeService.getSum(a, b);
+                    /tb2 $scope.difference = ComputeService.getDifference(a, b);
+                    /tb2 $scope.product = ComputeService.getProduct(a, b);
+                    /tb2 $scope.quotient = ComputeService.getQuotient(a, b);
+                    /tb1 };
                     }]);
 
                     app.service('ComputeService', [function() {
-                    /tb this.getSum = function (a,b) {
-                    /tb/tb return parseFloat(a) + parseFloat(b);
-                    /tb };
-                    /tb this.getDifference = function (a,b) {
-                    /tb/tb return a - b;
-                    /tb };
-                    /tb this.getProduct = function (a,b) {
-                    /tb/tb return a * b;
-                    /tb };
-                    /tb this.getQuotient = function (a,b) {
-                    /tb/tb return a / b;
-                    /tb };
+                    /tb1 this.getSum = function (a,b) {
+                    /tb2 return parseFloat(a) + parseFloat(b);
+                    /tb1 };
+                    /tb1 this.getDifference = function (a,b) {
+                    /tb2 return a - b;
+                    /tb1 };
+                    /tb1 this.getProduct = function (a,b) {
+                    /tb2 return a * b;
+                    /tb1 };
+                    /tb1 this.getQuotient = function (a,b) {
+                    /tb2 return a / b;
+                    /tb1 };
                     }]);
                  ]]>
             </scriptcode>
@@ -989,13 +989,13 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb Input first Number: <input ng-model="a"><br />
-                    /tb Input second Number: <input ng-model="b"><br />
-                    /tb <button ng-click="compute(a, b)">Compute</button><br />
-                    /tb <h3>Sum is: {{sum}}</h3>
-                    /tb <h3>Difference is: {{difference}}</h3>
-                    /tb <h3>Product is: {{product}}</h3>
-                    /tb <h3>Quotient is: {{quotient}}</h3>
+                    /tb1 Input first Number: <input ng-model="a"><br />
+                    /tb1 Input second Number: <input ng-model="b"><br />
+                    /tb1 <button ng-click="compute(a, b)">Compute</button><br />
+                    /tb1 <h3>Sum is: {{sum}}</h3>
+                    /tb1 <h3>Difference is: {{difference}}</h3>
+                    /tb1 <h3>Product is: {{product}}</h3>
+                    /tb1 <h3>Quotient is: {{quotient}}</h3>
                     </div>
                 ]]>
             </htmlcode>
@@ -1004,27 +1004,27 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', 'ComputeService', function($scope, ComputeService) {
-                    /tb $scope.compute = function(a, b) {
-                    /tb/tb $scope.sum = ComputeService.getSum(a, b);
-                    /tb/tb $scope.difference = ComputeService.getDifference(a, b);
-                    /tb/tb $scope.product = ComputeService.getProduct(a, b);
-                    /tb/tb $scope.quotient = ComputeService.getQuotient(a, b);
-                    /tb };
+                    /tb1 $scope.compute = function(a, b) {
+                    /tb2 $scope.sum = ComputeService.getSum(a, b);
+                    /tb2 $scope.difference = ComputeService.getDifference(a, b);
+                    /tb2 $scope.product = ComputeService.getProduct(a, b);
+                    /tb2 $scope.quotient = ComputeService.getQuotient(a, b);
+                    /tb1 };
                     }]);
 
                     app.service('ComputeService', [function() {
-                    /tb this.getSum = function (a,b) {
-                    /tb/tb return parseFloat(a) + parseFloat(b);
-                    /tb };
-                    /tb this.getDifference = function (a,b) {
-                    /tb/tb return a - b;
-                    /tb };
-                    /tb this.getProduct = function (a,b) {
-                    /tb/tb return a * b;
-                    /tb };
-                    /tb this.getQuotient = function (a,b) {
-                    /tb/tb return a / b;
-                    /tb };
+                    /tb1 this.getSum = function (a,b) {
+                    /tb2 return parseFloat(a) + parseFloat(b);
+                    /tb1 };
+                    /tb1 this.getDifference = function (a,b) {
+                    /tb2 return a - b;
+                    /tb1 };
+                    /tb1 this.getProduct = function (a,b) {
+                    /tb2 return a * b;
+                    /tb1 };
+                    /tb1 this.getQuotient = function (a,b) {
+                    /tb2 return a / b;
+                    /tb1 };
                     }]);
                  ]]>
             </scriptcode>
@@ -1056,7 +1056,7 @@
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="myApp" ng-controller="personCtrl">
                 /nl
-                /tb /ltp>The name is {{ lastName | uppercase }}/lt/p>
+                /tb1 /ltp>The name is {{ lastName | uppercase }}/lt/p>
                 /nl
                 /lt/div>
             &lt;/code>&lt;/pre>
@@ -1067,11 +1067,11 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="myApp" ng-controller="namesCtrl">
-                /tb /ltul>
-                /tb/tb /ltli ng-repeat="x in names | orderBy:'country'">
-                /tb/tb/tb {{ x.name + ', ' + x.country }}
-                /tb/tb /lt/li>
-                /tb /lt/ul>
+                /tb1 /ltul>
+                /tb2 /ltli ng-repeat="x in names | orderBy:'country'">
+                /tb3 {{ x.name + ', ' + x.country }}
+                /tb2 /lt/li>
+                /tb1 /lt/ul>
                 /lt/div>
             &lt;/code>&lt;/pre>
             You can create your own custom filter using the angular filter() function.
@@ -1086,15 +1086,15 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <!-- Expression filters -->
-                    /tb <h3>Exercise 1</h3>
-                    /tb <p>Uppercase: {{ name }}</p>
-                    /tb <p>Lowercase: {{ name }}</p>
+                    /tb1 <!-- Expression filters -->
+                    /tb1 <h3>Exercise 1</h3>
+                    /tb1 <p>Uppercase: {{ name }}</p>
+                    /tb1 <p>Lowercase: {{ name }}</p>
 
-                    /tb <!-- Directive filters -->
-                    /tb <h3>Exercise 2</h3>
-                    /tb <input type="text" ng-model="test">
-                    /tb <h2 ng-repeat="x in details">{{x.Name}}</h2>
+                    /tb1 <!-- Directive filters -->
+                    /tb1 <h3>Exercise 2</h3>
+                    /tb1 <input type="text" ng-model="test">
+                    /tb1 <h2 ng-repeat="x in details">{{x.Name}}</h2>
                     </div>
                 ]]>
             </htmlcode>
@@ -1103,16 +1103,16 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', 'AnotherService', function ($scope, AnotherService) {
-                    /tb $scope.name = 'John Doe';
-                    /tb AnotherService.getDetails().then(function (response) {
-                    /tb/tb $scope.details = response.data;
-                    /tb });
+                    /tb1 $scope.name = 'John Doe';
+                    /tb1 AnotherService.getDetails().then(function (response) {
+                    /tb2 $scope.details = response.data;
+                    /tb1 });
                     }]);
 
                     app.service('AnotherService', ['$http', function($http) {
-                    /tb this.getDetails = function () {
-                    /tb/tb return $http.get('http://www.w3schools.com/website/customers_mysql.php');
-                    /tb }
+                    /tb1 this.getDetails = function () {
+                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb1 }
                     }]);
                  ]]>
             </scriptcode>
@@ -1126,15 +1126,15 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <!-- Expression filters -->
-                    /tb <h3>Exercise 1</h3>
-                    /tb <p>Uppercase: {{ name | uppercase}}</p>
-                    /tb <p>Lowercase: {{ name | lowercase}}</p>
+                    /tb1 <!-- Expression filters -->
+                    /tb1 <h3>Exercise 1</h3>
+                    /tb1 <p>Uppercase: {{ name | uppercase}}</p>
+                    /tb1 <p>Lowercase: {{ name | lowercase}}</p>
 
-                    /tb <!-- Directive filters -->
-                    /tb <h3>Exercise 2</h3>
-                    /tb <input type="text" ng-model="test">
-                    /tb <h2 ng-repeat="x in details | filter : test">{{x.Name}}</h2>
+                    /tb1 <!-- Directive filters -->
+                    /tb1 <h3>Exercise 2</h3>
+                    /tb1 <input type="text" ng-model="test">
+                    /tb1 <h2 ng-repeat="x in details | filter : test">{{x.Name}}</h2>
                     </div>
                 ]]>
             </htmlcode>
@@ -1143,16 +1143,16 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', 'AnotherService', function ($scope, AnotherService) {
-                    /tb $scope.name = 'John Doe';
-                    /tb AnotherService.getDetails().then(function (response) {
-                    /tb/tb $scope.details = response.data;
-                    /tb });
+                    /tb1 $scope.name = 'John Doe';
+                    /tb1 AnotherService.getDetails().then(function (response) {
+                    /tb2 $scope.details = response.data;
+                    /tb1 });
                     }]);
 
                     app.service('AnotherService', ['$http', function($http) {
-                    /tb this.getDetails = function () {
-                    /tb/tb return $http.get('http://www.w3schools.com/website/customers_mysql.php');
-                    /tb }
+                    /tb1 this.getDetails = function () {
+                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb1 }
                     }]);
                  ]]>
             </scriptcode>
@@ -1184,32 +1184,32 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltdiv ng-app="formExample" ng-controller="ExampleController">
-                /tb/ltform novalidate class="simple-form">
-                /tb/tb Name: /ltinput type="text" ng-model="user.name" />/ltbr />
-                /tb/tb Gender: /ltinput type="radio" ng-model="user.gender" value="male" />male
-                /tb/tb /ltinput type="radio" ng-model="user.gender" value="female" />female/ltbr />
-                /tb/tb /ltinput type="button" ng-click="reset()" value="Reset" />
-                /tb/tb /ltinput type="submit" ng-click="update(user)" value="Save" />
-                /tb/lt/form>
-                /tb/ltpre>user = {{user | json}}/lt/pre>
-                /tb/ltpre>master = {{master | json}}/lt/pre>
+                /tb1 /ltform novalidate class="simple-form">
+                /tb2 Name: /ltinput type="text" ng-model="user.name" />/ltbr />
+                /tb2 Gender: /ltinput type="radio" ng-model="user.gender" value="male" />male
+                /tb2 /ltinput type="radio" ng-model="user.gender" value="female" />female/ltbr />
+                /tb2 /ltinput type="button" ng-click="reset()" value="Reset" />
+                /tb2 /ltinput type="submit" ng-click="update(user)" value="Save" />
+                /tb1 /lt/form>
+                /tb1 /ltpre>user = {{user | json}}/lt/pre>
+                /tb1 /ltpre>master = {{master | json}}/lt/pre>
                 /lt/div>
                 /nl
                 /ltscript>
-                /tb angular.module('formExample', [])
-                /tb/tb .controller('ExampleController', ['$scope', function($scope) {
-                /tb/tb/tb $scope.master = {};
+                /tb1 angular.module('formExample', [])
+                /tb2 .controller('ExampleController', ['$scope', function($scope) {
+                /tb3 $scope.master = {};
                 /nl
-                /tb/tb/tb $scope.update = function(user) {
-                /tb/tb/tb/tb $scope.master = angular.copy(user);
-                /tb/tb/tb };
+                /tb3 $scope.update = function(user) {
+                /tb4 $scope.master = angular.copy(user);
+                /tb3 };
                 /nl
-                /tb/tb/tb $scope.reset = function() {
-                /tb/tb/tb/tb $scope.user = angular.copy($scope.master);
-                /tb/tb/tb };
+                /tb3 $scope.reset = function() {
+                /tb4 $scope.user = angular.copy($scope.master);
+                /tb3 };
                 /nl
-                /tb/tb/tb $scope.reset();
-                /tb }]);
+                /tb3 $scope.reset();
+                /tb1 }]);
                 /lt/script>
             &lt;/code>&lt;/pre>
             &lt;h3>Exercise:&lt;/h3>
@@ -1220,24 +1220,24 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="formExample" ng-controller="ExampleController">
-                    /tb <form novalidate class="simple-form">
-                    /tb/tb Name: <input type="text" ng-model="user.name" /><br />
-                    /tb/tb Gender: <input type="radio" ng-model="user.gender" value="male" />male
-                    /tb/tb/tb <input type="radio" ng-model="user.gender" value="female" />female<br />
-                    /tb/tb <input type="button" ng-click="reset()" value="Reset" />
-                    /tb/tb <input type="submit" ng-click="update(user)" value="Save" />
-                    /tb </form>
+                    /tb1 <form novalidate class="simple-form">
+                    /tb2 Name: <input type="text" ng-model="user.name" /><br />
+                    /tb2 Gender: <input type="radio" ng-model="user.gender" value="male" />male
+                    /tb3 <input type="radio" ng-model="user.gender" value="female" />female<br />
+                    /tb2 <input type="button" ng-click="reset()" value="Reset" />
+                    /tb2 <input type="submit" ng-click="update(user)" value="Save" />
+                    /tb1 </form>
                         
-                    /tb <pre>user = {{user | json}}</pre>
-                    /tb <pre>master = {{master | json}}</pre>
+                    /tb1 <pre>user = {{user | json}}</pre>
+                    /tb1 <pre>master = {{master | json}}</pre>
                     </div>
                 ]]>
             </htmlcode>
             <scriptcode>
                 <![CDATA[
                     angular.module('formExample', [])
-                    /tb .controller('ExampleController', ['$scope', function($scope) {
-                    /tb }]);
+                    /tb1 .controller('ExampleController', ['$scope', function($scope) {
+                    /tb1 }]);
                  ]]>
             </scriptcode>
             <stylecode>
@@ -1250,42 +1250,42 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="formExample" ng-controller="ExampleController">
-                    /tb <form novalidate class="simple-form">
-                    /tb/tb Name: <input type="text" ng-model="user.name" /><br />
-                    /tb/tb Gender: <input type="radio" ng-model="user.gender" value="male" />male
-                    /tb/tb/tb <input type="radio" ng-model="user.gender" value="female" />female<br />
-                    /tb/tb <input type="button" ng-click="reset()" value="Reset" />
-                    /tb/tb <input type="button" ng-click="delete()" value="Delete" />
-                    /tb/tb <input type="button" ng-click="insert()" value="Insert" />
-                    /tb/tb <input type="submit" ng-click="update(user)" value="Save" />
-                    /tb </form>
+                    /tb1 <form novalidate class="simple-form">
+                    /tb2 Name: <input type="text" ng-model="user.name" /><br />
+                    /tb2 Gender: <input type="radio" ng-model="user.gender" value="male" />male
+                    /tb3 <input type="radio" ng-model="user.gender" value="female" />female<br />
+                    /tb2 <input type="button" ng-click="reset()" value="Reset" />
+                    /tb2 <input type="button" ng-click="delete()" value="Delete" />
+                    /tb2 <input type="button" ng-click="insert()" value="Insert" />
+                    /tb2 <input type="submit" ng-click="update(user)" value="Save" />
+                    /tb1 </form>
                         
-                    /tb <pre>user = {{user | json}}</pre>
-                    /tb <pre>master = {{master | json}}</pre>
+                    /tb1 <pre>user = {{user | json}}</pre>
+                    /tb1 <pre>master = {{master | json}}</pre>
                     </div>
                 ]]>
             </htmlcode>
             <scriptcode>
                 <![CDATA[
                     angular.module('formExample', [])
-                    /tb .controller('ExampleController', ['$scope', function($scope) {
-                    /tb/tb $scope.master = {};
-                    /tb/tb $scope.update = function(user) {
-                    /tb/tb/tb $scope.master = angular.copy(user);
-                    /tb/tb };
-                    /tb/tb $scope.reset = function() {
-                    /tb/tb/tb $scope.user = angular.copy($scope.master);
-                    /tb/tb };
-                    /tb/tb $scope.delete = function() {
-                    /tb/tb/tb $scope.user = {};
-                    /tb/tb/tb $scope.master = {};
-                    /tb/tb };
-                    /tb/tb $scope.insert = function() {
-                    /tb/tb/tb $scope.user.name = 'Mark';
-                    /tb/tb/tb $scope.user.gender = 'male';
-                    /tb/tb };
-                    /tb/tb $scope.reset();
-                    /tb }]);
+                    /tb1 .controller('ExampleController', ['$scope', function($scope) {
+                    /tb2 $scope.master = {};
+                    /tb2 $scope.update = function(user) {
+                    /tb3 $scope.master = angular.copy(user);
+                    /tb2 };
+                    /tb2 $scope.reset = function() {
+                    /tb3 $scope.user = angular.copy($scope.master);
+                    /tb2 };
+                    /tb2 $scope.delete = function() {
+                    /tb3 $scope.user = {};
+                    /tb3 $scope.master = {};
+                    /tb2 };
+                    /tb2 $scope.insert = function() {
+                    /tb3 $scope.user.name = 'Mark';
+                    /tb3 $scope.user.gender = 'male';
+                    /tb2 };
+                    /tb2 $scope.reset();
+                    /tb1 }]);
                  ]]>
             </scriptcode>
             <stylecode>
@@ -1322,22 +1322,22 @@
                 /ltdiv ng-view>/lt/div>
                 /nl
                 /ltscript>
-                /tb var app = angular.module("myApp", ["ngRoute"]);
-                /tb/tb app.config(function($routeProvider) {
-                /tb/tb/tb $routeProvider
-                /tb/tb/tb/tb .when("/", {
-                /tb/tb/tb/tb/tb templateUrl : "main.htm"
-                /tb/tb/tb/tb })
-                /tb/tb/tb/tb .when("/red", {
-                /tb/tb/tb/tb/tb templateUrl : "red.htm"
-                /tb/tb/tb/tb })
-                /tb/tb/tb/tb .when("/green", {
-                /tb/tb/tb/tb/tb templateUrl : "green.htm"
-                /tb/tb/tb/tb })
-                /tb/tb/tb/tb .when("/blue", {
-                /tb/tb/tb/tb/tb templateUrl : "blue.htm"
-                /tb/tb/tb/tb });
-                /tb/tb });
+                /tb1 var app = angular.module("myApp", ["ngRoute"]);
+                /tb2 app.config(function($routeProvider) {
+                /tb3 $routeProvider
+                /tb4 .when("/", {
+                /tb4/tb1 templateUrl : "main.htm"
+                /tb4 })
+                /tb4 .when("/red", {
+                /tb4/tb1 templateUrl : "red.htm"
+                /tb4 })
+                /tb4 .when("/green", {
+                /tb4/tb1 templateUrl : "green.htm"
+                /tb4 })
+                /tb4 .when("/blue", {
+                /tb4/tb1 templateUrl : "blue.htm"
+                /tb4 });
+                /tb2 });
                 /lt/script>
             &lt;/code>&lt;/pre>
             To make your applications ready for routing, you must include the AngularJS Route module:
@@ -1356,19 +1356,19 @@
 
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 app.config(function($routeProvider) {
-                /tb $routeProvider
-                /tb/tb .when("/", {
-                /tb/tb/tb templateUrl : "main.htm"
-                /tb/tb })
-                /tb/tb .when("/red", {
-                /tb/tb/tb templateUrl : "red.htm"
-                /tb/tb })
-                /tb/tb .when("/green", {
-                /tb/tb/tb templateUrl : "green.htm"
-                /tb/tb })
-                /tb/tb .when("/blue", {
-                /tb/tb/tb templateUrl : "blue.htm"
-                /tb/tb });
+                /tb1 $routeProvider
+                /tb2 .when("/", {
+                /tb3 templateUrl : "main.htm"
+                /tb2 })
+                /tb2 .when("/red", {
+                /tb3 templateUrl : "red.htm"
+                /tb2 })
+                /tb2 .when("/green", {
+                /tb3 templateUrl : "green.htm"
+                /tb2 })
+                /tb2 .when("/blue", {
+                /tb3 templateUrl : "blue.htm"
+                /tb2 });
                 });
             &lt;/code>&lt;/pre>
             &lt;h2>ngView&lt;/h2>
@@ -1394,16 +1394,16 @@
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 var app = angular.module("myApp", ["ngRoute"]);
                 app.config(function($routeProvider) {
-                /tb $routeProvider
-                /tb/tb .when("/", {
-                /tb/tb/tb templateUrl : "main.htm"
-                /tb/tb })
-                /tb/tb .when("/london", {
-                /tb/tb/tb templateUrl : "london.htm"
-                /tb/tb })
-                /tb/tb .when("/paris", {
-                /tb/tb/tb templateUrl : "paris.htm"
-                /tb/tb });
+                /tb1 $routeProvider
+                /tb2 .when("/", {
+                /tb3 templateUrl : "main.htm"
+                /tb2 })
+                /tb2 .when("/london", {
+                /tb3 templateUrl : "london.htm"
+                /tb2 })
+                /tb2 .when("/paris", {
+                /tb3 templateUrl : "paris.htm"
+                /tb2 });
                 });
             &lt;/code>&lt;/pre>
             Define the $routeProvider using the config method of your application. Work registered in the config method will be performed when the application is loading.
@@ -1416,26 +1416,26 @@
                 var app = angular.module("myApp", ["ngRoute"]);
                 /nl
                 app.config(function($routeProvider) {
-                /tb $routeProvider
-                /tb/tb .when("/", {
-                /tb/tb/tb templateUrl : "main.htm"
-                /tb/tb })
-                /tb/tb .when("/london", {
-                /tb/tb/tb templateUrl : "london.htm",
-                /tb/tb/tb controller : "londonCtrl"
-                /tb/tb })
-                /tb/tb .when("/paris", {
-                /tb/tb/tb templateUrl : "paris.htm",
-                /tb/tb/tb controller : "parisCtrl"
-                /tb/tb });
+                /tb1 $routeProvider
+                /tb2 .when("/", {
+                /tb3 templateUrl : "main.htm"
+                /tb2 })
+                /tb2 .when("/london", {
+                /tb3 templateUrl : "london.htm",
+                /tb3 controller : "londonCtrl"
+                /tb2 })
+                /tb2 .when("/paris", {
+                /tb3 templateUrl : "paris.htm",
+                /tb3 controller : "parisCtrl"
+                /tb2 });
                 });
                 /nl
                 app.controller("londonCtrl", function ($scope) {
-                /tb $scope.msg = "I love London";
+                /tb1 $scope.msg = "I love London";
                 });
                 /nl
                 app.controller("parisCtrl", function ($scope) {
-                /tb $scope.msg = "I love Paris";
+                /tb1 $scope.msg = "I love Paris";
                 });
             &lt;/code>&lt;/pre>
             &lt;h2>Template&lt;/h2>
@@ -1447,16 +1447,16 @@
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 var app = angular.module("myApp", ["ngRoute"]);
                 app.config(function($routeProvider) {
-                /tb $routeProvider
-                /tb/tb .when("/", {
-                /tb/tb/tb template : "/lth1>Main/lt/h1>/ltp>Click on the links to change this content/lt/p>"
-                /tb/tb })
-                /tb/tb .when("/banana", {
-                /tb/tb/tb template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
-                /tb/tb })
-                /tb/tb .when("/tomato", {
-                /tb/tb/tb template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
-                /tb/tb });
+                /tb1 $routeProvider
+                /tb2 .when("/", {
+                /tb3 template : "/lth1>Main/lt/h1>/ltp>Click on the links to change this content/lt/p>"
+                /tb2 })
+                /tb2 .when("/banana", {
+                /tb3 template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
+                /tb2 })
+                /tb2 .when("/tomato", {
+                /tb3 template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
+                /tb2 });
                 });
             &lt;/code>&lt;/pre>
             &lt;h2>The otherwise method&lt;/h2>
@@ -1468,16 +1468,16 @@
             &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
                 var app = angular.module("myApp", ["ngRoute"]);
                 app.config(function($routeProvider) {
-                /tb $routeProvider
-                /tb/tb .when("/banana", {
-                /tb/tb/tb template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
-                /tb/tb })
-                /tb/tb .when("/tomato", {
-                /tb/tb/tb template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
-                /tb/tb })
-                /tb/tb .otherwise({
-                /tb/tb/tb template : "/lth1>None/lt/h1>/ltp>Nothing has been selected,/lt/p>"
-                /tb/tb });
+                /tb1 $routeProvider
+                /tb2 .when("/banana", {
+                /tb3 template : "/lth1>Banana/lt/h1>/ltp>Bananas contain around 75% water./lt/p>"
+                /tb2 })
+                /tb2 .when("/tomato", {
+                /tb3 template : "/lth1>Tomato/lt/h1>/ltp>Tomatoes contain around 95% water./lt/p>"
+                /tb2 })
+                /tb2 .otherwise({
+                /tb3 template : "/lth1>None/lt/h1>/ltp>Nothing has been selected,/lt/p>"
+                /tb2 });
                 });
             &lt;/code>&lt;/pre>
             &lt;h3>Exercise:&lt;/h3>
@@ -1488,12 +1488,12 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp">
-                    /tb <p><a href="#/">Main</a></p> 
-                    /tb <a href="#route1">Route 1</a>
-                    /tb <a href="#route2">Route 2</a>
-                    /tb <a href="#route3">Route 3</a>
+                    /tb1 <p><a href="#/">Main</a></p> 
+                    /tb1 <a href="#route1">Route 1</a>
+                    /tb1 <a href="#route2">Route 2</a>
+                    /tb1 <a href="#route3">Route 3</a>
                         
-                    /tb <div ng-view></div>
+                    /tb1 <div ng-view></div>
                     </div> 
                 ]]>
             </htmlcode>
@@ -1512,12 +1512,12 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp">
-                    /tb <p><a href="#/">Main</a></p> 
-                    /tb <a href="#route1">Route 1</a>
-                    /tb <a href="#route2">Route 2</a>
-                    /tb <a href="#route3">Route 3</a>
+                    /tb1 <p><a href="#/">Main</a></p> 
+                    /tb1 <a href="#route1">Route 1</a>
+                    /tb1 <a href="#route2">Route 2</a>
+                    /tb1 <a href="#route3">Route 3</a>
                         
-                    /tb <div ng-view></div>
+                    /tb1 <div ng-view></div>
                     </div> 
                 ]]>
             </htmlcode>
@@ -1526,18 +1526,18 @@
                     var app = angular.module('myApp', ['ngRoute']);
 
                     app.config(function($routeProvider) {
-                    /tb $routeProvider
-                    /tb/tb .when('/', {
-                    /tb/tb/tb template : '<h1>Main</h1><p>Select a route</p>'
-                    /tb/tb }).when('/route1', {
-                    /tb/tb/tb template : '<h1>Route 1</h1><p>You are in route 1</p>'
-                    /tb/tb }).when('/route2', {
-                    /tb/tb/tb template : '<h1>Route 2</h1><p>Now in route 2</p>'
-                    /tb/tb }).when('/route3', {
-                    /tb/tb/tb template : '<h1>Route 3</h1><p>Currently in route 3</p>'
-                    /tb/tb }).otherwise({
-                    /tb/tb/tb template : '<h1>None</h1><p>Nothing has been selected</p>'
-                    /tb/tb });
+                    /tb1 $routeProvider
+                    /tb2 .when('/', {
+                    /tb3 template : '<h1>Main</h1><p>Select a route</p>'
+                    /tb2 }).when('/route1', {
+                    /tb3 template : '<h1>Route 1</h1><p>You are in route 1</p>'
+                    /tb2 }).when('/route2', {
+                    /tb3 template : '<h1>Route 2</h1><p>Now in route 2</p>'
+                    /tb2 }).when('/route3', {
+                    /tb3 template : '<h1>Route 3</h1><p>Currently in route 3</p>'
+                    /tb2 }).otherwise({
+                    /tb3 template : '<h1>None</h1><p>Nothing has been selected</p>'
+                    /tb2 });
                     });
                  ]]>
             </scriptcode>
@@ -1572,16 +1572,16 @@
             &lt;label class="content-code-label bg-primary">Example&lt;/label>
             &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
                 /ltscript>
-                /tb app.directive('myCustomDirective', function () {
-                /tb/tb return {
-                /tb/tb/tb restrict: 'E', // Restriction for Element
-                /tb/tb/tb replace: true, // If true, Replace the custom element with the template 
-                /tb/tb/tb scope: {
-                /tb/tb/tb/tb list: '='
-                /tb/tb/tb },
-                /tb/tb/tb template: '/lta href="#" ng-repeat="x in list">{{x}}/lt/a>'
-                /tb/tb };
-                /tb });
+                /tb1 app.directive('myCustomDirective', function () {
+                /tb2 return {
+                /tb3 restrict: 'E', // Restriction for Element
+                /tb3 replace: true, // If true, Replace the custom element with the template 
+                /tb3 scope: {
+                /tb4 list: '='
+                /tb3 },
+                /tb3 template: '/lta href="#" ng-repeat="x in list">{{x}}/lt/a>'
+                /tb2 };
+                /tb1 });
                 /lt/script>
 
                 /ltmy-custom-directive list="myList">/lt/my-custom-directive>
@@ -1594,7 +1594,7 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-
+                    /tb1 <!-- -->
                     </div>
                 ]]>
             </htmlcode>
@@ -1603,18 +1603,18 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', function($scope) {
-                    /tb $scope.data = [
-                    /tb/tb {name:'John', age:25, gender:'boy'},
-                    /tb/tb {name:'Jessie', age:30, gender:'girl'},
-                    /tb/tb {name:'Johanna', age:28, gender:'girl'},
-                    /tb/tb {name:'Joy', age:15, gender:'girl'},
-                    /tb/tb {name:'Mary', age:28, gender:'girl'},
-                    /tb/tb {name:'Peter', age:95, gender:'boy'},
-                    /tb/tb {name:'Sebastian', age:50, gender:'boy'},
-                    /tb/tb {name:'Erika', age:27, gender:'girl'},
-                    /tb/tb {name:'Patrick', age:40, gender:'boy'},
-                    /tb/tb {name:'Samantha', age:60, gender:'girl'}
-                    /tb ];
+                    /tb1 $scope.data = [
+                    /tb2 {name:'John', age:25, gender:'boy'},
+                    /tb2 {name:'Jessie', age:30, gender:'girl'},
+                    /tb2 {name:'Johanna', age:28, gender:'girl'},
+                    /tb2 {name:'Joy', age:15, gender:'girl'},
+                    /tb2 {name:'Mary', age:28, gender:'girl'},
+                    /tb2 {name:'Peter', age:95, gender:'boy'},
+                    /tb2 {name:'Sebastian', age:50, gender:'boy'},
+                    /tb2 {name:'Erika', age:27, gender:'girl'},
+                    /tb2 {name:'Patrick', age:40, gender:'boy'},
+                    /tb2 {name:'Samantha', age:60, gender:'girl'}
+                    /tb1 ];
                     }]);
                  ]]>
             </scriptcode>
@@ -1628,7 +1628,7 @@
             <htmlcode>
                 <![CDATA[
                     <div ng-app="myApp" ng-controller="myController">
-                    /tb <my-directive list="data"></my-directive>
+                    /tb1 <my-directive list="data"></my-directive>
                     </div>
                 ]]>
             </htmlcode>
@@ -1637,30 +1637,128 @@
                     var app = angular.module('myApp', []);
 
                     app.controller('myController', ['$scope', function($scope) {
-                    /tb $scope.data = [
-                    /tb/tb {name:'John', age:25, gender:'boy'},
-                    /tb/tb {name:'Jessie', age:30, gender:'girl'},
-                    /tb/tb {name:'Johanna', age:28, gender:'girl'},
-                    /tb/tb {name:'Joy', age:15, gender:'girl'},
-                    /tb/tb {name:'Mary', age:28, gender:'girl'},
-                    /tb/tb {name:'Peter', age:95, gender:'boy'},
-                    /tb/tb {name:'Sebastian', age:50, gender:'boy'},
-                    /tb/tb {name:'Erika', age:27, gender:'girl'},
-                    /tb/tb {name:'Patrick', age:40, gender:'boy'},
-                    /tb/tb {name:'Samantha', age:60, gender:'girl'}
-                    /tb ];
+                    /tb1 $scope.data = [
+                    /tb2 {name:'John', age:25, gender:'boy'},
+                    /tb2 {name:'Jessie', age:30, gender:'girl'},
+                    /tb2 {name:'Johanna', age:28, gender:'girl'},
+                    /tb2 {name:'Joy', age:15, gender:'girl'},
+                    /tb2 {name:'Mary', age:28, gender:'girl'},
+                    /tb2 {name:'Peter', age:95, gender:'boy'},
+                    /tb2 {name:'Sebastian', age:50, gender:'boy'},
+                    /tb2 {name:'Erika', age:27, gender:'girl'},
+                    /tb2 {name:'Patrick', age:40, gender:'boy'},
+                    /tb2 {name:'Samantha', age:60, gender:'girl'}
+                    /tb1 ];
                     }]);
 
                     app.directive('myDirective', [function () {
-                    /tb return {
-                    /tb/tb restrict: 'E',
-                    /tb/tb replace: true,
-                    /tb/tb scope: {
-                    /tb/tb/tb list: '='
-                    /tb/tb },
-                    /tb/tb template: '<div ng-repeat="x in list"><a href="#" ng-click="showDetails = !showDetails">{{x.name}}</a> <span ng-show="showDetails">Age: {{x.age}} Gender: {{x.gender}}</span></div>'
-                    /tb };
+                    /tb1 return {
+                    /tb2 restrict: 'E',
+                    /tb2 replace: true,
+                    /tb2 scope: {
+                    /tb3 list: '='
+                    /tb2 },
+                    /tb2 template: '<div ng-repeat="x in list"><a href="#" ng-click="showDetails = !showDetails">{{x.name}}</a> <span ng-show="showDetails">Age: {{x.age}} Gender: {{x.gender}}</span></div>'
+                    /tb1 };
                     }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
+    </chapter>
+    <chapter>
+        <level>
+            Advanced
+        </level>
+        <title>
+            Custom Filters
+        </title>
+        <content>
+            You can make your own filters by registering a new filter factory function with your module.
+
+            The filter function should be a pure function, which means that it should always return the same result given the same input arguments and should not affect external state, for example, other Angular services.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                var app = angular.module('myApp', []);
+                app.filter('myFormat', function() {
+                /tb1 return function(x) {
+                /tb2 var i, c, txt = "";
+                /tb2 for (i = 0; i /lt x.length; i++) {
+                /tb3 c = x[i];
+                /tb3 if (i % 2 === 0) {
+                /tb4 c = c.toUpperCase();
+                /tb3 }
+                /tb3 txt += c;
+                /tb2 }
+                /tb2 return txt;
+                /tb1 };
+                });
+            &lt;/code>&lt;/pre>
+            The myFormat filter will format every other character to uppercase.
+            
+            &lt;h3>Exercise:&lt;/h3>
+
+            Create your own custom filter. You may refer to our example.
+        </content>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /tb1 <!-- -->
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+                    app.filter('myFilterName', function() {
+                    /tb1 //
+                    });
+                    app.controller('myController', function($scope) {
+                    /tb1 //
+                    });
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="myApp" ng-controller="myController">
+                    /tb1 <li ng-repeat="x in names">
+                    /tb2 {{ x | myFormat }}
+                    /tb1 </li>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('myApp', []);
+                    app.filter('myFormat', function() {
+                    /tb1 return function(x) {
+                    /tb2 var i, c, txt = "";
+                    /tb2 for (i = 0; i < x.length; i++) {
+                    /tb3 c = x[i];
+                    /tb3 if (i % 2 === 0) {
+                    /tb4 c = c.toUpperCase();
+                    /tb3 }
+                    /tb3 txt += c;
+                    /tb2 }
+                    /tb2 return txt;
+                    /tb1 };
+                    });
+                    app.controller('myController', function($scope) {
+                    /tb1 $scope.names = ['Jani', 'Carl', 'Margareth', 'Hege', 'Joe', 'Gustav', 'Birgit', 'Mary', 'Kai'];
+                    });
                  ]]>
             </scriptcode>
             <stylecode>

@@ -92,6 +92,11 @@
 
 .code-buttons {
     margin: 10px 0;
+    
+    &:active,
+    &:focus {
+        outline: none !important;
+    }
 }
 
 #iframeWrapper {

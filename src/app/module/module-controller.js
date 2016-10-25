@@ -5,6 +5,11 @@
         .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
+                .when('/', {
+                    templateUrl: 'module/module.html',
+                    controller: 'ModuleController',
+                    controllerAs: 'module'
+                })
                 .when('/module', {
                     templateUrl: 'module/module.html',
                     controller: 'ModuleController',
