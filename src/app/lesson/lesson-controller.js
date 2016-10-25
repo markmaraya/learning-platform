@@ -11,7 +11,7 @@
                     controllerAs: 'lesson'
                 });
         }])
-        .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', function ($routeParams, LessonDetailService, X2jsService, UtilityService) {
+        .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', 'webSandboxService', function ($routeParams, LessonDetailService, X2jsService, UtilityService, webSandboxService) {
             var vm = this;
             var path = $routeParams.lesson;
             var level = $routeParams.level;
@@ -28,6 +28,8 @@
             vm.breadcrumb.lesson = path;
             vm.breadcrumb.level = level;
 
+            vm.dependencyLink = dependencyLink;
+
             LessonDetailService.getDetails(path)
                 .then(function (response) {
                     chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
@@ -35,13 +37,16 @@
                     UtilityService.GetTitleByLevel(vm, chapterList, level);
                     UtilityService.AddCodeValue(vm);
                     UtilityService.CopyCodeValue(vm);
+                    UtilityService.webSandboxCode(vm);
                 })
                 .catch(function () {
                     vm.chapter = '';
                 });
 
             vm.submitCode = function () {
-                UtilityService.WriteCodeToIframe(vm, dependencyLink);
+                UtilityService.webSandboxCode(vm);
+
+                webSandboxService.compile();
             };
 
             vm.resetCode = function () {
@@ -49,13 +54,17 @@
                 vm.code.script = vm.scriptCodeCopy;
                 vm.code.style = vm.styleCodeCopy;
 
-                document.getElementById('iframeWrapper').innerHTML = '';
+                UtilityService.webSandboxCode(vm);
+
+                webSandboxService.clear();
             };
 
             vm.showExample = function () {
                 vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
                 vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
                 vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
+
+                UtilityService.webSandboxCode(vm);
 
                 vm.submitCode();
             };

@@ -783,7 +783,7 @@
 
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
-                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
                     /tb1 }
                     }]);
 
@@ -813,7 +813,7 @@
                     /tb1 <h2>{{lowercaseOutput}}</h2>
 
                     /tb1 <h4>Exercise 2</h4>
-                    /tb1 <h3 ng-repeat="details in list">{{details.Name}}</h3>
+                    /tb1 <h3 ng-repeat="details in list">{{details.nm}}</h3>
                     </div>
                 ]]>
             </htmlcode>
@@ -835,7 +835,7 @@
 
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
-                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
                     /tb1 }
                     }]);
 
@@ -1094,7 +1094,7 @@
                     /tb1 <!-- Directive filters -->
                     /tb1 <h3>Exercise 2</h3>
                     /tb1 <input type="text" ng-model="test">
-                    /tb1 <h2 ng-repeat="x in details">{{x.Name}}</h2>
+                    /tb1 <h2 ng-repeat="x in details">{{x.nm}}</h2>
                     </div>
                 ]]>
             </htmlcode>
@@ -1111,7 +1111,7 @@
 
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
-                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
                     /tb1 }
                     }]);
                  ]]>
@@ -1134,7 +1134,7 @@
                     /tb1 <!-- Directive filters -->
                     /tb1 <h3>Exercise 2</h3>
                     /tb1 <input type="text" ng-model="test">
-                    /tb1 <h2 ng-repeat="x in details | filter : test">{{x.Name}}</h2>
+                    /tb1 <h2 ng-repeat="x in details | filter : test">{{x.nm}}</h2>
                     </div>
                 ]]>
             </htmlcode>
@@ -1151,7 +1151,7 @@
 
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
-                    /tb2 return $http.get('http://www.w3schools.com/website/customers_mysql.php');
+                    /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
                     /tb1 }
                     }]);
                  ]]>
@@ -1699,7 +1699,7 @@
                 /tb1 };
                 });
             &lt;/code>&lt;/pre>
-            The myFormat filter will format every other character to uppercase.
+            The &lt;strong>myFormat&lt;/strong> filter will format every other character to uppercase.
             
             &lt;h3>Exercise:&lt;/h3>
 

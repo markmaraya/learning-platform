@@ -58,7 +58,8 @@
 					<i class="mdi mdi-arrow-expand" ng-show="!lesson.expandEditor"></i>
 					<i class="mdi mdi-arrow-compress" ng-show="lesson.expandEditor"></i>
 				</button>
-				<div id="iframeWrapper"></div>
+				
+				<web-sandbox id="iframeWrapper" ws-id="iframeResult" code="lesson.wscode"></web-sandbox>
 			</div>
 		</div>
 	</div>

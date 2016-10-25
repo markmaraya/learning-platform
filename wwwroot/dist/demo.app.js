@@ -95,31 +95,13 @@
                 }
             };
 
-            this.WriteCodeToIframe = function (scope, dependencyLink) {
-                var text = scope.code.html;
-                var scriptText = scope.code.script;
-                var styleText = scope.code.style;
-
-                var ifr = document.createElement('iframe');
-
-                ifr.setAttribute('name', 'frame1');
-                ifr.setAttribute('frameborder', '0');
-                ifr.setAttribute('id', 'iframeResult');
-                document.getElementById('iframeWrapper').innerHTML = '';
-                document.getElementById('iframeWrapper').appendChild(ifr);
-
-                var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-                ifrw.document.open();
-                ifrw.document.write(text);
-                ifrw.document.write('<style>' + styleText + '<\/style>');
-
-                angular.forEach(dependencyLink, function (value) {
-                    ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/script>');
-                });
-
-                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/script>');
-                ifrw.document.close();
+            this.webSandboxCode = function (vm) {
+                vm.wscode = {
+                    html: vm.code.html,
+                    css: vm.code.style,
+                    js: vm.code.script,
+                    jsDependencies: vm.dependencyLink
+                };
             };
         }]);
 })();
@@ -200,6 +182,105 @@
 (function () {
     'use strict';
 
+    WebSandbox.$inject = ['$window', '$timeout', 'webSandboxService'];
+
+    angular
+        .module('LearningPlatformApplication')
+        .directive('webSandbox', WebSandbox)
+        .service('webSandboxService', WebSandboxService);
+
+    function WebSandbox($window, $timeout, webSandboxService) {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div class="web-sandbox"></div>',
+            scope: {
+                wsId: '@',
+                code: '='
+            },
+            compile: WebSandboxCompileFunction($window, $timeout, webSandboxService)
+        };
+    }
+
+    function WebSandboxCompileFunction($window, $timeout, webSandboxService) {
+        return function () {
+            return function (scope, element) {
+                webSandboxService.onCompile(function () {
+                    var iframe, iframeWindow;
+                    iframe = createNewIframe();
+                    element.empty();
+                    element.append(iframe);
+
+                    iframeWindow = iframe.contentWindow || iframe.contentDocument.document || iframe.contentDocument;
+
+                    $timeout(function () {
+                        writeToIframeWindow(iframeWindow);
+                    });
+                });
+
+                webSandboxService.onClear(function () {
+                    element.empty();
+                });
+
+                function createNewIframe() {
+                    var iframe = $window.document.createElement('iframe');
+                    iframe.setAttribute('id', scope.wsId);
+                    iframe.setAttribute('class', 'web-sandbox-iframe');
+                    iframe.setAttribute('frameborder', '0');
+                    return iframe;
+                }
+
+                function writeToIframeWindow(iframeWindow) {
+                    iframeWindow.document.open();
+                    iframeWindow.document.write(scope.code.html);
+                    iframeWindow.document.write('<style>' + scope.code.css + '<\/style>');
+
+                    angular.forEach(scope.code.jsDependencies, function (value) {
+                        iframeWindow.document.write('<script type="text/javascript" src="' + value + '"><\/script>');
+                    });
+
+                    iframeWindow.document.write('<script type="text/javascript">' + scope.code.js + '<\/script>');
+                    iframeWindow.document.close();
+                }
+            };
+        };
+    }
+
+    function WebSandboxService() {
+        var svc = this;
+
+        var onCompileHandler;
+        var onClearHandler;
+
+        svc.compile = compile;
+        svc.clear = clear;
+        svc.onCompile = onCompile;
+        svc.onClear = onClear;
+
+        function compile() {
+            if (onCompileHandler) {
+                onCompileHandler();
+            }
+        }
+
+        function onCompile(handler) {
+            onCompileHandler = handler;
+        }
+
+        function clear() {
+            if (onClearHandler) {
+                onClearHandler();
+            }
+        }
+
+        function onClear(handler) {
+            onClearHandler = handler;
+        }
+    }
+})();
+(function () {
+    'use strict';
+
     angular
         .module('LearningPlatformApplication')
         .filter('spaceToDash', [function () {
@@ -253,7 +334,7 @@
                     controllerAs: 'lesson'
                 });
         }])
-        .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', function ($routeParams, LessonDetailService, X2jsService, UtilityService) {
+        .controller('LessonController', ['$routeParams', 'LessonDetailService', 'X2jsService', 'UtilityService', 'webSandboxService', function ($routeParams, LessonDetailService, X2jsService, UtilityService, webSandboxService) {
             var vm = this;
             var path = $routeParams.lesson;
             var level = $routeParams.level;
@@ -270,6 +351,8 @@
             vm.breadcrumb.lesson = path;
             vm.breadcrumb.level = level;
 
+            vm.dependencyLink = dependencyLink;
+
             LessonDetailService.getDetails(path)
                 .then(function (response) {
                     chapterList = X2jsService.xml_str2json(response.data).lesson.chapter;
@@ -277,13 +360,16 @@
                     UtilityService.GetTitleByLevel(vm, chapterList, level);
                     UtilityService.AddCodeValue(vm);
                     UtilityService.CopyCodeValue(vm);
+                    UtilityService.webSandboxCode(vm);
                 })
                 .catch(function () {
                     vm.chapter = '';
                 });
 
             vm.submitCode = function () {
-                UtilityService.WriteCodeToIframe(vm, dependencyLink);
+                UtilityService.webSandboxCode(vm);
+
+                webSandboxService.compile();
             };
 
             vm.resetCode = function () {
@@ -291,13 +377,17 @@
                 vm.code.script = vm.scriptCodeCopy;
                 vm.code.style = vm.styleCodeCopy;
 
-                document.getElementById('iframeWrapper').innerHTML = '';
+                UtilityService.webSandboxCode(vm);
+
+                webSandboxService.clear();
             };
 
             vm.showExample = function () {
                 vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
                 vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
                 vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
+
+                UtilityService.webSandboxCode(vm);
 
                 vm.submitCode();
             };
@@ -349,8 +439,12 @@
                 .then(function (response) {
                     var lessons = X2jsService.xml_str2json(response.data).lesson.topic;
 
-                    for (var key in lessons) {
-                        vm.topicList.push(lessons[key]);
+                    if (lessons.length === undefined) {
+                        vm.topicList.push(lessons);
+                    } else {
+                        for (var key in lessons) {
+                            vm.topicList.push(lessons[key]);
+                        }
                     }
                 });
 

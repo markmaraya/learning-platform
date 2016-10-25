@@ -26,8 +26,12 @@
                 .then(function (response) {
                     var lessons = X2jsService.xml_str2json(response.data).lesson.topic;
 
-                    for (var key in lessons) {
-                        vm.topicList.push(lessons[key]);
+                    if (lessons.length === undefined) {
+                        vm.topicList.push(lessons);
+                    } else {
+                        for (var key in lessons) {
+                            vm.topicList.push(lessons[key]);
+                        }
                     }
                 });
 

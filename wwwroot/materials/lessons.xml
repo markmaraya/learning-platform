@@ -3,12 +3,32 @@
         <title>AngularJS</title>
         <icon>angular</icon>
     </topic>
+    <!--<topic>
+        <title>HTML</title>
+        <icon>language-html5</icon>
+    </topic>
     <topic>
-        <title>Bootstrap</title>
-        <icon>close</icon>
+        <title>CSS</title>
+        <icon>language-css3</icon>
     </topic>
     <topic>
         <title>Javascript</title>
         <icon>language-javascript</icon>
     </topic>
+    <topic>
+        <title>PHP</title>
+        <icon>language-php</icon>
+    </topic>
+    <topic>
+        <title>Python</title>
+        <icon>language-python</icon>
+    </topic>
+    <topic>
+        <title>JSON</title>
+        <icon>json</icon>
+    </topic>
+    <topic>
+        <title>XML</title>
+        <icon>xml</icon>
+    </topic>-->
 </lesson>

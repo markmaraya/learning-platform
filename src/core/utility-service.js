@@ -59,31 +59,13 @@
                 }
             };
 
-            this.WriteCodeToIframe = function (scope, dependencyLink) {
-                var text = scope.code.html;
-                var scriptText = scope.code.script;
-                var styleText = scope.code.style;
-
-                var ifr = document.createElement('iframe');
-
-                ifr.setAttribute('name', 'frame1');
-                ifr.setAttribute('frameborder', '0');
-                ifr.setAttribute('id', 'iframeResult');
-                document.getElementById('iframeWrapper').innerHTML = '';
-                document.getElementById('iframeWrapper').appendChild(ifr);
-
-                var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-
-                ifrw.document.open();
-                ifrw.document.write(text);
-                ifrw.document.write('<style>' + styleText + '<\/style>');
-
-                angular.forEach(dependencyLink, function (value) {
-                    ifrw.document.write('<script type="text/javascript" src="' + value + '"><\/script>');
-                });
-
-                ifrw.document.write('<script type="text/javascript">' + scriptText + '<\/script>');
-                ifrw.document.close();
+            this.webSandboxCode = function (vm) {
+                vm.wscode = {
+                    html: vm.code.html,
+                    css: vm.code.style,
+                    js: vm.code.script,
+                    jsDependencies: vm.dependencyLink
+                };
             };
         }]);
 })();
