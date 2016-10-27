@@ -32,34 +32,37 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-md-5 col-sm-5 col">
+			<div class="col-md-5 col-sm-5 col" ng-hide="lesson.expandEditor">
 				<div class="section" ng-show="lesson.chapter">
 					<h1>{{lesson.chapter.title}}</h1>
 					<chapter-content content="lesson.chapter.content"></chapter-content>
 				</div>
 			</div>
-			<div class="col" ng-class="{'col-md-7 col-sm-7' : lesson.expandEditor, 'col-md-5 col-sm-5' : !lesson.expandEditor}">
-				<uib-tabset active="active">
-					<uib-tab index="0" heading="HTML">
-						<section class="code-editor" ng-model="lesson.code.html" ng-change="lesson.updateHtmlCode(lesson.code.html)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'html'}"></section>
-					</uib-tab>
-					<uib-tab index="1" heading="Script">
-						<section class="code-editor" ng-model="lesson.code.script" ng-change="lesson.updateScriptCode(lesson.code.script)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'javascript'}"></section>
-					</uib-tab>
-					<uib-tab index="2" heading="Style">
-						<section class="code-editor" ng-model="lesson.code.style" ng-change="lesson.updateStyleCode(lesson.code.style)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'css'}"></section>
-					</uib-tab>
-				</uib-tabset>
-
-				<button class="btn btn-success code-buttons" ng-click="lesson.submitCode()">Try It</button>
-				<button class="btn btn-warning code-buttons" ng-click="lesson.resetCode()">Reset</button>
-				<button class="btn btn-info code-buttons" ng-click="lesson.showExample()">Example</button>
-				<button class="btn btn-primary pull-right code-buttons" ng-click="lesson.expandEditor = !lesson.expandEditor">
-					<i class="mdi mdi-arrow-expand" ng-show="!lesson.expandEditor"></i>
-					<i class="mdi mdi-arrow-compress" ng-show="lesson.expandEditor"></i>
-				</button>
-				
-				<web-sandbox id="iframeWrapper" ws-id="iframeResult" code="lesson.wscode"></web-sandbox>
+			<div class="col" ng-class="{'col-md-12 col-sm-12' : lesson.expandEditor, 'col-md-5 col-sm-5' : !lesson.expandEditor}">
+				<div ng-class="{'code-editor-col' : lesson.expandEditor}">
+					<uib-tabset active="active">
+						<uib-tab index="0" heading="HTML" ng-click="">
+							<section class="code-editor" ng-model="lesson.code.html" ng-change="lesson.updateHtmlCode(lesson.code.html)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'html'}"></section>
+						</uib-tab>
+						<uib-tab index="1" heading="Script" ng-click="">
+							<section class="code-editor" ng-model="lesson.code.script" ng-change="lesson.updateScriptCode(lesson.code.script)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'javascript'}"></section>
+						</uib-tab>
+						<uib-tab index="2" heading="Style" ng-click="">
+							<section class="code-editor" ng-model="lesson.code.style" ng-change="lesson.updateStyleCode(lesson.code.style)" ui-ace="{useWrapMode: true, showGutter: true, mode: 'css'}"></section>
+						</uib-tab>
+					</uib-tabset>
+				</div>
+				<div ng-class="{'code-editor-col' : lesson.expandEditor}">
+					<button class="btn btn-success code-buttons" ng-click="lesson.submitCode()">Try It</button>
+					<button class="btn btn-warning code-buttons" ng-click="lesson.resetCode()">Reset</button>
+					<button class="btn btn-info code-buttons" ng-click="lesson.showExample()">Example</button>
+					<button class="btn btn-primary pull-right code-buttons" ng-click="lesson.expandEditor = !lesson.expandEditor">
+						<i class="mdi mdi-arrow-expand" ng-show="!lesson.expandEditor"></i>
+						<i class="mdi mdi-arrow-compress" ng-show="lesson.expandEditor"></i>
+					</button>
+					
+					<web-sandbox id="iframeWrapper" ws-id="iframeResult" code="lesson.wscode"></web-sandbox>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -778,13 +778,13 @@
                     app.service('MyService', function() {
                     /tb1 this.myFunction = function (data) {
                     /tb2 return data.toUpperCase();
-                    /tb1 }
+                    /tb1 };
                     });
 
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
                     /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
-                    /tb1 }
+                    /tb1 };
                     }]);
 
                     app.controller('myController', ['$scope', 'MyService', function($scope, MyService) {
@@ -824,19 +824,19 @@
                     app.service('MyService', function() {
                     /tb1 this.myFunction = function (data) {
                     /tb2 return data.toUpperCase();
-                    /tb1 }
+                    /tb1 };
                     });
 
                     app.service('ToLowerCaseService', function() {
                     /tb1 this.myFunction = function (data) {
                     /tb2 return data.toLowerCase();
-                    /tb1 }
+                    /tb1 };
                     });
 
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
                     /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
-                    /tb1 }
+                    /tb1 };
                     }]);
 
                     app.controller('myController', ['$scope', 'MyService', 'ToLowerCaseService', 'AnotherService', function($scope, MyService, ToLowerCaseService, AnotherService) {
@@ -1112,7 +1112,7 @@
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
                     /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
-                    /tb1 }
+                    /tb1 };
                     }]);
                  ]]>
             </scriptcode>
@@ -1152,7 +1152,7 @@
                     app.service('AnotherService', ['$http', function($http) {
                     /tb1 this.getDetails = function () {
                     /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
-                    /tb1 }
+                    /tb1 };
                     }]);
                  ]]>
             </scriptcode>
@@ -1764,6 +1764,219 @@
             <stylecode>
                 <![CDATA[
 
+                 ]]>
+            </stylecode>
+        </example>
+    </chapter>
+    <chapter>
+        <level>
+            Advanced
+        </level>
+        <title>
+            Application
+        </title>
+        <content>
+            Now you are ready to create your own AngularJS Application.
+
+            Lets use some of the AngularJS features we've learn to make a simple application, were you can add, remove, or filter the names.
+
+            Step 1:
+            Make a div that will contain our app.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
+                /ltdiv ng-app="finalExercise" ng-controller="MyController">
+                /tb1 /lt!-- -->
+                /lt/div>
+            &lt;/code>&lt;/pre>
+            Step 2:
+            Make a Service that will return a JSON object. We will use it as data source.
+
+            Use this link on you service:
+            'http://mysafeinfo.com/api/data?list=englishmonarchs&amp;format=json'
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                app.service('MyService', ['$http', function($http) {
+                /tb1 this.getDetails = function () {
+                /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&amp;format=json');
+                /tb1 };
+                }]);
+            &lt;/code>&lt;/pre>
+            Step 3:
+            In your Controller use your Service as a dependency so you can use its function inside your controller.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                app.controller('MyController', ['$scope', 'MyService', function($scope, MyService) {
+                /tb1 //
+                }]);
+            &lt;/code>&lt;/pre>
+            Step 4:
+            Use your Service function inside your Controller to retrieve the its response.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                MyService.getDetails()
+                /tb1 .then(function (response) {
+                /tb2 var names = response.data;       
+                /tb1 });
+            &lt;/code>&lt;/pre>
+            Step 5:
+            We only need the names from the response so we will use a for loop and push the names into a $scope array.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                $scope.names = [];
+
+                MyService.getDetails()
+                /tb1 .then(function (response) {
+                /tb2 var names = response.data;
+                /tb2 for (var key in names) {
+                /tb3 $scope.names.push(names[key].nm);
+                /tb2 }
+                /tb1 });
+            &lt;/code>&lt;/pre>
+            Step 6:
+            Now that we bind it into a $scope we can now use ng-repeat to display the names into the view.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
+                /ltdiv ng-app="finalExercise" ng-controller="MyController">
+                /tb1 /ltdiv ng-repeat="name in names">{{name}}/lt/div>
+                /lt/div>
+            &lt;/code>&lt;/pre>
+            Step 7:
+            We will now add a search function using the filter Filter.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
+                /ltinput type="text" ng-model="search" />
+
+                /ltdiv ng-repeat="name in names | filter:search">{{name}}/lt/div>
+            &lt;/code>&lt;/pre>
+            In the example above we have an input that is bind using ng-model to the scope named search.
+
+            Then on the ng-repeat it is used as a value of the filter.
+
+            Step 8:
+            Now we will make a function that can add names.
+
+            Add this to your Controller.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                $scope.add = function () {
+                /tb1 $scope.names.push($scope.name);
+                };
+            &lt;/code>&lt;/pre>
+            Then in your HTML make an input and a button
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
+                /ltinput type="text" ng-model="name" />
+                /ltbutton ng-click="add()">Add/lt/button>
+            &lt;/code>&lt;/pre>
+            Step 9:
+            Next we will create a remove names function.
+
+            Add this code to your Controller.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-javascript" content-code prism>
+                $scope.delete = function (index) {
+                /tb1 $scope.names.splice(index, 1);
+                };
+            &lt;/code>&lt;/pre>
+            Then add a button on your name div like the example below.
+
+            &lt;label class="content-code-label bg-primary">Example&lt;/label>
+            &lt;pre class="content-code">&lt;code class="language-html" content-code prism>
+                /ltdiv ng-repeat="name in names | filter:search">
+                /tb1 /ltspan>{{name}}/lt/span>
+                /tb1 /ltbutton ng-click="delete($index)" ng-hide="search">Delete/lt/button>
+                /lt/div>
+            &lt;/code>&lt;/pre>
+            The ng-click will call the delete function and will pass the $index of that name so the function will know what name it will delete.
+
+            the ng-hide will just hide the button if you use the search function to prevent error because we don't have validations yet.
+
+            And that is it for your first AngularJS Application.
+
+            If you want you could add more functions or create custom directives and filters to it.
+        </content>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <div ng-app="finalExercise" ng-controller="MyController">
+                    /tb1 <form novalidate class="simple-form">
+                    /tb2 Name: <input type="text" ng-model="name" />
+                    /tb2 <input type="submit" ng-click="add()" value="Add" />
+                    /tb2 <br /><br />
+                    /tb2 Search: <input type="text" ng-model="search" />
+                    /tb1 </form>
+                    /tb1 <div ng-repeat="name in names | filter:search">
+                    /tb2 <span>{{name}}</span> 
+                    /tb2 <button ng-click="delete($index)" ng-hide="search">Delete</button>
+                    /tb1 </div>
+                    </div>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    var app = angular.module('finalExercise', []);
+
+                    app.controller('MyController', ['$scope', 'MyService', function($scope, MyService) {
+                    /tb1 $scope.names = [];
+                    
+                    /tb1 MyService.getDetails()
+                    /tb2 .then(function (response) {
+                    /tb3 var names = response.data;
+                                
+                    /tb3 for (var key in names) {
+                    /tb4 $scope.names.push(names[key].nm);
+                    /tb3 }
+                    /tb2 });
+                            
+                    /tb1 $scope.add = function () {
+                    /tb2 $scope.names.push($scope.name);  
+                    /tb1 };
+                        
+                    /tb1 $scope.delete = function (index) {
+                    /tb2 $scope.names.splice(index, 1);
+                    /tb1 };
+                    }]);
+
+                    app.service('MyService', ['$http', function($http) {
+                    /tb1 this.getDetails = function () {
+                    /tb2 return $http.get('http://mysafeinfo.com/api/data?list=englishmonarchs&format=json');
+                    /tb1 };
+                    }]);
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+                    span {
+                    /tb1 display: inline-block;
+                    /tb1 width: 200px;
+                    }
                  ]]>
             </stylecode>
         </example>

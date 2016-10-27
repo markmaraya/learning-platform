@@ -45,7 +45,11 @@
   margin-bottom: 0;
   padding: 5px 10px 0 10px;
   width: 100%;
-  font-size: 18px; }
+  font-size: 18px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; }
 
 .content-code {
   margin: 0 !important;
@@ -56,6 +60,19 @@
   box-shadow: none !important; }
   .content-code code {
     padding: 5px 10px; }
+
+.code-editor-col {
+  position: relative;
+  float: left;
+  height: 100%;
+  width: 50%;
+  padding: 12px; }
+  .code-editor-col .code-editor {
+    height: 600px; }
+  .code-editor-col #iframeWrapper {
+    height: 600px; }
+  .code-editor-col:nth-child(2) {
+    padding: 0 12px 12px 12px; }
 
 .code-editor {
   height: 260px;

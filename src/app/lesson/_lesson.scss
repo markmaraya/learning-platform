@@ -66,6 +66,10 @@
     padding: 5px 10px 0 10px;
     width: 100%;
     font-size: 18px;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .content-code {
@@ -78,6 +82,26 @@
 
     code {
         padding: 5px 10px;
+    }
+}
+
+.code-editor-col {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 50%;
+    padding: 12px;
+
+    .code-editor {
+        height: 600px;
+    }
+
+    #iframeWrapper {
+        height: 600px;
+    }
+
+    &:nth-child(2) {
+        padding: 0 12px 12px 12px;
     }
 }
 
