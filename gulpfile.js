@@ -9,6 +9,7 @@ var rename = require("gulp-rename");
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
+var karmaserver = require('karma').Server;
 
 //==============================================================================
 // Tasks
@@ -125,4 +126,18 @@ gulp.task("demo", ["compile"], function () {
                 name: 'dist'
             }))
         .pipe(gulp.dest('./wwwroot/'));
+});
+
+//==============================================================================
+// Test
+//==============================================================================
+
+gulp.task('test', function (done) {
+    new karmaserver({
+        configFile: __dirname + '/test/karma.conf.js',
+        singleRun: true
+    }, function (exitCode) {
+        done();
+        process.exit(exitCode);
+    }).start();
 });

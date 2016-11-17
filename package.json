@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start test/karma.conf.js"
   },
   "author": "markmaraya",
   "license": "MIT",
   "devDependencies": {
+    "angular-mocks": "^1.5.8",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
     "gulp-concat": "^2.6.0",
@@ -19,7 +20,13 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
-    "jshint": "^2.9.3"
+    "jasmine": "^2.5.0",
+    "jasmine-core": "^2.5.0",
+    "jshint": "^2.9.3",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2"
   },
   "description": "Learning Platform",
   "repository": {

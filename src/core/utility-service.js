@@ -38,13 +38,11 @@
 
             this.GetChapter = function (scope, lesson, chapters) {
                 for (var i = 0; i < chapters.length; i++) {
-                    if (chapters[i].title == lesson) {
+                    if (chapters[i].title === lesson) {
                         scope.chapter = chapters[i];
 
                         this.AddCodeValue(scope);
                         this.CopyCodeValue(scope);
-
-                        document.getElementById('iframeWrapper').innerHTML = '';
                     }
                 }
             };

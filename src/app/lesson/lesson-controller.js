@@ -73,6 +73,8 @@
                 var chapters = chapterList;
 
                 UtilityService.GetChapter(vm, lesson, chapters);
+
+                webSandboxService.clear();
             };
 
             vm.updateHtmlCode = function (data) {
