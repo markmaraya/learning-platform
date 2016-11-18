@@ -17,7 +17,7 @@ describe('prism', function () {
     });
 
     it('should call highlight element function of Prism', function () {
-        expect(element.attr('prisms')).toBeDefined();
+        expect(element.attr('prism')).toBeDefined();
         expect(element.attr('prism')).toBeFalsy();
     });
 });

@@ -127,6 +127,49 @@
 
     angular
         .module('LearningPlatformApplication')
+        .filter('spaceToDash', [function () {
+            return function (input) {
+                if (input) {
+                    return input.toLowerCase().replace(/\s+/g, '-');
+                }
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .filter('toTitleCase', [function () {
+            return function (input) {
+                if (input.indexOf(' ') !== -1) {
+                    var inputPieces, i;
+
+                    input = input.toLowerCase();
+                    inputPieces = input.split(' ');
+
+                    for (i = 0; i < inputPieces.length; i++) {
+                        inputPieces[i] = capitalizeString(inputPieces[i]);
+                    }
+
+                    return inputPieces.toString().replace(/,/g, ' ');
+                }
+                else {
+                    input = input.toLowerCase();
+                    return capitalizeString(input);
+                }
+
+                function capitalizeString(inputString) {
+                    return inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
+                }
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
         .directive('chapterContent', ['$compile', function ($compile) {
             return {
                 restrict: 'E',
@@ -287,49 +330,6 @@
 
     angular
         .module('LearningPlatformApplication')
-        .filter('spaceToDash', [function () {
-            return function (input) {
-                if (input) {
-                    return input.toLowerCase().replace(/\s+/g, '-');
-                }
-            };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .filter('toTitleCase', [function () {
-            return function (input) {
-                if (input.indexOf(' ') !== -1) {
-                    var inputPieces, i;
-
-                    input = input.toLowerCase();
-                    inputPieces = input.split(' ');
-
-                    for (i = 0; i < inputPieces.length; i++) {
-                        inputPieces[i] = capitalizeString(inputPieces[i]);
-                    }
-
-                    return inputPieces.toString().replace(/,/g, ' ');
-                }
-                else {
-                    input = input.toLowerCase();
-                    return capitalizeString(input);
-                }
-
-                function capitalizeString(inputString) {
-                    return inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
-                }
-            };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider
                 .when('/', {
@@ -442,7 +442,7 @@
                 webSandboxService.clear();
             };
 
-            vm.showExample = function () {
+            vm.showExample = function () {console.log(vm.chapter.example.htmlcode);
                 vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
                 vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
                 vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
