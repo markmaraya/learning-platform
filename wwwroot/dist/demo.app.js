@@ -127,49 +127,6 @@
 
     angular
         .module('LearningPlatformApplication')
-        .filter('spaceToDash', [function () {
-            return function (input) {
-                if (input) {
-                    return input.toLowerCase().replace(/\s+/g, '-');
-                }
-            };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
-        .filter('toTitleCase', [function () {
-            return function (input) {
-                if (input.indexOf(' ') !== -1) {
-                    var inputPieces, i;
-
-                    input = input.toLowerCase();
-                    inputPieces = input.split(' ');
-
-                    for (i = 0; i < inputPieces.length; i++) {
-                        inputPieces[i] = capitalizeString(inputPieces[i]);
-                    }
-
-                    return inputPieces.toString().replace(/,/g, ' ');
-                }
-                else {
-                    input = input.toLowerCase();
-                    return capitalizeString(input);
-                }
-
-                function capitalizeString(inputString) {
-                    return inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
-                }
-            };
-        }]);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('LearningPlatformApplication')
         .directive('chapterContent', ['$compile', function ($compile) {
             return {
                 restrict: 'E',
@@ -330,53 +287,40 @@
 
     angular
         .module('LearningPlatformApplication')
-        .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider
-                .when('/', {
-                    templateUrl: 'module/module.html',
-                    controller: 'ModuleController',
-                    controllerAs: 'module'
-                })
-                .when('/module', {
-                    templateUrl: 'module/module.html',
-                    controller: 'ModuleController',
-                    controllerAs: 'module'
-                });
-        }])
-        .controller('ModuleController', ['LessonListService', 'X2jsService', 'UtilityService', function (LessonListService, X2jsService, UtilityService) {
-            var vm = this;
-
-            vm.topicList = [];
-            vm.showHideClass = {};
-
-            LessonListService.getDetails()
-                .then(function (response) {
-                    var lessons = X2jsService.xml_str2json(response.data).lesson.topic;
-
-                    if (lessons.length === undefined) {
-                        vm.topicList.push(lessons);
-                    } else {
-                        for (var key in lessons) {
-                            vm.topicList.push(lessons[key]);
-                        }
-                    }
-                });
-
-            vm.selectLesson = function (lesson) {
-                vm.lesson = lesson;
-                vm.showHideClass.levelLinks = 'show';
-                vm.showHideClass.levelBackButton = 'show';
-
-                UtilityService.showHideLesson(lesson, vm.topicList);
+        .filter('spaceToDash', [function () {
+            return function (input) {
+                if (input) {
+                    return input.toLowerCase().replace(/\s+/g, '-');
+                }
             };
+        }]);
+})();
+(function () {
+    'use strict';
 
-            vm.backToModules = function () {
-                vm.lesson = '';
-                vm.showHideClass.levelLinks = '';
-                vm.showHideClass.levelBackButton = '';
+    angular
+        .module('LearningPlatformApplication')
+        .filter('toTitleCase', [function () {
+            return function (input) {
+                if (input.indexOf(' ') !== -1) {
+                    var inputPieces, i;
 
-                for (var key in vm.topicList) {
-                    vm.topicList[key].hide = '';
+                    input = input.toLowerCase();
+                    inputPieces = input.split(' ');
+
+                    for (i = 0; i < inputPieces.length; i++) {
+                        inputPieces[i] = capitalizeString(inputPieces[i]);
+                    }
+
+                    return inputPieces.toString().replace(/,/g, ' ');
+                }
+                else {
+                    input = input.toLowerCase();
+                    return capitalizeString(input);
+                }
+
+                function capitalizeString(inputString) {
+                    return inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
                 }
             };
         }]);
@@ -442,7 +386,7 @@
                 webSandboxService.clear();
             };
 
-            vm.showExample = function () {console.log(vm.chapter.example.htmlcode);
+            vm.showExample = function () {
                 vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
                 vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
                 vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
@@ -470,6 +414,62 @@
 
             vm.updateStyleCode = function (data) {
                 vm.code.style = data;
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'module/module.html',
+                    controller: 'ModuleController',
+                    controllerAs: 'module'
+                })
+                .when('/module', {
+                    templateUrl: 'module/module.html',
+                    controller: 'ModuleController',
+                    controllerAs: 'module'
+                });
+        }])
+        .controller('ModuleController', ['LessonListService', 'X2jsService', 'UtilityService', function (LessonListService, X2jsService, UtilityService) {
+            var vm = this;
+
+            vm.topicList = [];
+            vm.showHideClass = {};
+
+            LessonListService.getDetails()
+                .then(function (response) {
+                    var lessons = X2jsService.xml_str2json(response.data).lesson.topic;
+
+                    if (lessons.length === undefined) {
+                        vm.topicList.push(lessons);
+                    } else {
+                        for (var key in lessons) {
+                            vm.topicList.push(lessons[key]);
+                        }
+                    }
+                });
+
+            vm.selectLesson = function (lesson) {
+                vm.lesson = lesson;
+                vm.showHideClass.levelLinks = 'show';
+                vm.showHideClass.levelBackButton = 'show';
+                vm.showHideClass.moduleFilter = 'hide';
+
+                UtilityService.showHideLesson(lesson, vm.topicList);
+            };
+
+            vm.backToModules = function () {
+                vm.lesson = '';
+                vm.showHideClass = {};
+
+                for (var key in vm.topicList) {
+                    vm.topicList[key].hide = '';
+                }
             };
         }]);
 })();

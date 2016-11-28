@@ -39,14 +39,14 @@
                 vm.lesson = lesson;
                 vm.showHideClass.levelLinks = 'show';
                 vm.showHideClass.levelBackButton = 'show';
+                vm.showHideClass.moduleFilter = 'hide';
 
                 UtilityService.showHideLesson(lesson, vm.topicList);
             };
 
             vm.backToModules = function () {
                 vm.lesson = '';
-                vm.showHideClass.levelLinks = '';
-                vm.showHideClass.levelBackButton = '';
+                vm.showHideClass = {};
 
                 for (var key in vm.topicList) {
                     vm.topicList[key].hide = '';

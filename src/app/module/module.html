@@ -10,8 +10,13 @@
 
 <div class="content">
 	<div class="container">
+		<div id="moduleFilterContainer" ng-hide="module.showHideClass.moduleFilter">
+			<label>Search</label>
+			<input type="text" ng-model="moduleFilter">
+		</div>
+		
 		<div class="lessons-container">
-			<div class="lesson-div bg-primary" ng-click="module.selectLesson(lesson.title | spaceToDash, $index+1)" ng-repeat="lesson in module.topicList"
+			<div class="lesson-div bg-primary" ng-click="module.selectLesson(lesson.title | spaceToDash, $index+1)" ng-repeat="lesson in module.topicList | filter:{title:moduleFilter}"
 				ng-class="lesson.hide">
 				<i class="mdi mdi-{{lesson.icon}} icon-background"></i>
 				<i class="mdi mdi-{{lesson.icon}} lesson-icon"></i>
@@ -21,6 +26,7 @@
 				<i class="mdi mdi-arrow-left-bold mdi-36px"></i>
 			</button>
 		</div>
+
 		<div class="level-container">
 			<a href="#module/{{module.lesson}}/beginner" ng-class="module.showHideClass.levelLinks">
 				<h1>Beginner</h1>

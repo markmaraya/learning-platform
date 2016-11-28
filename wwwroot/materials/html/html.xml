@@ -1,0 +1,181 @@
+<lesson>
+    <chapter>
+        <level>
+            Beginner
+        </level>
+        <title>
+            Introduction
+        </title>
+        <content>
+            &lt;h2>What is HTML?&lt;/h2>
+
+            HTML is the standard markup language for creating Web pages.
+
+            HTML stands for Hyper Text Markup Language
+            HTML describes the structure of Web pages using markup
+            HTML elements are the building blocks of HTML pages
+            HTML elements are represented by tags
+            HTML tags label pieces of content such as "heading", "paragraph", "table", and so on
+            Browsers do not display the HTML tags, but use them to render the content of the page
+        </content>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                    <title>Page Title</title>
+                    </head>
+                    <body>
+
+                    <h1>My First Heading</h1>
+                    <p>My first paragraph.</p>
+
+                    </body>
+                    </html>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                    <title>Page Title</title>
+                    </head>
+                    <body>
+
+                    <h1>My First Heading</h1>
+                    <p>My first paragraph.</p>
+
+                    </body>
+                    </html>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
+    </chapter>
+    <chapter>
+        <level>
+            Intermediate
+        </level>
+        <title>
+            HTML Attributes
+        </title>
+        <content>
+            &lt;h2>HTML Attributes&lt;/h2>
+
+            All HTML elements can have attributes
+            Attributes provide additional information about an element
+            Attributes are always specified in the start tag
+            Attributes usually come in name/value pairs like: name="value"
+        </content>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    <p title="I'm a tooltip">
+                    This is a paragraph.
+                    </p>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <p title="I'm a tooltip">
+                    This is a paragraph.
+                    </p>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
+    </chapter>
+    <chapter>
+        <level>
+            Advanced
+        </level>
+        <title>
+            HTML Iframes
+        </title>
+        <content>
+            &lt;h2>Iframe Syntax&lt;/h2>
+
+            An HTML iframe is defined with the iframe tag:
+
+            The src attribute specifies the URL (web address) of the inline frame page.
+        </content>
+        <code>
+            <htmlcode>
+                <![CDATA[
+                    <iframe src="demo_iframe.htm" height="200" width="300"></iframe>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </code>
+        <example>
+            <htmlcode>
+                <![CDATA[
+                    <iframe src="demo_iframe.htm" height="200" width="300"></iframe>
+                ]]>
+            </htmlcode>
+            <scriptcode>
+                <![CDATA[
+                    
+                 ]]>
+            </scriptcode>
+            <stylecode>
+                <![CDATA[
+
+                 ]]>
+            </stylecode>
+        </example>
+    </chapter>
+</lesson>

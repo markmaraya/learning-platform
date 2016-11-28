@@ -218,6 +218,37 @@
   .level-back-button:focus {
     outline: none; }
 
+#moduleFilterContainer {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  height: 40px;
+  width: 500px;
+  margin: 0 0 0 -250px; }
+  #moduleFilterContainer label, #moduleFilterContainer input {
+    float: left;
+    height: 40px;
+    margin: 0 !important; }
+  #moduleFilterContainer label {
+    width: 20%;
+    background: #337ab7;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px 0 0 5px; }
+  #moduleFilterContainer input {
+    width: 80%;
+    padding: 0 8px;
+    background: #fafafa;
+    font-size: 18px;
+    border: solid 1px #777;
+    border-radius: 0 5px 5px 0; }
+  #moduleFilterContainer input:focus {
+    outline: none;
+    border-color: #337ab7; }
+
 .level-container a:nth-child(1) {
   background-color: #5cb85c;
   -webkit-transition: all 0.3s 0.2625s;

@@ -3,7 +3,7 @@
         <title>AngularJS</title>
         <icon>angular</icon>
     </topic>
-    <!--<topic>
+    <topic>
         <title>HTML</title>
         <icon>language-html5</icon>
     </topic>
@@ -30,5 +30,5 @@
     <topic>
         <title>XML</title>
         <icon>xml</icon>
-    </topic>-->
+    </topic><!---->
 </lesson>
