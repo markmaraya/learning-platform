@@ -12,11 +12,11 @@
 	<div class="container">
 		<div id="moduleFilterContainer" ng-hide="module.showHideClass.moduleFilter">
 			<label>Search</label>
-			<input type="text" ng-model="moduleFilter">
+			<input type="text" ng-model="module.moduleFilter.title" ng-change="module.updateSearch()">
 		</div>
 		
 		<div class="lessons-container">
-			<div class="lesson-div bg-primary" ng-click="module.selectLesson(lesson.title | spaceToDash, $index+1)" ng-repeat="lesson in module.topicList | filter:{title:moduleFilter}"
+			<div class="lesson-div bg-primary" ng-click="module.selectLesson(lesson.title | spaceToDash, $index+1)" ng-repeat="lesson in module.filtered = module.topicList | filter:module.moduleFilter | startFrom:(module.currentPage-1)*module.itemsPerPage | limitTo:module.itemsPerPage"
 				ng-class="lesson.hide">
 				<i class="mdi mdi-{{lesson.icon}} icon-background"></i>
 				<i class="mdi mdi-{{lesson.icon}} lesson-icon"></i>
@@ -26,6 +26,8 @@
 				<i class="mdi mdi-arrow-left-bold mdi-36px"></i>
 			</button>
 		</div>
+
+		<ul uib-pagination class="pagination-sm module-pagination" ng-model="module.currentPage" ng-hide="module.hidePagination" total-items="module.totalItems" items-per-page="module.itemsPerPage"></ul>
 
 		<div class="level-container">
 			<a href="#module/{{module.lesson}}/beginner" ng-class="module.showHideClass.levelLinks">

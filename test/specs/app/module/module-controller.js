@@ -22,6 +22,8 @@ describe('ModuleController', function () {
             expect(controller.lesson).toBe(mockLesson);
             expect(controller.showHideClass.levelLinks).toBe('show');
             expect(controller.showHideClass.levelBackButton).toBe('show');
+            expect(controller.showHideClass.moduleFilter).toBe('hide');
+            expect(controller.hidePagination).toBe(true);
         });
 
         it('should call showHideLesson function', function () {
@@ -38,8 +40,24 @@ describe('ModuleController', function () {
             controller.backToModules();
 
             expect(controller.lesson).toBeFalsy();
-            expect(controller.showHideClass.levelLinks).toBeFalsy();
-            expect(controller.showHideClass.levelBackButton).toBeFalsy();
+            expect(controller.showHideClass).toEqual({});
+            expect(controller.hidePagination).toBeFalsy();
+        });
+    });
+
+    describe('when I call updateSearch', function () {
+        it('should assign values', function () {
+            controller.updateSearch();
+
+            expect(controller.filtered).toBeTruthy();
+        });
+
+        it('should call hidePagination function', function () {
+            spyOn(utilityService, 'hidePagination');
+
+            controller.updateSearch();
+
+            expect(utilityService.hidePagination).toHaveBeenCalled();
         });
     });
 });

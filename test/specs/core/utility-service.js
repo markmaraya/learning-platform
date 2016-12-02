@@ -126,14 +126,39 @@ describe('UtilityService', function () {
             var mockResult = 'show-lesson';
             var mockElseResult = 'hide-lesson';
             var mockList = [
-                {title: 'title1'},
-                {title: 'title2'}
+                { title: 'title1' },
+                { title: 'title2' }
             ];
 
             service.showHideLesson(mockLesson, mockList);
-            
+
             expect(mockList[0].hide).toBe(mockResult);
             expect(mockList[1].hide).toBe(mockElseResult);
+        });
+    });
+
+    describe('when I call webSandboxCode', function () {
+        it('should set a values for wscode scope', function () {
+            service.webSandboxCode(controller);
+
+            expect(controller.wscode).toBeTruthy();
+        });
+    });
+
+    describe('when I call hidePagination', function () {
+        it('should set the value of hidePagination to true', function () {
+            controller.totalItems = 10;
+
+            service.hidePagination(controller);
+
+            expect(controller.hidePagination).toBeTruthy();
+            expect(controller.hidePagination).toBe(true);
+        });
+
+        it('should set the value of hidePagination to false', function () {
+            service.hidePagination(controller);
+
+            expect(controller.hidePagination).toBe(false);
         });
     });
 });

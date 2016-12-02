@@ -10,7 +10,6 @@ describe('spaceToDash', function () {
         $filter = _$filter_;
     }));
 
-
     it('should change space to dash', function () {
         var mockString = 'hello world', result;
         var mockResult = 'hello-world';

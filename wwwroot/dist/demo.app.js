@@ -99,13 +99,21 @@
                 }
             };
 
-            this.webSandboxCode = function (vm) {
-                vm.wscode = {
-                    html: vm.code.html,
-                    css: vm.code.style,
-                    js: vm.code.script,
-                    jsDependencies: vm.dependencyLink
+            this.webSandboxCode = function (scope) {
+                scope.wscode = {
+                    html: scope.code.html,
+                    css: scope.code.style,
+                    js: scope.code.script,
+                    jsDependencies: scope.dependencyLink
                 };
+            };
+
+            this.hidePagination = function (scope) {
+                if (scope.totalItems <= 10) {
+                    scope.hidePagination = true;
+                } else {
+                    scope.hidePagination = false;
+                }
             };
         }]);
 })();
@@ -287,6 +295,21 @@
 
     angular
         .module('LearningPlatformApplication')
+        .filter('startFrom', [function () {
+            return function (input, start) {
+                if (input) {
+                    start = +start;
+                    return input.slice(start);
+                }
+                return [];
+            };
+        }]);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('LearningPlatformApplication')
         .filter('spaceToDash', [function () {
             return function (input) {
                 if (input) {
@@ -435,11 +458,16 @@
                     controllerAs: 'module'
                 });
         }])
-        .controller('ModuleController', ['LessonListService', 'X2jsService', 'UtilityService', function (LessonListService, X2jsService, UtilityService) {
+        .controller('ModuleController', ['LessonListService', 'X2jsService', 'UtilityService', 'filterFilter', function (LessonListService, X2jsService, UtilityService, filterFilter) {
             var vm = this;
 
             vm.topicList = [];
             vm.showHideClass = {};
+            vm.moduleFilter = {};
+            vm.totalItems = 0;
+
+            vm.currentPage = 1;
+            vm.itemsPerPage = 10;
 
             LessonListService.getDetails()
                 .then(function (response) {
@@ -452,6 +480,10 @@
                             vm.topicList.push(lessons[key]);
                         }
                     }
+
+                    vm.totalItems = vm.topicList.length;
+
+                    UtilityService.hidePagination(vm);
                 });
 
             vm.selectLesson = function (lesson) {
@@ -459,6 +491,7 @@
                 vm.showHideClass.levelLinks = 'show';
                 vm.showHideClass.levelBackButton = 'show';
                 vm.showHideClass.moduleFilter = 'hide';
+                vm.hidePagination = true;
 
                 UtilityService.showHideLesson(lesson, vm.topicList);
             };
@@ -466,10 +499,18 @@
             vm.backToModules = function () {
                 vm.lesson = '';
                 vm.showHideClass = {};
+                vm.hidePagination = false;
 
                 for (var key in vm.topicList) {
                     vm.topicList[key].hide = '';
                 }
+            };
+
+            vm.updateSearch = function () {
+                vm.filtered = filterFilter(vm.topicList, { title: vm.moduleFilter.title });
+                vm.totalItems = vm.filtered.length;
+
+                UtilityService.hidePagination(vm);
             };
         }]);
 })();

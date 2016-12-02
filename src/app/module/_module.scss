@@ -158,7 +158,7 @@
 
 #moduleFilterContainer {
     position: absolute;
-    top: 5%;
+    top: 7%;
     left: 50%;
     height: 40px;
     width: 500px;
@@ -193,6 +193,18 @@
     input:focus {
         outline: none;
         border-color: #337ab7;
+    }
+}
+
+.module-pagination {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    a[disabled = 'disabled'] {
+        cursor: default !important;
+        outline: none;
     }
 }
 

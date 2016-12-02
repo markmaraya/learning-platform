@@ -57,13 +57,21 @@
                 }
             };
 
-            this.webSandboxCode = function (vm) {
-                vm.wscode = {
-                    html: vm.code.html,
-                    css: vm.code.style,
-                    js: vm.code.script,
-                    jsDependencies: vm.dependencyLink
+            this.webSandboxCode = function (scope) {
+                scope.wscode = {
+                    html: scope.code.html,
+                    css: scope.code.style,
+                    js: scope.code.script,
+                    jsDependencies: scope.dependencyLink
                 };
+            };
+
+            this.hidePagination = function (scope) {
+                if (scope.totalItems <= 10) {
+                    scope.hidePagination = true;
+                } else {
+                    scope.hidePagination = false;
+                }
             };
         }]);
 })();
