@@ -7,7 +7,7 @@ describe('LessonDetailService', function () {
     beforeEach(module('LearningPlatformApplication'));
 
     beforeEach(inject(function (_LessonDetailService_) {
-        service = _LessonDetailService_;        
+        service = _LessonDetailService_;
     }));
 
     describe('when I call getDetails', function () {

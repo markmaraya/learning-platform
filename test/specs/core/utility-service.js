@@ -80,6 +80,31 @@ describe('UtilityService', function () {
         });
     });
 
+    describe('when I call TrimCodeObject', function () {
+        it('should call TrimCDataForView function', function () {
+            var codeObject = {};
+
+            spyOn(service, 'TrimCDataForView');
+
+            service.TrimCodeObject(controller.code, codeObject);
+
+            expect(service.TrimCDataForView).toHaveBeenCalled();
+        });
+
+        it('should assign value for each property of codeObject scope', function () {
+            var codeObject = {};
+            codeObject.htmlcode = {};
+            codeObject.scriptcode = {};
+            codeObject.stylecode = {};
+
+            service.TrimCodeObject(controller.code, codeObject);
+
+            expect(controller.code.html).toBeTruthy();
+            expect(controller.code.script).toBeTruthy();
+            expect(controller.code.style).toBeTruthy();
+        });
+    });
+
     describe('when I call GetTitleByLevel', function () {
         it('should get data for titleList and chapter', function () {
             var mockLevel = 'beginner';
@@ -93,10 +118,11 @@ describe('UtilityService', function () {
 
     describe('when I call AddCodeValue', function () {
         it('should add values of code object', function () {
+            spyOn(service, 'TrimCodeObject');
+
             service.AddCodeValue(controller);
 
-            expect(controller.code.html).toBe(htmlcodeResult);
-            expect(controller.code.script).toBe(scriptcodeResult);
+            expect(service.TrimCodeObject).toHaveBeenCalled();
         });
     });
 

@@ -13,9 +13,9 @@ describe('spaceToDash', function () {
     it('should change space to dash', function () {
         var mockString = 'hello world', result;
         var mockResult = 'hello-world';
-        
+
         result = $filter('spaceToDash')(mockString);
-        
+
         expect(result).toEqual(mockResult);
     });
 });

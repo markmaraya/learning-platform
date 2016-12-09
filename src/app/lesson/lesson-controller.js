@@ -23,12 +23,15 @@
 
             vm.code = {};
             vm.breadcrumb = {};
+            vm.mycode = {};
             vm.titleList = [];
 
             vm.breadcrumb.lesson = path;
             vm.breadcrumb.level = level;
 
             vm.dependencyLink = dependencyLink;
+
+            vm.showExampleLabel = 'Example';
 
             LessonDetailService.getDetails(path)
                 .then(function (response) {
@@ -54,19 +57,31 @@
                 vm.code.script = vm.scriptCodeCopy;
                 vm.code.style = vm.styleCodeCopy;
 
+                vm.showExampleLabel = 'Example';
+
                 UtilityService.webSandboxCode(vm);
 
                 webSandboxService.clear();
             };
 
             vm.showExample = function () {
-                vm.code.html = UtilityService.TrimCDataForView(vm.chapter.example.htmlcode);
-                vm.code.script = UtilityService.TrimCDataForView(vm.chapter.example.scriptcode);
-                vm.code.style = UtilityService.TrimCDataForView(vm.chapter.example.stylecode);
+                switch (vm.showExampleLabel) {
+                    case 'Example':
+                        angular.copy(vm.code, vm.mycode);
 
-                UtilityService.webSandboxCode(vm);
+                        UtilityService.TrimCodeObject(vm.code, vm.chapter.example);
 
-                vm.submitCode();
+                        vm.showExampleLabel = 'My Code';
+
+                        break;
+                    case 'My Code':
+                        vm.code = vm.mycode;
+                        vm.mycode = {};
+
+                        vm.showExampleLabel = 'Example';
+
+                        break;
+                }
             };
 
             vm.choiceFunction = function (lesson) {

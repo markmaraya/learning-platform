@@ -18,7 +18,6 @@ describe('chapterContent', function () {
         });
     });
 
-    
     it('should have a div and h2 element', function () {
         expect(element.find('div').length).toEqual(1);
         expect(element.find('h2').length).toEqual(1);

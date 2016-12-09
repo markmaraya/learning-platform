@@ -23,7 +23,7 @@ describe('X2jsService', function () {
         it('should convert xml to json', function () {
             var returnData = {};
             returnData = service.xml_str2json(mockString);
-            var result =  {topic: {title: 'AngularJS', icon: 'angular'}};
+            var result = { topic: { title: 'AngularJS', icon: 'angular' } };
             expect(result).toEqual(returnData);
         });
     });

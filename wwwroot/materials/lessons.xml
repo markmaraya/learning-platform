@@ -32,7 +32,7 @@
         <icon>xml</icon>
     </topic>
 
-    <topic>
+    <!--<topic>
         <title>AngularJS</title>
         <icon>angular</icon>
     </topic>
@@ -95,5 +95,5 @@
     <topic>
         <title>XML</title>
         <icon>xml</icon>
-    </topic><!---->
+    </topic>-->
 </lesson>

@@ -13,6 +13,12 @@
                     .replace(/\/tb4/g, '            ');
             };
 
+            this.TrimCodeObject = function (codeObjectScope, codeObject) {
+                codeObjectScope.html = this.TrimCDataForView(codeObject.htmlcode);
+                codeObjectScope.script = this.TrimCDataForView(codeObject.scriptcode);
+                codeObjectScope.style = this.TrimCDataForView(codeObject.stylecode);
+            };
+
             this.GetTitleByLevel = function (scope, chapterList, level) {
                 for (var key in chapterList) {
                     if (chapterList[key].level.toLowerCase() === level) {
@@ -25,9 +31,7 @@
             };
 
             this.AddCodeValue = function (scope) {
-                scope.code.html = this.TrimCDataForView(scope.chapter.code.htmlcode);
-                scope.code.script = this.TrimCDataForView(scope.chapter.code.scriptcode);
-                scope.code.style = this.TrimCDataForView(scope.chapter.code.stylecode);
+                this.TrimCodeObject(scope.code, scope.chapter.code);
             };
 
             this.CopyCodeValue = function (scope) {

@@ -42,6 +42,14 @@ describe('LessonController', function () {
             expect(controller.code.html).toBe(mockHtmlCodeCopy);
         });
 
+        it('should assign value showExampleLabel scope to "Example"', function () {
+            controller.showExampleLabel = '';
+
+            controller.resetCode();
+
+            expect(controller.showExampleLabel).toBe('Example');
+        });
+
         it('should call webSandboxCode function', function () {
             spyOn(utilityService, 'webSandboxCode');
 

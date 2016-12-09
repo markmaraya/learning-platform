@@ -55,7 +55,7 @@
 				<div ng-class="{'code-editor-col' : lesson.expandEditor}">
 					<button class="btn btn-success code-buttons" ng-click="lesson.submitCode()">Try It</button>
 					<button class="btn btn-warning code-buttons" ng-click="lesson.resetCode()">Reset</button>
-					<button class="btn btn-info code-buttons" ng-click="lesson.showExample()">Example</button>
+					<button class="btn btn-info code-buttons" ng-click="lesson.showExample()">{{lesson.showExampleLabel}}</button>
 					<button class="btn btn-primary pull-right code-buttons" ng-click="lesson.expandEditor = !lesson.expandEditor">
 						<i class="mdi mdi-arrow-expand" ng-show="!lesson.expandEditor"></i>
 						<i class="mdi mdi-arrow-compress" ng-show="lesson.expandEditor"></i>
